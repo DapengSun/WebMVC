@@ -1,7 +1,9 @@
-﻿using ServiceStack.Redis;
+﻿using Newtonsoft.Json;
+using ServiceStack.Redis;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Web;
 namespace WebMVC.Common
@@ -527,6 +529,176 @@ namespace WebMVC.Common
             }
         }
         #endregion
+
+        #region DataSet
+        /// <summary>
+        /// 获取缓存（从2进制流）
+        /// </summary>
+        /// <param name="key">缓存键</param>
+        /// <returns></returns>
+        public static object GetByte(string key)
+        {
+            using (IRedisClient redis = Prcm.GetClient())
+            {
+                byte[] buffer = redis.Get<byte[]>(key);
+                return GetObjFromBytes(buffer);
+            }
+        }
+
+        /// <summary>
+        /// 从二进制流得到对象（dataset专用，dataset要序列化为二进制才可保存）
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <returns></returns>
+        private static object GetObjFromBytes(byte[] buffer)
+        {
+            using (System.IO.MemoryStream stream = new System.IO.MemoryStream(buffer))
+            {
+                stream.Position = 0;
+                System.Runtime.Serialization.IFormatter bf = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                Object reobj = bf.Deserialize(stream);
+                return reobj;
+            }
+        }
+
+        /// <summary>
+        /// 获取DATASET缓存
+        /// </summary>
+        /// <param name="key">缓存键</param>
+        /// <returns></returns>
+        public static DataSet GetMemByDataSet(string key)
+        {
+            var item = GetByte(key);
+            return (DataSet)item;
+        }
+        /// <summary>
+        /// 获取DATASET缓存（如果没有，则调用Func<T>方法返回对象并加入到缓存）
+        /// </summary>
+        /// <param name="key">缓存键</param>
+        /// <param name="func">委托方法，返回指定对象类型，用于缓存不存在时回调该方法获取数据并插入到缓存</param>
+        /// <param name="minute">过期时间（分钟）</param>
+        /// <returns></returns>
+        public static DataSet GetMemByDataSet(string key, Func<DataSet> func, int minute)
+        {
+            DataSet item = GetMemByDataSet(key);
+            if (item == null)
+            {
+                item = func();
+                if (item != null)
+                {
+                    SetMemByDataSet(key, item, minute);
+                }
+            }
+            return item;
+        }
+        /// <summary>
+        /// 插入DATASET缓存
+        /// </summary>
+        /// <param name="key">缓存键</param>
+        /// <param name="item">缓存对象</param>
+        /// <param name="minute">过期时间（分钟）</param>
+        public static void SetMemByDataSet(string key, DataSet ds, int minute)
+        {
+            using (IRedisClient redis = Prcm.GetClient())
+            {
+                DateTime expiryTime = DateTime.Now.AddMinutes(minute);
+                System.Runtime.Serialization.IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();//定义BinaryFormatter以序列化DataSet对象   
+                System.IO.MemoryStream ms = new System.IO.MemoryStream();//创建内存流对象   
+                formatter.Serialize(ms, ds);//把DataSet对象序列化到内存流   
+                byte[] buffer = ms.ToArray();//把内存流对象写入字节数组   
+                ms.Close();//关闭内存流对象   
+                ms.Dispose();//释放资源   
+                redis.Set(key, buffer, expiryTime);
+            }
+        }
+
+        /// <summary>
+        /// 插入dictionary dataset缓存。
+        /// </summary>
+        /// <param name="key">redis保存键</param>
+        /// <param name="dicdss">Dictionary string 键 dataset 值 </param>
+        /// <param name="minute">缓存时间</param>
+        public static void SetDicDataSets(string key, Dictionary<string, DataSet> dicdss, int minute)
+        {
+            using (IRedisClient redis = Prcm.GetClient())
+            {
+                //dataset转为二进制流
+                Dictionary<string, byte[]> ndic = new Dictionary<string, byte[]>();
+                DateTime expiryTime = DateTime.Now.AddMinutes(minute);
+                System.Runtime.Serialization.IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();//定义BinaryFormatter以序列化DataSet对象   
+                System.IO.MemoryStream ms = new System.IO.MemoryStream();//创建内存流对象   
+                foreach (var dsentry in dicdss)
+                {
+                    formatter.Serialize(ms, dsentry.Value);//把DataSet对象序列化到内存流   
+                    byte[] buffer = ms.ToArray();//把内存流对象写入字节数组   
+                    ndic.Add(dsentry.Key, buffer);
+                    //清空流
+                    ms.SetLength(0); ms.Position = 0;
+                }
+                ms.Close();//关闭内存流对象   
+                ms.Dispose();//释放资源   
+                redis.Set(key, ndic, expiryTime);
+            }
+        }
+
+        /// <summary>
+        /// 插入List. dictionary .dataset缓存。
+        /// </summary>
+        /// <param name="key">redis保存键</param>
+        /// <param name="dicdss">Dictionary string 键 dataset 值 </param>
+        /// <param name="minute">缓存时间</param>
+        public static void SetListDicDataSets(string key, List<Dictionary<string, DataSet>> Listdicdss, int minute)
+        {
+            using (IRedisClient redis = Prcm.GetClient())
+            {
+                DateTime expiryTime = DateTime.Now.AddMinutes(minute);
+                System.Runtime.Serialization.IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();//定义BinaryFormatter以序列化DataSet对象   
+                List<Dictionary<string, byte[]>> nlistdic = new List<Dictionary<string, byte[]>>();
+                System.IO.MemoryStream ms = new System.IO.MemoryStream();//创建内存流对象   
+                foreach (var dicdss in Listdicdss)
+                {
+                    //dataset转为二进制流
+                    Dictionary<string, byte[]> ndic = new Dictionary<string, byte[]>();
+                    foreach (var dsentry in dicdss)
+                    {
+                        formatter.Serialize(ms, dsentry.Value);//把DataSet对象序列化到内存流   
+                        byte[] buffer = ms.ToArray();//把内存流对象写入字节数组   
+                        ndic.Add(dsentry.Key, buffer);
+                        //清空流
+                        ms.SetLength(0); ms.Position = 0;
+                    }
+                    nlistdic.Add(ndic);
+                }
+                ms.Close();//关闭内存流对象   
+                ms.Dispose();//释放资源   
+                redis.Set(key, nlistdic, expiryTime);
+            }
+        }
+        /// <summary>
+        /// 得到Dictionary【string, DataSet】
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static List<Dictionary<string, DataSet>> GetListDicDataSets(string key)
+        {
+            using (IRedisClient redis = Prcm.GetClient())
+            {
+                List<Dictionary<string, DataSet>> resutl = new List<Dictionary<string, DataSet>>();
+                List<Dictionary<string, byte[]>> rebytes = (List<Dictionary<string, byte[]>>)GetByte(key);
+                foreach (var item in rebytes)
+                {
+
+                    Dictionary<string, DataSet> dss = new Dictionary<string, DataSet>();
+                    foreach (var itementry in item)
+                    {
+                        DataSet ds = (DataSet)GetObjFromBytes(itementry.Value);
+                        dss.Add(itementry.Key, ds);
+                    }
+                    resutl.Add(dss);
+                }
+                return resutl;
+            }
+        }
+        #endregion
     }
-}
 }
