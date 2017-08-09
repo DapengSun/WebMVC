@@ -541,8 +541,14 @@ namespace WebMVC.Common
             using (IRedisClient redis = Prcm.GetClient())
             {
                 byte[] buffer = redis.Get<byte[]>(key);
-                return GetObjFromBytes(buffer);
-            }
+                if (buffer != null)
+                {
+                    return GetObjFromBytes(buffer);
+                }
+                else {
+                    return null;
+                }
+            } 
         }
 
         /// <summary>
@@ -569,7 +575,11 @@ namespace WebMVC.Common
         public static DataSet GetMemByDataSet(string key)
         {
             var item = GetByte(key);
-            return (DataSet)item;
+            if (item != null) {
+                return (DataSet)item;
+            }else { 
+                return null;
+            }
         }
         /// <summary>
         /// 获取DATASET缓存（如果没有，则调用Func<T>方法返回对象并加入到缓存）
