@@ -528,6 +528,13 @@ namespace WebMVC.Common
                 return redis.Remove(key);
             }
         }
+
+        public static List<string> CommonPreKeyExist(string PreKey) {
+            using (IRedisClient redis = Prcm.GetClient())
+            {
+                return redis.GetAllKeys().Where(i=>i.Contains("TableName=" + PreKey)).ToList();
+            }
+        }
         #endregion
 
         #region DataSet

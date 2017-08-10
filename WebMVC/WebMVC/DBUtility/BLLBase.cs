@@ -20,10 +20,10 @@ namespace WebMVC.DBUtility
         /// <param name="ConnectionStringName"></param>
         /// <param name="Sql"></param>
         /// <returns></returns>
-        public DataSet GetDataBySql(string ConnectionStringName,string Sql) {
+        public DataSet GetDataBySql(string ConnectionStringName,string Sql,string TableName) {
             try
             {
-                string Key = string.Join("/", ConnectionStringName, Sql);
+                string Key = string.Join("/", ConnectionStringName, "TableName=" + TableName, Sql);
                 if (_OPEN_CACHE)
                 {
                     var ResObj = RedisHelper.GetMemByDataSet(Key);

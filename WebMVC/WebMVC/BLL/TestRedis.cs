@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using WebMVC.Common;
 using WebMVC.DBUtility;
 
 namespace WebMVC.BLL
@@ -20,8 +21,13 @@ namespace WebMVC.BLL
         public void TestValue() {
             try
             {
-                string Sql = "select * from douban_toprankfilm limit 0,100";
-                DataSet Ds = _bllBase.GetDataBySql("MysqlConnection", Sql);
+                //string Sql = "select * from douban_toprankfilm limit 0,100";
+                //DataSet Ds = _bllBase.GetDataBySql("MysqlConnection", Sql, "douban_toprankfilm");
+
+                //List<string> _redisKeysList = RedisHelper.CommonPreKeyExist("douban_toprankfilm");
+
+                RedisHelper.ItemSet<string>("Key", "BeforeValue");
+                RedisHelper.ItemSet<string>("Key", "AfterValue");
             }
             catch (Exception ex)
             {

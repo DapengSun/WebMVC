@@ -102,6 +102,6 @@ D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\zh-Hans\Microsoft.Owin.Security.Facebook.r
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\zh-Hans\Microsoft.Owin.Security.Google.resources.dll
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\zh-Hans\Microsoft.Owin.Security.Twitter.resources.dll
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.csprojResolveAssemblyReference.cache
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.dll
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.pdb
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.csprojResolveAssemblyReference.cache
