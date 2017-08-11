@@ -81,8 +81,24 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MySql.Data">
-      <HintPath>DLL\MySql.Data.dll</HintPath>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity">
+      <HintPath>DLL\MySql.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF5">
+      <HintPath>DLL\MySql.Data.Entity.EF5.dll</HintPath>
+    </Reference>
+    <Reference Include="mysql.data.entity.EF6">
+      <HintPath>DLL\mysql.data.entity.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Fabric.Plugin">
+      <HintPath>DLL\MySql.Fabric.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Web">
+      <HintPath>DLL\MySql.Web.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Common">
       <HintPath>DLL\ServiceStack.Common.dll</HintPath>
@@ -99,6 +115,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -214,6 +232,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="BLL\HouseInfoBLL.cs" />
     <Compile Include="BLL\TestRedis.cs" />
     <Compile Include="Common\DbHelperMySQL.cs" />
     <Compile Include="Common\LogHelper.cs" />
@@ -221,13 +240,51 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DAL\HouseInfoDAL.cs" />
+    <Compile Include="DBContext\LocalDBContext.cs" />
     <Compile Include="DBUtility\BLLBase.cs" />
     <Compile Include="DBUtility\DALBase.cs" />
     <Compile Include="DBUtility\PubConstant.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708110615526_InitialCreate.cs" />
+    <Compile Include="Migrations\201708110615526_InitialCreate.Designer.cs">
+      <DependentUpon>201708110615526_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708110622344_CodeFirstTestModel.cs" />
+    <Compile Include="Migrations\201708110622344_CodeFirstTestModel.Designer.cs">
+      <DependentUpon>201708110622344_CodeFirstTestModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708110623215_CodeFirstTestModel1.cs" />
+    <Compile Include="Migrations\201708110623215_CodeFirstTestModel1.Designer.cs">
+      <DependentUpon>201708110623215_CodeFirstTestModel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708110625309_CodeFirstTestModel2.cs" />
+    <Compile Include="Migrations\201708110625309_CodeFirstTestModel2.Designer.cs">
+      <DependentUpon>201708110625309_CodeFirstTestModel2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708110629064_CodeFirstTestModel3.cs" />
+    <Compile Include="Migrations\201708110629064_CodeFirstTestModel3.Designer.cs">
+      <DependentUpon>201708110629064_CodeFirstTestModel3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708110630017_CodeFirstTestModel4.cs" />
+    <Compile Include="Migrations\201708110630017_CodeFirstTestModel4.Designer.cs">
+      <DependentUpon>201708110630017_CodeFirstTestModel4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708110651214_CodeFirstTestModel5.cs" />
+    <Compile Include="Migrations\201708110651214_CodeFirstTestModel5.Designer.cs">
+      <DependentUpon>201708110651214_CodeFirstTestModel5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708110811303_s.cs" />
+    <Compile Include="Migrations\201708110811303_s.Designer.cs">
+      <DependentUpon>201708110811303_s.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CodeFirstTestModel.cs" />
+    <Compile Include="Models\FilmInfo.cs" />
+    <Compile Include="Models\HouseInfo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -236,16 +293,28 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="DLL\log4net.dll" />
+    <Content Include="DLL\MySql.Data.dll" />
+    <Content Include="DLL\MySql.Data.Entity.dll" />
+    <Content Include="DLL\mysql.data.entity.EF6.dll" />
+    <Content Include="DLL\ServiceStack.Common.dll" />
+    <Content Include="DLL\ServiceStack.Interfaces.dll" />
+    <Content Include="DLL\ServiceStack.Redis.dll" />
+    <Content Include="DLL\ServiceStack.Text.dll" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Log\System\2017-08-09.log" />
+    <Content Include="Log\System\2017-08-10.log" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="log4net.config" />
+    <Content Include="Packages\mysql-connector-net-6.9.9.msi" />
+    <Content Include="Packages\mysql-for-visualstudio-1.2.6.msi" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -303,6 +372,32 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201708110615526_InitialCreate.resx">
+      <DependentUpon>201708110615526_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708110622344_CodeFirstTestModel.resx">
+      <DependentUpon>201708110622344_CodeFirstTestModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708110623215_CodeFirstTestModel1.resx">
+      <DependentUpon>201708110623215_CodeFirstTestModel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708110625309_CodeFirstTestModel2.resx">
+      <DependentUpon>201708110625309_CodeFirstTestModel2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708110629064_CodeFirstTestModel3.resx">
+      <DependentUpon>201708110629064_CodeFirstTestModel3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708110630017_CodeFirstTestModel4.resx">
+      <DependentUpon>201708110630017_CodeFirstTestModel4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708110651214_CodeFirstTestModel5.resx">
+      <DependentUpon>201708110651214_CodeFirstTestModel5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708110811303_s.resx">
+      <DependentUpon>201708110811303_s.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

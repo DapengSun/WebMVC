@@ -1,0 +1,1 @@
+mysql-connector-net-6.9.9.msi安装不成功，则解压mysql-connector-net-6.9.9-noinstall.zip，根据,NET版本手动引入dll即可。

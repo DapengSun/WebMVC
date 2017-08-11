@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebMVC.Models;
+using WebMVC.BLL;
+using System.Collections.Generic;
 
 namespace WebMVC.Controllers
 {
@@ -20,6 +22,7 @@ namespace WebMVC.Controllers
 
         public AccountController()
         {
+
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
