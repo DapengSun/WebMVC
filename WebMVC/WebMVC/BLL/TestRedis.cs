@@ -26,8 +26,9 @@ namespace WebMVC.BLL
 
                 //List<string> _redisKeysList = RedisHelper.CommonPreKeyExist("douban_toprankfilm");
 
-                RedisHelper.ItemSet<string>("Key", "BeforeValue");
-                RedisHelper.ItemSet<string>("Key", "AfterValue");
+                string a = "1";
+                string b = "0";
+                int c = int.Parse(a) / int.Parse(b);
             }
             catch (Exception ex)
             {

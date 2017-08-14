@@ -13,17 +13,8 @@ namespace WebMVC.Controllers
     {
         public ActionResult Index()
         {
-            try
-            {
-                HouseInfoBLL _houseInfoBLL = new HouseInfoBLL();
-                List<houseinfo> _houseInfoList = _houseInfoBLL.Get("公主坟");
-                return View();
-            }
-            catch (Exception ex)
-            {
-                LogHelper.WriteLog("获取数据失败！", ex);
-                return Content("获取数据异常！");
-            }
+            new TestRedis().TestValue();
+            return View();
         }
 
         public ActionResult About()

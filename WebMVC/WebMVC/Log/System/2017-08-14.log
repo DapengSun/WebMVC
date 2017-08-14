@@ -1,0 +1,5 @@
+2017-08-14 17:05:51,758 [6] ERROR SystemLog [(null)] - 获取数据失败！
+
+System.DivideByZeroException: 尝试除以零。
+   在 WebMVC.BLL.TestRedis.TestValue() 位置 D:\WorkSpace\WebMVC\WebMVC\WebMVC\BLL\TestRedis.cs:行号 35
+   在 WebMVC.Controllers.HomeController.Index() 位置 D:\WorkSpace\WebMVC\WebMVC\WebMVC\Controllers\HomeController.cs:行号 18

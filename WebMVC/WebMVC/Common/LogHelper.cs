@@ -17,8 +17,8 @@ namespace WebMVC.Common
         #region static void WriteLog(Type t, Exception ex)
         public static void WriteLog(string msg, Exception ex)
         {
-                log4net.ILog log = log4net.LogManager.GetLogger("SystemLog");
-                log.Error(msg, ex);
+            log4net.ILog log = log4net.LogManager.GetLogger("SystemLog");
+            log.Error(msg, ex);
         }
 
         #endregion

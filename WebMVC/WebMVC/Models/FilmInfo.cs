@@ -15,5 +15,7 @@ namespace WebMVC.Models
         public string Id { get; set; }
         public int FilmId { get; set; }
         public string FilmName { get; set; }
+
+        public string newtest { get; set; }
     }
 }

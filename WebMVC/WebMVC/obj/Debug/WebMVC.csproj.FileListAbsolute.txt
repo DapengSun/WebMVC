@@ -125,3 +125,4 @@ D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\WebMatrix.Data.xml
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\zh-Hans\WebMatrix.WebData.resources.dll
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\zh-Hans\WebMatrix.Data.resources.dll
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations.s.resources
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._201708014.resources

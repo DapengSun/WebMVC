@@ -234,6 +234,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BLL\HouseInfoBLL.cs" />
     <Compile Include="BLL\TestRedis.cs" />
+    <Compile Include="Common\BaseExceptionAttribute.cs" />
     <Compile Include="Common\DbHelperMySQL.cs" />
     <Compile Include="Common\LogHelper.cs" />
     <Compile Include="Common\RedisHelper.cs" />
@@ -279,6 +280,10 @@
     <Compile Include="Migrations\201708110811303_s.cs" />
     <Compile Include="Migrations\201708110811303_s.Designer.cs">
       <DependentUpon>201708110811303_s.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708140815212_201708014.cs" />
+    <Compile Include="Migrations\201708140815212_201708014.Designer.cs">
+      <DependentUpon>201708140815212_201708014.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -397,6 +402,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708110811303_s.resx">
       <DependentUpon>201708110811303_s.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708140815212_201708014.resx">
+      <DependentUpon>201708140815212_201708014.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
