@@ -31,12 +31,12 @@ namespace WebMVC
                         }
                         else
                         {
-                            Thread.Sleep(50);
+                            Thread.Sleep(5000);
                         }
                     }
                     else
                     {
-                        Thread.Sleep(50);
+                        Thread.Sleep(5000);
                     }
                 }
             });
