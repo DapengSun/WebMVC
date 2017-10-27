@@ -50,6 +50,10 @@ namespace WebMVC.Models
         [MaxLength(30, ErrorMessage = "")]
         public string LastName { get; set; }
 
+
+        [MaxLength(500,ErrorMessage ="")]
+        public string Describe { get; set; }
+
         /// <summary>
         /// 性别
         /// </summary>

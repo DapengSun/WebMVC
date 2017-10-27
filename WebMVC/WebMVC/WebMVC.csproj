@@ -325,6 +325,10 @@
     <Compile Include="Migrations\201710270905162_20171027_sdp04.Designer.cs">
       <DependentUpon>201710270905162_20171027_sdp04.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710271340062_20171027_sdp05.cs" />
+    <Compile Include="Migrations\201710271340062_20171027_sdp05.Designer.cs">
+      <DependentUpon>201710271340062_20171027_sdp05.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CodeFirstTestModel.cs" />
@@ -540,6 +544,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710270905162_20171027_sdp04.resx">
       <DependentUpon>201710270905162_20171027_sdp04.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710271340062_20171027_sdp05.resx">
+      <DependentUpon>201710271340062_20171027_sdp05.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

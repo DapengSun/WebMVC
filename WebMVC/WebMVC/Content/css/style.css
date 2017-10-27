@@ -1,0 +1,126 @@
+
+/*********************
+ GENERAL RESET & SETUP 
+*********************/
+
+/***
+Dashboard stats
+***/
+.dashboard-stat {
+  margin-bottom: 25px;
+}
+
+.dashboard-stat:before,
+.dashboard-stat:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.dashboard-stat:after {
+  clear: both;
+}
+
+.dashboard-stat .visual {
+  width: 80px;
+  height:80px;
+  display: block;
+  float: left;
+  padding-top: 10px;
+  padding-left: 15px;
+}
+
+.dashboard-stat .visual i {
+  font-size: 65px;
+  color: #fff;
+}
+
+.dashboard-stat .details {
+  float: right;
+  padding-right: 10px;
+}
+
+.dashboard-stat .details .number {    
+  padding-top: 25px;
+  text-align: right;
+  font-size: 34px;
+  letter-spacing: -1px;
+  font-weight: 300;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.dashboard-stat .details .desc {
+  text-align: right;
+  font-size: 16px;
+  letter-spacing: 0px;
+  font-weight: 300;
+  color: #fff;
+}
+
+.dashboard-stat .more {
+  clear: both;
+  display: block;
+  padding: 5px 10px 5px 10px;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 11px;
+  color: #fff;  
+  opacity: 0.7;  
+  filter: alpha(opacity=70);
+}  
+
+.dashboard-stat .more i {
+  margin-top: 4px;
+  float: right;
+}
+
+.dashboard-stat .more:hover {
+  text-decoration: none;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  opacity: 1;  
+  filter: alpha(opacity=100);
+}
+
+.dashboard-stat.blue {
+  background-color: #27a9e3;
+}
+
+.dashboard-stat.blue .more { 
+  background-color: #208dbe;
+} 
+
+.dashboard-stat.green {
+  background-color: #28b779;
+}
+
+.dashboard-stat.green .more { 
+  background-color: #10a062;
+} 
+
+.dashboard-stat.red {
+  background-color: #e7191b;
+}
+
+.dashboard-stat.red .more { 
+  background-color:#bc0d0e;
+} 
+
+.dashboard-stat.yellow {
+  background-color: #ffb848;
+}
+
+.dashboard-stat.yellow .more { 
+  background-color: #cb871b;
+} 
+
+.dashboard-stat.purple {
+  background-color: #852b99;
+}
+
+.dashboard-stat.purple .more { 
+  background-color: #6e1881;
+} 
