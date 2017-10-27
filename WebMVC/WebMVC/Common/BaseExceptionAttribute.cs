@@ -15,7 +15,7 @@ namespace WebMVC.Common
 
         public override void OnException(ExceptionContext filterContext)
         {
-            redisClient.EnqueueItemOnList("errorMsg", filterContext.Exception.ToString());
+            redisClient.EnqueueItemOnList("ErrorMsg", filterContext.Exception.ToString());
 
             filterContext.HttpContext.Response.Redirect("~/Error.html");
 

@@ -104,7 +104,6 @@ D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\zh-Hans\Microsoft.Owin.Security.Twitter.re
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.dll
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.pdb
-D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.csprojResolveAssemblyReference.cache
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\MySql.Data.Entity.dll
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\mysql.data.entity.EF6.dll
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations.InitialCreate.resources
@@ -126,3 +125,7 @@ D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\zh-Hans\WebMatrix.WebData.resources.dll
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\zh-Hans\WebMatrix.Data.resources.dll
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations.s.resources
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._201708014.resources
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations.s1.resources
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations.s2.resources
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations.s3.resources
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.csprojResolveAssemblyReference.cache

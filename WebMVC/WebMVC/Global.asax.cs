@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -16,31 +17,33 @@ namespace WebMVC
     {
         protected void Application_Start()
         {
-            log4net.Config.XmlConfigurator.Configure(); //获取Log4Net配置信息  
-            ThreadPool.QueueUserWorkItem(o =>
-            {
-                while (true)
+            var OpenCache = ConfigurationManager.AppSettings["OpenCache"];
+            if (bool.Parse(OpenCache)) { 
+                log4net.Config.XmlConfigurator.Configure(); //获取Log4Net配置信息  
+                ThreadPool.QueueUserWorkItem(o =>
                 {
-                    if (BaseExceptionAttribute.redisClient.GetListCount("ErrorMsg") > 0)
+                    while (true)
                     {
-                        string msg = BaseExceptionAttribute.redisClient.DequeueItemFromList("ErrorMsg");
-                        if (!string.IsNullOrEmpty(msg))
+                        if (BaseExceptionAttribute.redisClient.GetListCount("ErrorMsg") > 0)
                         {
-                            ILog logger = LogManager.GetLogger("SystemLog");
-                            logger.Error(msg); //将异常信息写入Log4Net中  
+                            string msg = BaseExceptionAttribute.redisClient.DequeueItemFromList("ErrorMsg");
+                            if (!string.IsNullOrEmpty(msg))
+                            {
+                                ILog logger = LogManager.GetLogger("SystemLog");
+                                logger.Error(msg); //将异常信息写入Log4Net中  
+                            }
+                            else
+                            {
+                                Thread.Sleep(5000);
+                            }
                         }
                         else
                         {
                             Thread.Sleep(5000);
                         }
                     }
-                    else
-                    {
-                        Thread.Sleep(5000);
-                    }
-                }
-            });
-
+                });
+            }
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

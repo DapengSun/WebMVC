@@ -82,22 +82,27 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data.Entity">
+    <Reference Include="MySql.Data.Entity, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\MySql.Data.Entity.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data.Entity.EF5">
+    <Reference Include="MySql.Data.Entity.EF5, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\MySql.Data.Entity.EF5.dll</HintPath>
     </Reference>
-    <Reference Include="mysql.data.entity.EF6">
+    <Reference Include="mysql.data.entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\mysql.data.entity.EF6.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Fabric.Plugin">
+    <Reference Include="MySql.Fabric.Plugin, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\MySql.Fabric.Plugin.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Web">
+    <Reference Include="MySql.Web, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\MySql.Web.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Common">
@@ -238,9 +243,13 @@
     <Compile Include="Common\DbHelperMySQL.cs" />
     <Compile Include="Common\LogHelper.cs" />
     <Compile Include="Common\RedisHelper.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\IconsController.cs" />
+    <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\MapsController.cs" />
+    <Compile Include="Controllers\NotificationsController.cs" />
+    <Compile Include="Controllers\TableListController.cs" />
+    <Compile Include="Controllers\TypographyController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\HouseInfoDAL.cs" />
     <Compile Include="DBContext\LocalDBContext.cs" />
     <Compile Include="DBUtility\BLLBase.cs" />
@@ -285,6 +294,18 @@
     <Compile Include="Migrations\201708140815212_201708014.Designer.cs">
       <DependentUpon>201708140815212_201708014.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708160243479_s1.cs" />
+    <Compile Include="Migrations\201708160243479_s1.Designer.cs">
+      <DependentUpon>201708160243479_s1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708160256333_s2.cs" />
+    <Compile Include="Migrations\201708160256333_s2.Designer.cs">
+      <DependentUpon>201708160256333_s2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708160258145_s3.cs" />
+    <Compile Include="Migrations\201708160258145_s3.Designer.cs">
+      <DependentUpon>201708160258145_s3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CodeFirstTestModel.cs" />
@@ -296,8 +317,41 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\animate.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\demo.css" />
+    <Content Include="Content\css\light-bootstrap-dashboard.css" />
+    <Content Include="Content\css\pe-icon-7-stroke.css" />
+    <Content Include="Content\fonts\Pe-icon-7-stroke.svg" />
+    <Content Include="Content\img\default-avatar.png" />
+    <Content Include="Content\img\faces\face-0.jpg" />
+    <Content Include="Content\img\faces\face-1.jpg" />
+    <Content Include="Content\img\faces\face-2.jpg" />
+    <Content Include="Content\img\faces\face-3.jpg" />
+    <Content Include="Content\img\faces\face-4.jpg" />
+    <Content Include="Content\img\faces\face-5.jpg" />
+    <Content Include="Content\img\faces\face-6.jpg" />
+    <Content Include="Content\img\faces\face-7.jpg" />
+    <Content Include="Content\img\faces\tim_vector.jpe" />
+    <Content Include="Content\img\favicon.ico" />
+    <Content Include="Content\img\loading-bubbles.svg" />
+    <Content Include="Content\img\mask.png" />
+    <Content Include="Content\img\new_logo.png" />
+    <Content Include="Content\img\sidebar-1.jpg" />
+    <Content Include="Content\img\sidebar-2.jpg" />
+    <Content Include="Content\img\sidebar-3.jpg" />
+    <Content Include="Content\img\sidebar-4.jpg" />
+    <Content Include="Content\img\sidebar-5.jpg" />
+    <Content Include="Content\img\tim_80x80.png" />
+    <Content Include="Content\js\bootstrap-checkbox-radio-switch.js" />
+    <Content Include="Content\js\bootstrap-notify.js" />
+    <Content Include="Content\js\bootstrap-select.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\chartist.min.js" />
+    <Content Include="Content\js\demo.js" />
+    <Content Include="Content\js\jquery-1.10.2.js" />
+    <Content Include="Content\js\light-bootstrap-dashboard.js" />
     <Content Include="DLL\log4net.dll" />
     <Content Include="DLL\MySql.Data.dll" />
     <Content Include="DLL\MySql.Data.Entity.dll" />
@@ -309,7 +363,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Log\System\2017-08-09.log" />
     <Content Include="Log\System\2017-08-10.log" />
     <Content Include="Scripts\bootstrap.js" />
@@ -320,6 +373,61 @@
     <Content Include="log4net.config" />
     <Content Include="Packages\mysql-connector-net-6.9.9.msi" />
     <Content Include="Packages\mysql-for-visualstudio-1.2.6.msi" />
+    <Content Include="Content\.DS_Store" />
+    <Content Include="Content\css\.DS_Store" />
+    <Content Include="Content\fonts\.DS_Store" />
+    <Content Include="Content\fonts\Pe-icon-7-stroke.eot" />
+    <Content Include="Content\fonts\Pe-icon-7-stroke.ttf" />
+    <Content Include="Content\fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="Content\img\.DS_Store" />
+    <Content Include="Content\img\faces\.DS_Store" />
+    <Content Include="Content\sass\.DS_Store" />
+    <Content Include="Content\sass\lbd\.DS_Store" />
+    <Content Include="Content\sass\lbd\mixins\_buttons.scss" />
+    <Content Include="Content\sass\lbd\mixins\_cards.scss" />
+    <Content Include="Content\sass\lbd\mixins\_chartist.scss" />
+    <Content Include="Content\sass\lbd\mixins\_icons.scss" />
+    <Content Include="Content\sass\lbd\mixins\_inputs.scss" />
+    <Content Include="Content\sass\lbd\mixins\_labels.scss" />
+    <Content Include="Content\sass\lbd\mixins\_morphing-buttons.scss" />
+    <Content Include="Content\sass\lbd\mixins\_navbars.scss" />
+    <Content Include="Content\sass\lbd\mixins\_social-buttons.scss" />
+    <Content Include="Content\sass\lbd\mixins\_tabs.scss" />
+    <Content Include="Content\sass\lbd\mixins\_transparency.scss" />
+    <Content Include="Content\sass\lbd\mixins\_vendor-prefixes.scss" />
+    <Content Include="Content\sass\lbd\_alerts.scss" />
+    <Content Include="Content\sass\lbd\_buttons.scss" />
+    <Content Include="Content\sass\lbd\_cards.scss" />
+    <Content Include="Content\sass\lbd\_carousel.scss" />
+    <Content Include="Content\sass\lbd\_chartist.scss" />
+    <Content Include="Content\sass\lbd\_checkbox-radio-switch.scss" />
+    <Content Include="Content\sass\lbd\_collapse.scss" />
+    <Content Include="Content\sass\lbd\_datepicker.scss" />
+    <Content Include="Content\sass\lbd\_dropdown.scss" />
+    <Content Include="Content\sass\lbd\_flexisel.scss" />
+    <Content Include="Content\sass\lbd\_footers.scss" />
+    <Content Include="Content\sass\lbd\_icons.scss" />
+    <Content Include="Content\sass\lbd\_inputs.scss" />
+    <Content Include="Content\sass\lbd\_labels.scss" />
+    <Content Include="Content\sass\lbd\_media.scss" />
+    <Content Include="Content\sass\lbd\_misc.scss" />
+    <Content Include="Content\sass\lbd\_mixins.scss" />
+    <Content Include="Content\sass\lbd\_modal.scss" />
+    <Content Include="Content\sass\lbd\_morphing-buttons.scss" />
+    <Content Include="Content\sass\lbd\_navbars.scss" />
+    <Content Include="Content\sass\lbd\_progress-bars.scss" />
+    <Content Include="Content\sass\lbd\_responsive.scss" />
+    <Content Include="Content\sass\lbd\_sections.scss" />
+    <Content Include="Content\sass\lbd\_sidebar-and-main-panel.scss" />
+    <Content Include="Content\sass\lbd\_sliders.scss" />
+    <Content Include="Content\sass\lbd\_social-buttons.scss" />
+    <Content Include="Content\sass\lbd\_tables.scss" />
+    <Content Include="Content\sass\lbd\_tabs-navs-pagination.scss" />
+    <Content Include="Content\sass\lbd\_tags.scss" />
+    <Content Include="Content\sass\lbd\_tooltips-and-popovers.scss" />
+    <Content Include="Content\sass\lbd\_typography.scss" />
+    <Content Include="Content\sass\lbd\_variables.scss" />
+    <Content Include="Content\sass\light-bootstrap-dashboard.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -343,29 +451,15 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Main\Index.cshtml" />
+    <Content Include="Views\TableList\Index.cshtml" />
+    <Content Include="Views\Typography\Index.cshtml" />
+    <Content Include="Views\Icons\Index.cshtml" />
+    <Content Include="Views\Maps\Index.cshtml" />
+    <Content Include="Views\Notifications\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -405,6 +499,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708140815212_201708014.resx">
       <DependentUpon>201708140815212_201708014.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708160243479_s1.resx">
+      <DependentUpon>201708160243479_s1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708160256333_s2.resx">
+      <DependentUpon>201708160256333_s2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708160258145_s3.resx">
+      <DependentUpon>201708160258145_s3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

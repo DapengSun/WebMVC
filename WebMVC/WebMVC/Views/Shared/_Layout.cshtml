@@ -4,42 +4,124 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
+    <title></title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/animate.min.css" rel="stylesheet" />
+    <link href="~/Content/css/light-bootstrap-dashboard.css" rel="stylesheet" />
+    <link href="~/Content/css/demo.css" rel="stylesheet" />
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="~/Content/css/pe-icon-7-stroke.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                    <li>@Html.ActionLink("关于", "About", "Home")</li>
-                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
+    <div class="wrapper">
+        <div class="sidebar" data-color="purple" data-image="/Content/img/sidebar-2.jpg">
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="http://www.creative-tim.com" class="simple-text">
+                        Creative Tim
+                    </a>
+                </div>
+                <ul class="nav">
+                    <li id="leftbtn-Dashboard">
+                        <a href="@Url.Action("Index","Main")">
+                            <i class="pe-7s-graph"></i>
+                            <p>主页</p>
+                        </a>
+                    </li>
+                    <li id="leftbtn-User">
+                        <a href="@Url.Action("Index","User")">
+                            <i class="pe-7s-user"></i>
+                            <p>个人Bio</p>
+                        </a>
+                    </li>
+                    <li id="leftbtn-TableList">
+                        <a href="@Url.Action("Index","TableList")">
+                            <i class="pe-7s-note2"></i>
+                            <p>图表</p>
+                        </a>
+                    </li>
+                    <li id="leftbtn-Typography">
+                        <a href="@Url.Action("Index","Typography")">
+                            <i class="pe-7s-news-paper"></i>
+                            <p>样式</p>
+                        </a>
+                    </li>
+                    <li id="leftbtn-Icons">
+                        <a href="@Url.Action("Index", "Icons")">
+                            <i class="pe-7s-science"></i>
+                            <p>图标</p>
+                        </a>
+                    </li>
+                    <li id="leftbtn-Maps">
+                        <a href="@Url.Action("Index","Maps")">
+                            <i class="pe-7s-map-marker"></i>
+                            <p>地图</p>
+                        </a>
+                    </li>
+                    <li id="leftbtn-Notifications">
+                        <a href="@Url.Action("Index","Notifications")">
+                            <i class="pe-7s-bell"></i>
+                            <p>通告</p>
+                        </a>
+                    </li>
+                    <li id="leftbtn-Upgrade" class="active-pro">
+                        <a href="upgrade.html">
+                            <i class="pe-7s-rocket"></i>
+                            <p>Upgrade to PRO</p>
+                        </a>
+                    </li>
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
         </div>
+        <div class="main-panel">
+            @RenderBody()
+        </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
-        </footer>
-    </div>
+    
+    <script src="~/Content/js/jquery-1.10.2.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/bootstrap-checkbox-radio-switch.js"></script>
+    @*<script src="~/Content/js/chartist.min.js"></script>*@
+    <script src="~/Content/js/bootstrap-notify.js"></script>
+    <script src="~/Content/js/light-bootstrap-dashboard.js"></script>
+    <script src="~/Content/js/demo.js"></script>
+    
+    <script type="text/javascript">
+    	$(document).ready(function(){
+        	var pathname = window.location.pathname;
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        	if (pathname.indexOf("/Main") >= 0) {
+        	    $('li[id*="leftbtn-"]').eq(0).addClass('active');
+
+        	    $.notify({
+        	        icon: 'pe-7s-gift',
+        	        message: "欢迎光临 <b>Dipa666</b> 的小站   ."
+        	    }, {
+        	        type: 'info',
+        	        timer: 4000
+        	    });
+        	}
+        	else if (pathname.indexOf("/User") >= 0) {
+        	    $('li[id*="leftbtn-"]').eq(1).addClass('active');
+        	}
+    	    else if (pathname.indexOf("/TableList") >= 0) {
+    	        $('li[id*="leftbtn-"]').eq(2).addClass('active');
+        	}
+    	    else if (pathname.indexOf("/Typography") >= 0) {
+    	        $('li[id*="leftbtn-"]').eq(3).addClass('active');
+        	}
+    	    else if (pathname.indexOf("/Icons") >= 0) {
+    	        $('li[id*="leftbtn-"]').eq(4).addClass('active');
+        	}
+    	    else if (pathname.indexOf("/Maps") >= 0) {
+    	        $('li[id*="leftbtn-"]').eq(5).addClass('active');
+        	} else {
+    	        $('li[id*="leftbtn-"]').eq(6).addClass('active');
+        	}
+    	});
+    </script>
 </body>
 </html>
+
+
