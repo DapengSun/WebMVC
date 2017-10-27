@@ -19,5 +19,7 @@ namespace WebMVC.DBContext
 
         public DbSet<houseinfo> houseinfo { get; set; }
 
+        public DbSet<UserProfile> UserProfile { get; set; }
+
     }
 }

@@ -239,6 +239,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BLL\HouseInfoBLL.cs" />
     <Compile Include="BLL\TestRedis.cs" />
+    <Compile Include="BLL\UserProfileBLL.cs" />
     <Compile Include="Common\BaseExceptionAttribute.cs" />
     <Compile Include="Common\DbHelperMySQL.cs" />
     <Compile Include="Common\LogHelper.cs" />
@@ -251,6 +252,7 @@
     <Compile Include="Controllers\TypographyController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAL\HouseInfoDAL.cs" />
+    <Compile Include="DAL\UserProfileDAL.cs" />
     <Compile Include="DBContext\LocalDBContext.cs" />
     <Compile Include="DBUtility\BLLBase.cs" />
     <Compile Include="DBUtility\DALBase.cs" />
@@ -306,6 +308,18 @@
     <Compile Include="Migrations\201708160258145_s3.Designer.cs">
       <DependentUpon>201708160258145_s3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710270802247_20171027_sdp01.cs" />
+    <Compile Include="Migrations\201710270802247_20171027_sdp01.Designer.cs">
+      <DependentUpon>201710270802247_20171027_sdp01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710270804501_20171027_sdp02.cs" />
+    <Compile Include="Migrations\201710270804501_20171027_sdp02.Designer.cs">
+      <DependentUpon>201710270804501_20171027_sdp02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710270845304_20171027_sdp03.cs" />
+    <Compile Include="Migrations\201710270845304_20171027_sdp03.Designer.cs">
+      <DependentUpon>201710270845304_20171027_sdp03.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CodeFirstTestModel.cs" />
@@ -313,6 +327,7 @@
     <Compile Include="Models\HouseInfo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -508,6 +523,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708160258145_s3.resx">
       <DependentUpon>201708160258145_s3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710270802247_20171027_sdp01.resx">
+      <DependentUpon>201710270802247_20171027_sdp01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710270804501_20171027_sdp02.resx">
+      <DependentUpon>201710270804501_20171027_sdp02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710270845304_20171027_sdp03.resx">
+      <DependentUpon>201710270845304_20171027_sdp03.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
