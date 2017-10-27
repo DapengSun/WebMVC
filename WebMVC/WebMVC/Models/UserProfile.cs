@@ -44,11 +44,11 @@ namespace WebMVC.Models
         [MaxLength(50, ErrorMessage = "")]
         public string Password { get; set; }
 
-        /// <summary>
-        /// 真实姓名
-        /// </summary>
         [MaxLength(30, ErrorMessage = "")]
-        public string NikeName { get; set; }
+        public string FirstName { get; set; }
+
+        [MaxLength(30, ErrorMessage = "")]
+        public string LastName { get; set; }
 
         /// <summary>
         /// 性别

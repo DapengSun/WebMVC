@@ -244,6 +244,7 @@
     <Compile Include="Common\DbHelperMySQL.cs" />
     <Compile Include="Common\LogHelper.cs" />
     <Compile Include="Common\RedisHelper.cs" />
+    <Compile Include="Common\ToolMethod.cs" />
     <Compile Include="Controllers\IconsController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\MapsController.cs" />
@@ -319,6 +320,10 @@
     <Compile Include="Migrations\201710270845304_20171027_sdp03.cs" />
     <Compile Include="Migrations\201710270845304_20171027_sdp03.Designer.cs">
       <DependentUpon>201710270845304_20171027_sdp03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710270905162_20171027_sdp04.cs" />
+    <Compile Include="Migrations\201710270905162_20171027_sdp04.Designer.cs">
+      <DependentUpon>201710270905162_20171027_sdp04.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -532,6 +537,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710270845304_20171027_sdp03.resx">
       <DependentUpon>201710270845304_20171027_sdp03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710270905162_20171027_sdp04.resx">
+      <DependentUpon>201710270905162_20171027_sdp04.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
