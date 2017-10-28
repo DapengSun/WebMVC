@@ -342,11 +342,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\animate.min.css" />
+    <Content Include="Content\css\bootstrap-responsive.min.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\demo.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\light-bootstrap-dashboard.css" />
     <Content Include="Content\css\pe-icon-7-stroke.css" />
+    <Content Include="Content\css\style-metro.css" />
+    <Content Include="Content\css\style.css" />
     <Content Include="Content\fonts\Pe-icon-7-stroke.svg" />
     <Content Include="Content\img\default-avatar.png" />
     <Content Include="Content\img\faces\face-0.jpg" />
