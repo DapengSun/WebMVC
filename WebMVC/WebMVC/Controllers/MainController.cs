@@ -12,6 +12,7 @@ namespace WebMVC.Controllers
         MainBLL _Bll = new MainBLL();
         string Key = "KeyPV";
 
+        [OutputCache(Duration=60,VaryByParam="type")]
         // GET: Main
         public ActionResult Index()
         {
