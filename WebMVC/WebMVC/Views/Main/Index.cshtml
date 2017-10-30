@@ -16,8 +16,8 @@
                         <i class="icon-comments"></i>
                     </div>
                     <div class="details">
-                        <div class="number">
-                            1349
+                        <div id="PV"class="number">
+                            
                         </div>
                         <div class="desc">
                             <!--页面浏览量或点击量，用户每次刷新即被计算一次-->
@@ -264,3 +264,32 @@
     </div>
 </div>
 
+<script>
+    $(function () {
+        GetWebSitePV();
+        UpdateWebSitePV();
+    });
+
+    //获取PV量 时间间隔1分钟
+    setInterval("GetWebSitePV()", "30000");
+
+    //获取PV量 时间间隔1分钟
+    function GetWebSitePV() {
+        $.post("/Main/GetWebSitePV", function (msg) {
+            if (msg.Success) {
+                $("#PV").text(msg.SuccessModel);
+            } else {
+                alert(msg.ErrorMessage);
+            }
+        },"json");
+    }
+
+    //刷新页面 增加PV量
+    function UpdateWebSitePV() {
+        $.post("/Main/UpdateWebSitePV", function (msg) {
+            if (msg.Success) {} else {
+                alert(msg.ErrorMessage);
+            }
+        },"json");
+    }
+</script>

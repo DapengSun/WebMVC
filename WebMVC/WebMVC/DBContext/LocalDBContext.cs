@@ -21,5 +21,7 @@ namespace WebMVC.DBContext
 
         public DbSet<UserProfile> UserProfile { get; set; }
 
+        public DbSet<Statistics> Statistics { get; set; }
+
     }
 }
