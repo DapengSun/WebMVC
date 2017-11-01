@@ -17,7 +17,7 @@
                     </div>
                     <div class="details">
                         <div id="PV"class="number">
-                            
+                            0
                         </div>
                         <div class="desc">
                             <!--页面浏览量或点击量，用户每次刷新即被计算一次-->
@@ -270,10 +270,10 @@
         UpdateWebSitePV();
     });
 
-    //获取PV量 时间间隔1分钟
+    //获取PV量 时间间隔30s
     setInterval("GetWebSitePV()", "30000");
 
-    //获取PV量 时间间隔1分钟
+    //获取PV量 时间间隔30s
     function GetWebSitePV() {
         $.post("/Main/GetWebSitePV", function (msg) {
             if (msg.Success) {

@@ -246,6 +246,7 @@
     <Compile Include="Common\LogHelper.cs" />
     <Compile Include="Common\RedisHelper.cs" />
     <Compile Include="Common\ToolMethod.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\IconsController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\MapsController.cs" />
@@ -360,6 +361,7 @@
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\light-bootstrap-dashboard.css" />
+    <Content Include="Content\css\Login\styles.css" />
     <Content Include="Content\css\pe-icon-7-stroke.css" />
     <Content Include="Content\css\style-metro.css" />
     <Content Include="Content\css\style.css" />
@@ -392,6 +394,7 @@
     <Content Include="Content\js\demo.js" />
     <Content Include="Content\js\jquery-1.10.2.js" />
     <Content Include="Content\js\light-bootstrap-dashboard.js" />
+    <Content Include="Content\js\Login\jquery-2.1.1.min.js" />
     <Content Include="DLL\log4net.dll" />
     <Content Include="DLL\MySql.Data.dll" />
     <Content Include="DLL\MySql.Data.Entity.dll" />
@@ -500,6 +503,7 @@
     <Content Include="Views\Icons\Index.cshtml" />
     <Content Include="Views\Maps\Index.cshtml" />
     <Content Include="Views\Notifications\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+}
+
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录</title>
+    <link href="~/Content/css/Login/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="htmleaf-container">
+        <div class="wrapper">
+            <div class="container">
+                <h1>Welcome</h1>
+
+                <form class="form">
+                    <input type="text" placeholder="Username">
+                    <input type="password" placeholder="Password">
+                    <button type="submit" id="login-button">用户登录</button>
+                </form>
+            </div>
+
+            <ul class="bg-bubbles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="~/Content/js/Login/jquery-2.1.1.min.js"></script>
+    <script>
+        $('#login-button').click(function (event) {
+	        event.preventDefault();
+	        $('form').fadeOut(500);
+	        $('.wrapper').addClass('form-success');
+	        setTimeout("delayer()", 3000);
+        });
+
+        function delayer(){
+            window.location.href = "/Main/Index";
+        }
+    </script>
+
+    <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';color:#000000">
+        
+    </div>
+</body>
+</html>
