@@ -1,0 +1,2 @@
+https://www.bitstamp.net/ 比特币网站
+https://www.bitstamp.net/api/v2/ticker/btcusd/ 比特币实时价格

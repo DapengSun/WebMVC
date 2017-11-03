@@ -12,7 +12,7 @@ namespace WebMVC.Controllers
         MainBLL _Bll = new MainBLL();
         string Key = "KeyPV";
 
-        [OutputCache(Duration=60,VaryByParam="type")]
+        [OutputCache(Duration = 60, VaryByParam = "type")]
         // GET: Main
         public ActionResult Index()
         {
@@ -38,7 +38,7 @@ namespace WebMVC.Controllers
         }
 
         /// <summary>
-        /// 客户端刷新一次页面 则调用一次
+        /// 更新PV 客户端刷新一次页面 则调用一次
         /// </summary>
         /// <returns></returns>
         public ActionResult UpdateWebSitePV() {
@@ -46,6 +46,26 @@ namespace WebMVC.Controllers
             {
                 _Bll.UpdatePV();
                 return Json(new { Success = true });
+            }
+            catch (Exception)
+            {
+                return Json(new { Success = false });
+            }
+        }
+        
+        /// <summary>
+        /// 获取比特币走势数据
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetBTCData()
+        {
+            try
+            {
+                Random _Rd = new Random();
+                int _Random = _Rd.Next() % 100 + 1;
+
+                
+                return Json(new { Success = true  });
             }
             catch (Exception)
             {

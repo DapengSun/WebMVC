@@ -6,6 +6,8 @@
 <link href="~/Content/css/style.css" rel="stylesheet" />
 <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
 <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
+<script src="~/Content/js/highcharts.js"></script>
+<script src="~/Content/js/modules/exporting.js"></script>
 
 <div class="content">
     <div class="container-fluid">
@@ -77,41 +79,21 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Email Statistics</h4>
-                        <p class="category">Last Campaign Performance</p>
+                        <h4 class="title">比特币走势图</h4>
+                        <p class="category">BTC Trend Chart</p>
                     </div>
                     <div class="content">
-                        <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                        <div id="container" style="min-width: 310px; height: 350px; margin: 0 auto"></div>
                         <div class="footer">
                             <div class="legend">
-                       
+
                             </div>
                             <hr>
                             <div class="stats">
                                 <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="header">
-                        <h4 class="title">Users Behavior</h4>
-                        <p class="category">24 Hours performance</p>
-                    </div>
-                    <div class="content">
-                        <div id="chartHours" class="ct-chart"></div>
-                        <div class="footer">
-                            <div class="legend">
-                              
-                            </div>
-                            <hr>
-                            <div class="stats">
-                                <i class="fa fa-history"></i> Updated 3 minutes ago
                             </div>
                         </div>
                     </div>
@@ -130,7 +112,7 @@
                         <div id="chartActivity" class="ct-chart"></div>
                         <div class="footer">
                             <div class="legend">
-                          
+
                             </div>
                             <hr>
                             <div class="stats">
@@ -264,16 +246,22 @@
     </div>
 </div>
 
+
 <script>
     $(function () {
-        GetWebSitePV();
-        UpdateWebSitePV();
+        GetWebSitePV();//获取PV量 时间间隔30s
+        UpdateWebSitePV();//刷新页面 增加PV量
+        ShowBTCchart();//显示BTC图表
     });
 
-    //获取PV量 时间间隔30s
+    /**
+     *  获取PV量 时间间隔30s
+     */
     setInterval("GetWebSitePV()", "30000");
 
-    //获取PV量 时间间隔30s
+    /**
+     *  获取PV量 时间间隔30s
+     */
     function GetWebSitePV() {
         $.post("/Main/GetWebSitePV", function (msg) {
             if (msg.Success) {
@@ -284,12 +272,80 @@
         },"json");
     }
 
-    //刷新页面 增加PV量
+    /**
+     *  刷新页面 增加PV量
+     */
     function UpdateWebSitePV() {
         $.post("/Main/UpdateWebSitePV", function (msg) {
             if (msg.Success) {} else {
                 alert(msg.ErrorMessage);
             }
         },"json");
+    }
+
+    /**
+     *  显示BTC图表
+     */
+    function ShowBTCchart(){
+        $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (data) {
+            Highcharts.chart('container', {
+                chart: {
+                    zoomType: 'x'
+                },
+                title: {
+                    text: 'BTC To USD'
+                },
+                subtitle: {
+                    text: document.ontouchstart === undefined ?
+                     'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                },
+                xAxis: {
+                    type: 'datetime'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Exchange rate'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false
+                },
+                plotOptions: {
+                    area: {
+                        fillColor: {
+                            linearGradient: {
+                                x1: 0,
+                                y1: 0,
+                                x2: 0,
+                                y2: 1
+                            },
+                            stops: [
+                                [0, Highcharts.getOptions().colors[0]],
+                                [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                            ]
+                        },
+                        marker: {
+                            radius: 2
+                        },
+                        lineWidth: 1,
+                        states: {
+                            hover: {
+                                lineWidth: 1
+                            }
+                        },
+                        threshold: null
+                    }
+                },
+
+                series: [{
+                    type: 'area',
+                    name: 'BTC to USD',
+                    data: data
+                }]
+            });
+        });
     }
 </script>
