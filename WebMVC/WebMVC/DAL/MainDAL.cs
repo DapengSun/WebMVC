@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using WebMVC.DBContext;
@@ -9,7 +10,7 @@ namespace WebMVC.DAL
 {
     public class MainDAL
     {
-        public bool Add(Statistics _Statistics) {
+        public bool AddPV(Statistics _Statistics) {
             using (var Context = new LocalDBContext()) {
                 Context.Statistics.Add(_Statistics);
                 Context.SaveChanges();
@@ -17,7 +18,7 @@ namespace WebMVC.DAL
             }
         }
 
-        public bool Update(Statistics _Statistics)
+        public bool UpdatePV(Statistics _Statistics)
         {
             using (var Context = new LocalDBContext())
             {
@@ -28,11 +29,18 @@ namespace WebMVC.DAL
             }
         }
 
-        public Statistics Get()
+        public Statistics GetPV()
         {
             using (var Context = new LocalDBContext())
             {
                 return Context.Statistics.FirstOrDefault();
+            }
+        }
+
+        public List<BTC_Price_Statistics> GetBTCPrice()
+        {
+            using (var Context = new LocalDBContext()) {
+                return Context.BTC_Price_Statistics.OrderBy(i=>i.CDate).ToList();  
             }
         }
     }

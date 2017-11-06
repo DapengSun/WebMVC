@@ -27,7 +27,7 @@ namespace WebMVC.BLL
                 else
                 {
                     //读取数据库PV值
-                    Statistics PVObj = _Dal.Get();
+                    Statistics PVObj = _Dal.GetPV();
 
                     //初始值创建
                     if (PVObj != null)
@@ -61,9 +61,9 @@ namespace WebMVC.BLL
         public bool UpdatePV() {
             lock(_Obj)
             { 
-                Statistics _Statistics = _Dal.Get();
+                Statistics _Statistics = _Dal.GetPV();
                 _Statistics.PV++;
-                return _Dal.Update(_Statistics);
+                return _Dal.UpdatePV(_Statistics);
             }
         }
 
@@ -71,7 +71,16 @@ namespace WebMVC.BLL
         /// 添加PV
         /// </summary>
         public bool AddPV(Statistics _Statistics) {
-            return _Dal.Add(_Statistics);
+            return _Dal.AddPV(_Statistics);
+        }
+
+        /// <summary>
+        /// 获取BTC比特币价格
+        /// </summary>
+        /// <returns></returns>
+        public List<BTC_Price_Statistics> GetBTCPrice()
+        {
+            return _Dal.GetBTCPrice();
         }
     }
 }

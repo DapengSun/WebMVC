@@ -251,7 +251,7 @@
     $(function () {
         GetWebSitePV();//获取PV量 时间间隔30s
         UpdateWebSitePV();//刷新页面 增加PV量
-        ShowBTCchart();//显示BTC图表
+        GetBTCPrice();//获取BTC比特币价格
     });
 
     /**
@@ -286,66 +286,90 @@
     /**
      *  显示BTC图表
      */
-    function ShowBTCchart(){
-        $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (data) {
-            Highcharts.chart('container', {
-                chart: {
-                    zoomType: 'x'
+    var chart = new Highcharts.chart('container', {
+        chart: {
+            zoomType: 'x'
+        },
+        title: {
+            text: 'BTC To USD'
+        },
+        subtitle: {
+            text: document.ontouchstart === undefined ?
+             'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+        },
+        xAxis: {
+            type: 'datetime'
+        },
+        yAxis: {
+            title: {
+                text: 'Exchange rate'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        exporting: {
+            enabled: false
+        },
+        plotOptions: {
+            area: {
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, Highcharts.getOptions().colors[0]],
+                        [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
                 },
-                title: {
-                    text: 'BTC To USD'
+                marker: {
+                    radius: 2
                 },
-                subtitle: {
-                    text: document.ontouchstart === undefined ?
-                     'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-                },
-                xAxis: {
-                    type: 'datetime'
-                },
-                yAxis: {
-                    title: {
-                        text: 'Exchange rate'
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1
                     }
                 },
-                legend: {
-                    enabled: false
-                },
-                exporting: {
-                    enabled: false
-                },
-                plotOptions: {
-                    area: {
-                        fillColor: {
-                            linearGradient: {
-                                x1: 0,
-                                y1: 0,
-                                x2: 0,
-                                y2: 1
-                            },
-                            stops: [
-                                [0, Highcharts.getOptions().colors[0]],
-                                [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                            ]
-                        },
-                        marker: {
-                            radius: 2
-                        },
-                        lineWidth: 1,
-                        states: {
-                            hover: {
-                                lineWidth: 1
-                            }
-                        },
-                        threshold: null
-                    }
-                },
+                threshold: null
+            }
+        },
 
-                series: [{
-                    type: 'area',
-                    name: 'BTC to USD',
-                    data: data
-                }]
-            });
+        series: [{
+            type: 'area',
+            name: 'BTC to USD',
+            data: []
+        }]
+    });
+
+    /**
+     * 获取BTC比特币价格
+     */
+    function GetBTCPrice(data) {
+        var BTCData = [];
+        $.post("/Main/GetBTCData", function (data) {
+            if (data.Success) {
+                $.each(data.SuccessModel, function (i, e) {
+                    e.CDate.replace(/Date\([\d+]+\)/, function (a) { eval('d = new ' + a) });
+                    d = GetTimeByTimeStr(d)
+                    BTCData.push([d, e.LastPriceUSD]);
+                });
+
+                chart.series[0].setData(BTCData);
+            } else {
+                alert(data.ErrorMessage);
+            }
         });
+    }
+
+    //UTC时间转换
+    function GetTimeByTimeStr(dateStr) {
+        var year = dateStr.getUTCFullYear();
+        var month = dateStr.getUTCMonth();
+        var date = dateStr.getUTCDate();
+        return Date.UTC(year,month,date);
     }
 </script>

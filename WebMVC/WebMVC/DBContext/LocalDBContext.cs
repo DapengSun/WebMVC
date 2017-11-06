@@ -23,5 +23,8 @@ namespace WebMVC.DBContext
 
         public DbSet<Statistics> Statistics { get; set; }
 
+        public DbSet<BTC_Price> BTC_Price { get; set; }
+        
+        public DbSet<BTC_Price_Statistics> BTC_Price_Statistics { get; set; }
     }
 }

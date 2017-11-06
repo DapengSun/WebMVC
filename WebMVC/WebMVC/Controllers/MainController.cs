@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebMVC.BLL;
+using WebMVC.Models;
 
 namespace WebMVC.Controllers
 {
@@ -61,15 +62,13 @@ namespace WebMVC.Controllers
         {
             try
             {
-                Random _Rd = new Random();
-                int _Random = _Rd.Next() % 100 + 1;
+                List<BTC_Price_Statistics> _BTC_Price_Statistics = _Bll.GetBTCPrice();
 
-                
-                return Json(new { Success = true  });
+                return Json(new { Success = true  , SuccessModel = _BTC_Price_Statistics });
             }
-            catch (Exception)
+            catch (Exception ee)
             {
-                return Json(new { Success = false });
+                return Json(new { Success = false , ErrorMessage = ee });
             }
         }
     }
