@@ -247,6 +247,7 @@
     <Compile Include="Common\RedisHelper.cs" />
     <Compile Include="Common\ToolMethod.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\IconsController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\MapsController.cs" />
@@ -352,6 +353,14 @@
     <Compile Include="Migrations\201711030853396_20171103_sdp03.Designer.cs">
       <DependentUpon>201711030853396_20171103_sdp03.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711240855538_20171124_sdp01.cs" />
+    <Compile Include="Migrations\201711240855538_20171124_sdp01.Designer.cs">
+      <DependentUpon>201711240855538_20171124_sdp01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711240904159_20171124_sdp02.cs" />
+    <Compile Include="Migrations\201711240904159_20171124_sdp02.Designer.cs">
+      <DependentUpon>201711240904159_20171124_sdp02.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BTC_Price_Statistics.cs" />
@@ -390,8 +399,9 @@
     <Content Include="Content\img\faces\face-6.jpg" />
     <Content Include="Content\img\faces\face-7.jpg" />
     <Content Include="Content\img\faces\tim_vector.jpe" />
-    <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\loading-bubbles.svg" />
+    <Content Include="Content\img\loginfavicon.ico" />
+    <Content Include="Content\img\mainfavicon.ico" />
     <Content Include="Content\img\mask.png" />
     <Content Include="Content\img\new_logo.png" />
     <Content Include="Content\img\sidebar-1.jpg" />
@@ -523,6 +533,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -598,6 +609,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711030853396_20171103_sdp03.resx">
       <DependentUpon>201711030853396_20171103_sdp03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711240855538_20171124_sdp01.resx">
+      <DependentUpon>201711240855538_20171124_sdp01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711240904159_20171124_sdp02.resx">
+      <DependentUpon>201711240904159_20171124_sdp02.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

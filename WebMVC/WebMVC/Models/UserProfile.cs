@@ -58,14 +58,6 @@ namespace WebMVC.Models
         /// 性别
         /// </summary>
         public EnumSexType Sex { get; set; }
-        [NotMapped]
-        public int SexId
-        {
-            get
-            {
-                return (int)SexId;
-            }
-        }
 
         /// <summary>
         /// 最后一次登录时间
@@ -81,12 +73,6 @@ namespace WebMVC.Models
         /// 删除标记
         /// </summary>
         public EnumSysType SysStatus { get; set; }
-        [NotMapped]
-        public int SysStatusId {
-            get {
-                return (int)SysStatus;
-            }
-        }
 
         /// <summary>
         /// 账户类型

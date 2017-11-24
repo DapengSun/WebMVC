@@ -46,5 +46,12 @@ namespace WebMVC.DAL
                 return context.UserProfile.Where(i => i.Id == Id && i.SysStatus == UserProfile.EnumSysType.正常).FirstOrDefault();
             }
         }
+
+        public UserProfile Get(string Username, string Password)
+        {
+            using (var context = new LocalDBContext()) {
+                return context.UserProfile.Where(i => i.LoginName == Username && i.Password == Password).FirstOrDefault();
+            }
+        }
     }
 }

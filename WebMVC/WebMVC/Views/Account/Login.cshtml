@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>用户登录</title>
     <link href="~/Content/css/Login/styles.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Content/img/loginfavicon.ico"/>
 </head>
 <body>
     <div class="htmleaf-container">
@@ -18,8 +19,8 @@
                 <h1>Welcome</h1>
 
                 <form class="form">
-                    <input type="text" placeholder="Username">
-                    <input type="password" placeholder="Password">
+                    <input type="text" placeholder="Username" id="Username">
+                    <input type="password" placeholder="Password" id="Password">
                     <button type="submit" id="login-button">用户登录</button>
                 </form>
             </div>
@@ -42,6 +43,7 @@
     <script src="~/Content/js/Login/jquery-2.1.1.min.js"></script>
     <script>
         $('#login-button').click(function (event) {
+            UserLogin()
 	        event.preventDefault();
 	        $('form').fadeOut(500);
 	        $('.wrapper').addClass('form-success');
@@ -50,6 +52,35 @@
 
         function delayer(){
             window.location.href = "/Main/Index";
+        }
+
+        /**
+         * 用户登陆
+         */
+        function UserLogin() {
+            var Username = $("#Username").val();
+            var Password = $("#Password").val();
+
+            data = {
+                Username : Username,
+                Password : Password
+            };
+
+            $.ajax({
+                type : "post",
+                url: "/Account/UserLogin",
+                data: data,
+                async: false,
+                dataType: "json",
+                success: function (msg) {
+                    if (msg.Success) {
+                        
+                    } else {
+                        alert(msg.ErrorMessage);
+                    }
+                },
+                error: function (msg) { }
+            })
         }
     </script>
 

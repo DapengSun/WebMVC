@@ -8,7 +8,7 @@ using WebMVC.Models;
 
 namespace WebMVC.Controllers
 {
-    public class MainController : Controller
+    public class MainController : BaseController
     {
         MainBLL _Bll = new MainBLL();
         string Key = "KeyPV";
