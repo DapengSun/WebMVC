@@ -41,48 +41,8 @@
     </div>
 
     <script src="~/Content/js/Login/jquery-2.1.1.min.js"></script>
-    <script>
-        $('#login-button').click(function (event) {
-            UserLogin()
-	        event.preventDefault();
-	        $('form').fadeOut(500);
-	        $('.wrapper').addClass('form-success');
-	        setTimeout("delayer()", 3000);
-        });
-
-        function delayer(){
-            window.location.href = "/Main/Index";
-        }
-
-        /**
-         * 用户登陆
-         */
-        function UserLogin() {
-            var Username = $("#Username").val();
-            var Password = $("#Password").val();
-
-            data = {
-                Username : Username,
-                Password : Password
-            };
-
-            $.ajax({
-                type : "post",
-                url: "/Account/UserLogin",
-                data: data,
-                async: false,
-                dataType: "json",
-                success: function (msg) {
-                    if (msg.Success) {
-                        
-                    } else {
-                        alert(msg.ErrorMessage);
-                    }
-                },
-                error: function (msg) { }
-            })
-        }
-    </script>
+    <script src="~/Content/js/common.js"></script>
+    <script src="~/Content/js/Login/login.js"></script>
 
     <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';color:#000000">
         

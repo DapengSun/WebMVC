@@ -34,8 +34,7 @@ namespace WebMVC.Controllers
 
                 if (!isExt)
                 {
-                    filterContext.HttpContext.Response.Write("<script type='text/javascript'>alert('登录失效！请重新登录！');</script>");
-                    filterContext.HttpContext.Response.Redirect("/Account/Login");
+                    filterContext.HttpContext.Response.Redirect("/Account/Login?session=false");
                 }
                 return;
             }

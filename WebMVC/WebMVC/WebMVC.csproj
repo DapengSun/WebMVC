@@ -415,11 +415,13 @@
     <Content Include="Content\js\bootstrap-select.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\chartist.min.js" />
+    <Content Include="Content\js\common.js" />
     <Content Include="Content\js\demo.js" />
     <Content Include="Content\js\highcharts.js" />
     <Content Include="Content\js\jquery-1.10.2.js" />
     <Content Include="Content\js\light-bootstrap-dashboard.js" />
     <Content Include="Content\js\Login\jquery-2.1.1.min.js" />
+    <Content Include="Content\js\Login\login.js" />
     <Content Include="Content\js\modules\exporting.js" />
     <Content Include="DLL\log4net.dll" />
     <Content Include="DLL\MySql.Data.dll" />

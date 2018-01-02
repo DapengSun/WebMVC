@@ -29,13 +29,13 @@ namespace WebMVC.Controllers
                 string _SessionId = _UserProfileBLL.Login(Username, Password);
                 if (_SessionId != null)
                 {
-                    //SessionId保存到Cookies中 1分钟超时
+                    //SessionId保存到Cookies中 8小时超时
                     Response.Cookies["SessionId"].Value = _SessionId;
-                    Response.Cookies["SessionId"].Expires = DateTime.Now.AddSeconds(60);
+                    Response.Cookies["SessionId"].Expires = DateTime.Now.AddHours(8);
                     return Json(new { Success = true, SuccessModel = "登录成功！" });
                 }
                 else {
-                    return Json(new { Success = true, SuccessModel = "登录失败！用户名或密码不正确！" });
+                    return Json(new { Success = false, ErrorMessage = "登录失败！用户名或密码不正确！" });
                 } 
             }
             catch (Exception ee)
