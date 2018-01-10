@@ -76,6 +76,12 @@
                             <p>通告</p>
                         </a>
                     </li>
+                    <li id="leftbtn-BackgroundManagers">
+                        <a href="@Url.Action("Index","Mangerment")">
+                            <i class="pe-7s-cloud"></i>
+                            <p>设置</p>
+                        </a>
+                    </li>
                     <li id="leftbtn-Upgrade" class="active-pro">
                         <a href="upgrade.html">
                             <i class="pe-7s-rocket"></i>
@@ -234,8 +240,17 @@
     	    else if (pathname.indexOf("/Maps") >= 0) {
     	        $('li[id*="leftbtn-"]').eq(5).addClass('active');
     	        $("#navbar-brand").html("地图");
-        	} else {
+    	    }
+    	    else if (pathname.indexOf("/Notifications") >= 0) {
     	        $('li[id*="leftbtn-"]').eq(6).addClass('active');
+    	        $("#navbar-brand").html("通告");
+    	    }
+    	    else if (pathname.indexOf("/Mangerment") >= 0) {
+    	        $('li[id*="leftbtn-"]').eq(7).addClass('active');
+    	        $("#navbar-brand").html("设置");
+    	    }
+    	    else {
+    	        $('li[id*="leftbtn-"]').eq(8).addClass('active');
     	        $("#navbar-brand").html("通告");
         	}
     	});
