@@ -10,5 +10,9 @@ namespace WebMVC.Common
         public static string GetGuid() {
             return Guid.NewGuid().ToString().Replace("-", "");
         }
+
+        public static DateTime GetNow() {
+            return DateTime.Now;
+        }
     }
 }

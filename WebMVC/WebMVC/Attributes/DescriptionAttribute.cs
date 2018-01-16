@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebMVC.Attributes
 {
-    public class Description : Attribute
+    public class DescriptionAttribute : Attribute
     {
         public string DescptionName { get; set; }
     }

@@ -14,35 +14,42 @@ namespace WebMVC.BLL
     {
         private string AssemblyName = "WebMVC";
 
-        public string ControllerList() {
+        public List<string> ControllerList() {
             List<Type> controllerTypes = new List<Type>();
-            
+
+            //加载程序集 
             var assembly = Assembly.Load(AssemblyName);
             controllerTypes.AddRange(assembly.GetTypes().Where(type => type.Name.Contains("Controller") == true));
 
-            List<object> controllerItems = new List<object>();
+            List<string> controllerItems = new List<string>();
 
-            foreach (var controller in controllerTypes)
+            controllerTypes.ForEach(x =>
             {
-                controllerItems.Add(new { Text = controller.Name, Value = controller.Name });
-            }
-            return JsonHelper.SerializeObject(controllerItems);
+                controllerItems.Add(x.Name);
+            });
+
+            return controllerItems;
         }
 
-        public string ActionList(string controllerName)
+        public List<string> ActionList(string ControllerName)
         {
             //加载程序集 
             var assembly = Assembly.Load(AssemblyName);
             //获取对应controller类型
-            var controller = assembly.GetTypes().Where(type => type.Name == controllerName && type.Name != "AccountController").FirstOrDefault();
-            List<object> actionItems = new List<object>();
-            //获取Controller下属性是HttpPost的Method
-            var actions = controller.GetMethods().Where(m => m.IsDefined(typeof(Description), false));
-            foreach (var actionItem in actions)
-            {
-                actionItems.Add(new{ Text = actionItem.Name, Value = actionItem.Name });
+            var controller = assembly.GetTypes().Where(type => type.Name == ControllerName && type.Name != "AccountController").FirstOrDefault();
+           
+            if(controller != null) {
+                List<string> actionItems = new List<string>();
+                //获取Controller下属性是Description的Method
+                var actions = controller.GetMethods().Where(m => m.IsDefined(typeof(AuthAttribute), false));
+                foreach (var actionItem in actions)
+                {
+                    actionItems.Add(actionItem.Name);
+                }
+                return actionItems;
             }
-            return JsonHelper.SerializeObject(actionItems);
+
+            return null;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using WebMVC.Attributes;
 using WebMVC.BLL;
 using WebMVC.Common;
 using WebMVC.Models;
@@ -15,6 +16,7 @@ namespace WebMVC.Controllers
         public UserProfileBLL _Bll = new UserProfileBLL();
 
         // GET: User
+        [AuthAttribute]
         public ActionResult Index()
         {
             return View();
@@ -26,7 +28,7 @@ namespace WebMVC.Controllers
                 UserProfile _UserProfile = new UserProfile
                 {
                     Id = ToolMethod.GetGuid(),
-                    Role = UserProfile.EnumAccountType.User,
+                    //Role = UserProfile.EnumAccountType.User,
                     LoginName = "13520387252@163.com",
                     NickName = "Dipa666",
                     Phone = "13520387252",

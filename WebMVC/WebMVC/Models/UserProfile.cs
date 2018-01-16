@@ -16,15 +16,16 @@ namespace WebMVC.Models
         public string Id { get; set; }
 
         /// <summary>
-        /// 账户类型
+        /// 账户角色ID
         /// </summary>
-        public EnumAccountType Role { get; set; }
-        [NotMapped]
-        public int RoleId {
-            get {
-                return (int)Role;
-            }
-        }
+        [MaxLength(50,ErrorMessage ="")]
+        public string RoleId { get; set; }
+
+        /// <summary>
+        /// 账户角色名称
+        /// </summary>
+        [MaxLength(100,ErrorMessage ="")]
+        public string RoleName { get; set; }
 
         /// <summary>
         /// 登录名称
@@ -73,15 +74,6 @@ namespace WebMVC.Models
         /// 删除标记
         /// </summary>
         public EnumSysType SysStatus { get; set; }
-
-        /// <summary>
-        /// 账户类型
-        /// </summary>
-        public enum EnumAccountType
-        {
-            User = 0,   //普通
-            Admin = 1   //管理员
-        }
 
         /// <summary>
         /// 删除标记类型
