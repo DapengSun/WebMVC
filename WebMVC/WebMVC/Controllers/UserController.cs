@@ -11,17 +11,21 @@ using WebMVC.Models;
 
 namespace WebMVC.Controllers
 {
+    [DescriptionAttribute(DescptionName = "账户管理")]
     public class UserController : Controller
     {
         public UserProfileBLL _Bll = new UserProfileBLL();
 
         // GET: User
         [AuthAttribute]
+        [DescriptionAttribute(DescptionName = "账户管理首页")]
         public ActionResult Index()
         {
             return View();
         }
 
+        [AuthAttribute]
+        [DescriptionAttribute(DescptionName = "新增用户")]
         public ActionResult Add() {
             try
             {

@@ -36,20 +36,33 @@ namespace WebMVC.BLL
         /// <summary>
         /// 从缓存中权限列表 未命中 则读取数据库存放至缓存
         /// </summary>
+        /// <param name="IsCache">是否从缓存中读取数据</param>
         /// <returns></returns>
-        public List<PermissionInfo> GetAll()
+        public List<PermissionInfo> GetAll(bool IsCache)
         {
             string PermissionKey = "PermissionList";
             string PermissionListString = string.Empty;
+
+            //IsCache
+            //false  重新读取数据
+            //true   从缓存中读取数据
+            if (!IsCache)
+            {
+                RedisHelper.CommonRemove("PermissionList");
+            }
+
             PermissionListString = RedisHelper.ItemGet<string>(PermissionKey);
             if(PermissionListString != null) {
                 return JsonHelper.DeserializeJsonToList<PermissionInfo>(PermissionListString);
             }
             else{
                 List<PermissionInfo>  _permissionInfoList = _PermissionInfoDal.GetAll();
-                PermissionListString = JsonHelper.SerializeObject(_permissionInfoList);
-                RedisHelper.ItemSet<string>(PermissionKey, PermissionListString);
-                RedisHelper.CommonSetExpire(PermissionKey, ToolMethod.GetNow().AddDays(1));
+                if (_permissionInfoList.Count > 0)
+                {
+                    PermissionListString = JsonHelper.SerializeObject(_permissionInfoList);
+                    RedisHelper.ItemSet<string>(PermissionKey, PermissionListString);
+                    RedisHelper.CommonSetExpire(PermissionKey, ToolMethod.GetNow().AddDays(1));
+                }
                 return _permissionInfoList;
             }
         }
@@ -61,7 +74,7 @@ namespace WebMVC.BLL
         /// <param name="Action"></param>
         /// <returns></returns>
         public PermissionInfo Get(string Controller,string Action) {
-            List<PermissionInfo> _permissionInfoList = GetAll();
+            List<PermissionInfo> _permissionInfoList = GetAll(true);
             return _permissionInfoList.Where(x => x.Controller == Controller && x.Action == Action).FirstOrDefault();
         }
     }

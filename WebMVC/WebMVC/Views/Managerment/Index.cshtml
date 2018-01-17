@@ -3,89 +3,135 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using WebMVC.Models
 
-<div class="col-md-12">
-    <div class="card ">
-        <div class="header">
-            <h4 class="title">角色列表</h4>
-            <p class="category">后台生成</p>
-        </div>
-        <div class="content">
-            <div class="table-full-width">
-                <table class="table">
-                    <thead>
-                        <th></th>
-                        <th>角色名称</th>
-                        <th>角色描述</th>
-                        <th>创建时间</th>
-                        <th>操作</th>
-                    </thead>
-                    <tbody id="RoleList">
-                    </tbody>
-                </table>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card ">
+                    <div class="header">
+                        <h4 class="title">角色列表</h4>
+                        <p class="category">后台生成</p>
+                    </div>
+                    <div class="content">
+                        <div class="table-full-width">
+                            <table class="table">
+                                <thead>
+                                <th></th>
+                                <th>角色名称</th>
+                                <th>角色描述</th>
+                                <th>创建时间</th>
+                                <th>操作</th>
+                                </thead>
+                                <tbody id="RoleList"></tbody>
+                            </table>
+                        </div>
+                        <div class="footer">
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-history"></i> Updated 3 minutes ago
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="footer">
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-history"></i> Updated 3 minutes ago
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card ">
+                    <div class="header">
+                        <h4 class="title">权限列表</h4>
+                        <p class="category">后台生成</p>
+                    </div>
+                    <div class="content">
+                        <div class="table-full-width">
+                            <table class="table">
+                                <thead>
+                                <th></th>
+                                <th>Controller名称</th>
+                                <th>Action名称</th>
+                                <th>Controller描述</th>
+                                <th>Action描述</th>
+                                <th>创建时间</th>
+                                <th>操作</th>
+                                </thead>
+                                <tbody id="PermissionList"></tbody>
+                            </table>
+                        </div>
+                        <div class="footer">
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-history"></i> Updated 3 minutes ago
+                            </div>
+                            <a class="pull-right" href="javascript:void(0);" onclick="CreatePerssionList()" style="float:right">刷新权限列表</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card ">
+                    <div class="header">
+                        <h4 class="title">角色权限映射列表</h4>
+                    </div>
+                    <div class="header">
+                        <p class="category" style="width:auto">角色列表</p>
+                        <div style="padding-top:10px;padding-left:100px">
+                            <select id="RoleSelectList">
+                                @foreach(var item in (List<RoleInfo>)@ViewBag.RoleInfoList) {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div id="RolePermissionList"></div>
+                        <div>
+                            <button class="btn">全选</button>
+                            <button class="btn">全不选</button>
+                            <button class="btn btn-success pull-right" type="button" style="margin-left:20px;">取消</button>
+                            <button class="btn btn-success pull-right" type="button">保存</button>
+                        </div>
+                        <div class="footer">
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-history"></i> Updated 3 minutes ago
+                            </div>
+                            <a class="pull-right" href="javascript:void(0);" onclick="CreateRolePerssionList()" style="float:right">刷新角色权限映射列表</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="col-md-12">
-    <div class="card ">
-        <div class="header">
-            <h4 class="title">权限列表</h4>
-            <p class="category">后台生成</p>
-        </div>
-        <div class="content">
-            <div class="table-full-width">
-                <table class="table">
-                    <thead>
-                        <th></th>
-                        <th>Controller名称</th>
-                        <th>Action名称</th>
-                        <th>Controller描述</th>
-                        <th>Action描述</th>
-                        <th>创建时间</th>
-                        <th>操作</th>
-                    </thead>
-                    <tbody id="PermissionList"></tbody>
-                </table>
-            </div>
-            <div class="footer">
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-history"></i> Updated 3 minutes ago
-                    <a href="javascript:void(0);"onclick="CreatePerssionList()" style="float:right">刷新生成权限列表</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script id="tmpRoleList" type="text/template">
     {$each RoleArray as RoleItem,index1}
-        <tr>
-            <td>
-                <label class="checkbox">
-                    <input type="checkbox" value="checked" data-toggle="checkbox">
-                </label>
-            </td>
-            <td>${RoleItem.Name}</td>
-            <td>${RoleItem.Description}</td>
-            <td>${RoleItem.CDate}</td>
-            <td class="td-actions">
-                <button type="button" rel="tooltip" title="Edit Task" data-id="${RoleItem.Id}" class="btn btn-info btn-simple btn-xs">
-                    <i class="fa fa-edit"></i>
-                </button>
-                <button type="button" rel="tooltip" title="Remove" data-id="${RoleItem.Id}" class="btn btn-danger btn-simple btn-xs">
-                    <i class="fa fa-times"></i>
-                </button>
-            </td>
-        </tr>
+    <tr>
+        <td>
+            <label class="checkbox checked">
+                <span class="icons"><span class="first-icon fa fa-square-o"></span><span class="second-icon fa fa-check-square-o"></span></span>
+                <input type="checkbox" value="checked" data-toggle="checkbox">
+            </label>
+        </td>
+        <td>${RoleItem.Name}</td>
+        <td>${RoleItem.Description}</td>
+        <td>${RoleItem.CDate}</td>
+        <td class="td-actions">
+            <button type="button" rel="tooltip" title="Edit Task" data-id="${RoleItem.Id}" class="btn btn-info btn-simple btn-xs">
+                <i class="fa fa-edit"></i>
+            </button>
+            <button type="button" rel="tooltip" title="Remove" data-id="${RoleItem.Id}" class="btn btn-danger btn-simple btn-xs">
+                <i class="fa fa-times"></i>
+            </button>
+        </td>
+    </tr>
     {$/each}
 </script>
 
@@ -93,7 +139,8 @@
     {$each PermissionArray as PermissionItem,index1}
     <tr>
         <td>
-            <label class="checkbox">
+            <label class="checkbox checked">
+                <span class="icons"><span class="first-icon fa fa-square-o"></span><span class="second-icon fa fa-check-square-o"></span></span>
                 <input type="checkbox" value="checked" data-toggle="checkbox">
             </label>
         </td>
@@ -114,16 +161,66 @@
     {$/each}
 </script>
 
+<script id="tmpRolePermissionList" type="text/template">
+    {$each ControllerArray as ControllerArrayItem,index}
+        <div><p class="category">${ControllerArrayItem.ControllerDescription}</p></div>
+        
+         <table class="table">
+            <thead>
+                <th></th>
+                <th>Controller描述</th>
+                <th>Action描述</th>
+                <th>Controller名称</th>
+                <th>Action名称</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </thead>
+            {$each ActionArray as ActionArrayItem,index1}
+                {$if ControllerArrayItem.Controller == ActionArrayItem.Controller}
+                    <tr>
+                        <td class="col-md-1">
+                            {$if ActionArrayItem.UsedType == 0}
+                                <label class="checkbox">
+                            {$/if}
+
+                            {$if ActionArrayItem.UsedType == 1}
+                                <label class="checkbox checked">
+                            {$/if}
+                                <span class="icons"><span class="first-icon fa fa-square-o"></span><span class="second-icon fa fa-check-square-o"></span></span>
+                                <input type="checkbox" value="checked" data-toggle="checkbox">
+                            </label>
+                        </td>
+                        <td class="col-md-2">${ControllerArrayItem.ControllerDescription}</td>
+                        <td class="col-md-2">${ActionArrayItem.ActionDescription}</td>
+                        <td class="col-md-2">${ActionArrayItem.Controller}</td>
+                        <td class="col-md-2">${ActionArrayItem.Action}</td>
+                        <td class="col-md-2">${ActionArrayItem.CDate}</td>
+                        <td class="td-actions= col-md-1">
+                            <button type="button" rel="tooltip" title="Edit Task" data-id="${ActionArrayItem.Id}" class="btn btn-info btn-simple btn-xs">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button type="button" rel="tooltip" title="Remove" data-id="${ActionArrayItem.Id}" class="btn btn-danger btn-simple btn-xs">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </td>
+                    </tr>
+                {$/if}
+            {$/each}
+        </table>
+   {$/each}
+</script>
+
 <script>
     $(function () {
         GetRoles();
         GetPermissions();
-        GetRolePermissions();
     });
 
     var RoleArray = [];
     var PermissionArray = [];
-    var RolePermissionArray = [];
+    var RolePermissionControllerArray = [];
+    var RolePermissionActionArray = [];
+    var ControllerArray = [];
 
     /*
      * 获取角色列表
@@ -133,12 +230,17 @@
             if (data.Success) {
                 $.each(data.SuccessModel, function (i, e) {
                     RoleArray.push({ Id: e.Id, Name: e.Name, Description: e.Description, CDate: DateTimeConvert(e.CDate) });
-                    $("#RoleList").html(juicer($("#tmpRoleList").html(), { RoleArray : RoleArray }));
+                    $("#RoleList").html(juicer($("#tmpRoleList").html(), { RoleArray: RoleArray }));
                 });
+
+                //角色列表加载完成 加载角色权限映射关系
+                if (RoleArray.length > 0) {
+                    GetRolePermissions(RoleArray[0].Id);
+                }
             } else {
                 toastr.error(data.ErrorModel);
             }
-        });
+        },"json");
     }
 
     /*
@@ -154,22 +256,55 @@
             } else {
                 toastr.error(data.ErrorModel);
             }
-        });
+        },"json");
     }
 
     /*
      * 生成角色权限映射关系列表
      */
-    function GetRolePermissions() {
-        $.get("/Managerment/GetRolePermissions", "", function (data) {
+    function GetRolePermissions(RoleId) {
+        var data = {
+            RoleId : RoleId 
+        };
+
+        $.post("/Managerment/GetRolePermissions", data, function (data) {
             if (data.Success) {
-                
+                RolePermissionControllerArray = [];
+                RolePermissionActionArray = [];
+                ControllerArray = [];
+
+                $.each(data.SuccessModel,function(i,e){
+                    RolePermissionControllerArray.push({ Controller: e.Controller, ControllerDescription: e.ControllerDescription == null ? "空" : e.ControllerDescription });
+                });
+                //去重复
+                ControllerArray = RolePermissionControllerArray.filter();
+
+                $.each(data.SuccessModel, function (i, e) {
+                    RolePermissionActionArray.push({ Id: e.Id, Controller: e.Controller, Action: e.Action, ActionDescription: e.ActionDescription == null ? "空" : e.ActionDescription, CDate: DateTimeConvert(e.CDate), UsedType: e.UsedType });
+                });
+
+                $("#RolePermissionList").html(juicer($("#tmpRolePermissionList").html(), { ControllerArray: ControllerArray, ActionArray: RolePermissionActionArray }));
             } else {
                 toastr.error(data.ErrorModel);
             }
-        });
+        },"json");
     }
-    
+
+    /*
+     * 去除重复
+     */
+    Array.prototype.filter = function () {
+        for (var i = 0, temp = {}, result = [], ci; ci = this[i++];) {
+            var ControllerId = ci.Controller;
+            if (temp[ControllerId]) {
+                continue;
+            }
+            temp[ControllerId] = true;
+            result.push(ci);
+        }
+        return result;
+    };
+
     /*
      * 时间转换
      */
@@ -181,7 +316,7 @@
         var hh = date.getHours();
         var mm = date.getMinutes();
         var ss = date.getSeconds();
-        return year + "-" + month + "-" + day ;
+        return year + "-" + month + "-" + day;
     }
 
     /*
@@ -197,5 +332,25 @@
         });
     }
 
+    /*
+     * 生成角色权限映射列表
+     */
+    function CreateRolePerssionList() {
+        $.get("/AutoGenerater/InstallRolePermissions", "", function (data) {
+            if (data.Success) {
+                toastr.success(data.SuccessModel);
+            } else {
+                toastr.error(data.ErrorModel);
+            }
+        });
+    }
+    
+    /*
+     * 角色下拉菜单选项改变 切换权限列表
+     */
+    $("#RoleSelectList").change(function () {
+        var SelectedVal = $(this).children('option:selected').val();
+        GetRolePermissions(SelectedVal);
+    });
 </script>
 

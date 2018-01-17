@@ -11,5 +11,10 @@ namespace WebMVC.Models
             正常 = 0,
             已删除 = 1
         }
+
+        public enum UsedType {
+            启用 = 0,
+            未启用 = 1
+        }
     }
 }

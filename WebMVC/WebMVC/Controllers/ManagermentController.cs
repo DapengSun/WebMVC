@@ -9,13 +9,16 @@ using WebMVC.Models;
 
 namespace WebMVC.Controllers
 {
+    [DescriptionAttribute(DescptionName = "后台管理")]
     public class ManagermentController : Controller
     {
         // GET: Managerment
-        [AuthAttribute]
         [DescriptionAttribute(DescptionName = "后台管理首页")]
         public ActionResult Index()
         {
+            RoleInfoBLL _roleInfoBLL = new RoleInfoBLL();
+            List<RoleInfo> _roleInfoList = _roleInfoBLL.GetAll(true);
+            ViewBag.RoleInfoList = _roleInfoList;
             return View();
         }
 
@@ -29,7 +32,7 @@ namespace WebMVC.Controllers
             try
             {
                 RoleInfoBLL _roleInfoBLL = new RoleInfoBLL();
-                List<RoleInfo> _roleInfoList = _roleInfoBLL.GetAll();
+                List<RoleInfo> _roleInfoList = _roleInfoBLL.GetAll(true);
                 return Json(new { Success = true, SuccessModel = _roleInfoList },JsonRequestBehavior.AllowGet);
             }
             catch (Exception ee)
@@ -48,7 +51,7 @@ namespace WebMVC.Controllers
             try
             {
                 PermissionInfoBLL _permissionInfoBLL = new PermissionInfoBLL();
-                List<PermissionInfo> _permissionInfoList = _permissionInfoBLL.GetAll();
+                List<PermissionInfo> _permissionInfoList = _permissionInfoBLL.GetAll(true);
                 return Json(new { Success = true, SuccessModel = _permissionInfoList }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ee)
@@ -61,18 +64,27 @@ namespace WebMVC.Controllers
         /// 获取角色权限映射关系列表
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-        public ActionResult GetRolePermissions()
+        [HttpPost]
+        public ActionResult GetRolePermissions(string RoleId)
         {
             try
             {
+                if (string.IsNullOrEmpty(RoleId))
+                {
+                    return Json(new { Success = false, ErrorMessage = "角色ID不能为空" });
+                }
+
                 RolePermissionBLL _rolepermissionBLL = new RolePermissionBLL();
-                List<RolePermission> _rolePermissionList = _rolepermissionBLL.GetAll();
-                return Json(new { Success = true, SuccessModel = _rolePermissionList }, JsonRequestBehavior.AllowGet);
+                List<RolePermission> _rolePermissionList = _rolepermissionBLL.GetAll(true);
+
+                //返回指定角色的权限映射关系
+                List<RolePermission> _result = _rolePermissionList.Where(x => x.RoleId == RoleId).ToList();
+
+                return Json(new { Success = true, SuccessModel = _result });
             }
             catch (Exception ee)
             {
-                return Json(new { Success = false, ErrorMessage = ee.ToString() }, JsonRequestBehavior.AllowGet);
+                return Json(new { Success = false, ErrorMessage = ee.ToString() });
             }
         }
     }

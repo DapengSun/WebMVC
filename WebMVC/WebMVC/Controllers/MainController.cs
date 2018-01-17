@@ -9,6 +9,7 @@ using WebMVC.Models;
 
 namespace WebMVC.Controllers
 {
+    [DescriptionAttribute(DescptionName = "首页")]
     public class MainController : BaseController
     {
         MainBLL _Bll = new MainBLL();

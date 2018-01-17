@@ -35,11 +35,21 @@ namespace WebMVC.BLL
         /// <summary>
         /// 从缓存中角色列表 未命中 则读取数据库存放至缓存
         /// </summary>
+        /// <param name="IsCache">是否从缓存中读取数据</param>
         /// <returns></returns>
-        public List<RoleInfo> GetAll()
+        public List<RoleInfo> GetAll(bool IsCache)
         {
             string RoleKey = "RoleList";
             string RoleListString = string.Empty;
+
+            //IsCache
+            //false  重新读取数据
+            //true   从缓存中读取数据
+            if (!IsCache)
+            {
+                RedisHelper.CommonRemove("RoleList");
+            }
+
             RoleListString = RedisHelper.ItemGet<string>(RoleKey);
             if (RoleListString != null)
             {
@@ -48,9 +58,12 @@ namespace WebMVC.BLL
             else
             {
                 List<RoleInfo> _roleInfoList = _roleInfoDal.GetAll();
-                RoleListString = JsonHelper.SerializeObject(_roleInfoList);
-                RedisHelper.ItemSet<string>(RoleKey, RoleListString);
-                RedisHelper.CommonSetExpire(RoleKey, ToolMethod.GetNow().AddDays(1));
+                if (_roleInfoList.Count > 0)
+                {
+                    RoleListString = JsonHelper.SerializeObject(_roleInfoList);
+                    RedisHelper.ItemSet<string>(RoleKey, RoleListString);
+                    RedisHelper.CommonSetExpire(RoleKey, ToolMethod.GetNow().AddDays(1));
+                }
                 return _roleInfoList;
             }
         }

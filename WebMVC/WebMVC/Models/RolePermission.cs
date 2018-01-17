@@ -30,7 +30,22 @@ namespace WebMVC.Models
         public string RoleName { get; set; }
 
         [MaxLength(50, ErrorMessage = "")]
-        public string PermissionName { get; set; }
+        public string Controller { get; set; }
+
+        [MaxLength(50, ErrorMessage = "")]
+        public string Action { get; set; }
+
+
+        [MaxLength(150, ErrorMessage = "")]
+        public string ControllerDescription { get; set; }
+
+        [MaxLength(150, ErrorMessage = "")]
+        public string ActionDescription { get; set; }
+
+        /// <summary>
+        /// 该映射是否启用
+        /// </summary>
+        public UsedType UsedType { get; set; }
 
         public DelflagType Delflag { get; set; }
 

@@ -35,11 +35,20 @@ namespace WebMVC.BLL
         /// <summary>
         /// 从缓存中权限角色对应关系 未命中 则读取数据库存放至缓存
         /// </summary>
+        /// <param name="IsCache">是否从缓存中读取数据</param>
         /// <returns></returns>
-        public List<RolePermission> GetAll()
+        public List<RolePermission> GetAll(bool IsCache)
         {
             string RolePermissionKey = "RolePermissionList";
             string RolePermissionListString = string.Empty;
+
+            //IsCache
+            //false  重新读取数据
+            //true   从缓存中读取数据
+            if (!IsCache) {
+                RedisHelper.CommonRemove("RolePermissionList");
+            }
+
             RolePermissionListString = RedisHelper.ItemGet<string>(RolePermissionKey);
             if (RolePermissionListString != null)
             {
@@ -48,9 +57,11 @@ namespace WebMVC.BLL
             else
             {
                 List<RolePermission> _rolePermissionInfoList = _rolePermissionDal.GetAll();
-                RolePermissionListString = JsonHelper.SerializeObject(_rolePermissionInfoList);
-                RedisHelper.ItemSet<string>(RolePermissionKey, RolePermissionListString);
-                RedisHelper.CommonSetExpire(RolePermissionKey, ToolMethod.GetNow().AddDays(1));
+                if(_rolePermissionInfoList.Count > 0) { 
+                    RolePermissionListString = JsonHelper.SerializeObject(_rolePermissionInfoList);
+                    RedisHelper.ItemSet<string>(RolePermissionKey, RolePermissionListString);
+                    RedisHelper.CommonSetExpire(RolePermissionKey, ToolMethod.GetNow().AddDays(1));
+                }
                 return _rolePermissionInfoList;
             }
         }
@@ -63,7 +74,7 @@ namespace WebMVC.BLL
         /// <returns></returns>
         public bool Exist(string RoleId, string PermissionId)
         {
-            List<RolePermission> _rolePermissionInfoList = GetAll();
+            List<RolePermission> _rolePermissionInfoList = GetAll(true);
             return _rolePermissionInfoList.Exists(x => x.RoleId == RoleId && x.PermissionId == PermissionId);
         }
     }

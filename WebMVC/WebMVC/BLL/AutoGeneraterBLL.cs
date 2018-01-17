@@ -14,24 +14,36 @@ namespace WebMVC.BLL
     {
         private string AssemblyName = "WebMVC";
 
-        public List<string> ControllerList() {
+        /// <summary>
+        /// 获取Controller列表
+        /// </summary>
+        /// <returns></returns>
+        public List<KeyValuePair<string, string>> ControllerList() {
             List<Type> controllerTypes = new List<Type>();
 
             //加载程序集 
             var assembly = Assembly.Load(AssemblyName);
             controllerTypes.AddRange(assembly.GetTypes().Where(type => type.Name.Contains("Controller") == true));
 
-            List<string> controllerItems = new List<string>();
+            List<KeyValuePair<string, string>> controllerItems = new List<KeyValuePair<string, string>>();
 
             controllerTypes.ForEach(x =>
             {
-                controllerItems.Add(x.Name);
+                //获取Controller自定义信息
+                DescriptionAttribute _descriptionAttribute = GetControllerAttribute<DescriptionAttribute>(x);
+
+                controllerItems.Add(new KeyValuePair<string, string>( x.Name, _descriptionAttribute == null ? "" : _descriptionAttribute.DescptionName ));
             });
 
             return controllerItems;
         }
 
-        public List<string> ActionList(string ControllerName)
+        /// <summary>
+        /// 获取Action列表
+        /// </summary>
+        /// <param name="ControllerName"></param>
+        /// <returns></returns>
+        public List<KeyValuePair<string, string>> ActionList(string ControllerName)
         {
             //加载程序集 
             var assembly = Assembly.Load(AssemblyName);
@@ -39,17 +51,43 @@ namespace WebMVC.BLL
             var controller = assembly.GetTypes().Where(type => type.Name == ControllerName && type.Name != "AccountController").FirstOrDefault();
            
             if(controller != null) {
-                List<string> actionItems = new List<string>();
+                List<KeyValuePair<string, string>> actionItems = new List<KeyValuePair<string,string>>();
+
                 //获取Controller下属性是Description的Method
                 var actions = controller.GetMethods().Where(m => m.IsDefined(typeof(AuthAttribute), false));
                 foreach (var actionItem in actions)
                 {
-                    actionItems.Add(actionItem.Name);
+                    //获取Action自定义信息
+                    DescriptionAttribute _descriptionAttribute = GetActionAttribute<DescriptionAttribute>(actionItem);
+
+                    actionItems.Add(new KeyValuePair<string,string>(actionItem.Name, _descriptionAttribute == null ? "" : _descriptionAttribute.DescptionName ));
                 }
                 return actionItems;
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// 获取Controller自定义属性
+        /// </summary>
+        /// <typeparam name="T">自定义属性类型</typeparam>
+        /// <param name="_type"></param>
+        /// <returns></returns>
+        public T GetControllerAttribute<T>(Type _type) {
+            var _controllerAttribute = (T)(_type.GetCustomAttributes(false).FirstOrDefault(i => i is T));
+            return _controllerAttribute;
+        }
+
+        /// <summary>
+        /// 获取Action自定义属性
+        /// </summary>
+        /// <typeparam name="T">自定义属性类型</typeparam>
+        /// <param name="_type"></param>
+        /// <returns></returns>
+        public T GetActionAttribute<T>(MethodInfo _methodInfo) {
+            var _actionAttribute = (T)(_methodInfo.GetCustomAttributes(false).FirstOrDefault(i => i is T));
+            return _actionAttribute;
         }
     }
 }

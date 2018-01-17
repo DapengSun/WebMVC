@@ -249,6 +249,8 @@
     <Compile Include="BLL\UserProfileBLL.cs" />
     <Compile Include="Attributes\BaseExceptionAttribute.cs" />
     <Compile Include="Common\DbHelperMySQL.cs" />
+    <Compile Include="Custom\Compare\PermissionInfo_EqualityCompare.cs" />
+    <Compile Include="Custom\Compare\RolePermission_EqualityCompare.cs" />
     <Compile Include="Common\JsonHelper.cs" />
     <Compile Include="Common\LogHelper.cs" />
     <Compile Include="Common\RedisHelper.cs" />
@@ -394,6 +396,18 @@
     <Compile Include="Migrations\201801120751410_20180112_sdp02.cs" />
     <Compile Include="Migrations\201801120751410_20180112_sdp02.Designer.cs">
       <DependentUpon>201801120751410_20180112_sdp02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801170200420_20180117_sdp01.cs" />
+    <Compile Include="Migrations\201801170200420_20180117_sdp01.Designer.cs">
+      <DependentUpon>201801170200420_20180117_sdp01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801170709484_20180117_sdp02.cs" />
+    <Compile Include="Migrations\201801170709484_20180117_sdp02.Designer.cs">
+      <DependentUpon>201801170709484_20180117_sdp02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801170714268_20180117_sdp03.cs" />
+    <Compile Include="Migrations\201801170714268_20180117_sdp03.Designer.cs">
+      <DependentUpon>201801170714268_20180117_sdp03.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -678,6 +692,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801120751410_20180112_sdp02.resx">
       <DependentUpon>201801120751410_20180112_sdp02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801170200420_20180117_sdp01.resx">
+      <DependentUpon>201801170200420_20180117_sdp01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801170709484_20180117_sdp02.resx">
+      <DependentUpon>201801170709484_20180117_sdp02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801170714268_20180117_sdp03.resx">
+      <DependentUpon>201801170714268_20180117_sdp03.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -53,7 +53,7 @@ namespace WebMVC.DAL
         {
             using (var context = new LocalDBContext())
             {
-                return context.RoleInfo.Where(x => x.Delflag == EnumType.DelflagType.正常).ToList();
+                return context.RoleInfo.Where(x => x.Delflag == EnumType.DelflagType.正常).OrderBy(x=>x.CDate).ToList();
             }
         }
     }
