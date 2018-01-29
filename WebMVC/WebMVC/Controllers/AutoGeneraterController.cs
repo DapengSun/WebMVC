@@ -6,12 +6,16 @@ using System.Web.Mvc;
 using WebMVC.BLL;
 using WebMVC.Common;
 using WebMVC.Custom.Compare;
+using WebMVC.IBLL;
 using WebMVC.Models;
 
 namespace WebMVC.Controllers
 {
     public class AutoGeneraterController : Controller
     {
+        private IRoleInfoBLL _IRoleInfoBLL = BLLContainer.RoleInfoBLLContainer.Resolve<IRoleInfoBLL>();
+        private IPermissionInfoBLL _IPermissionInfoBLL = BLLContainer.PermissionInfoBLLContainer.Resolve<IPermissionInfoBLL>();
+
         // GET: AutoGenerater
         public ActionResult Index()
         {
@@ -26,13 +30,14 @@ namespace WebMVC.Controllers
 
             try
             {
-                PermissionInfoBLL _permissionInfoBLL = new PermissionInfoBLL();
+                //PermissionInfoBLL_old _permissionInfoBLL = new PermissionInfoBLL_old();
                 AutoGeneraterBLL _autoGeneraterBll = new AutoGeneraterBLL();
                 List<KeyValuePair<string,string>> _controllerList = _autoGeneraterBll.ControllerList();
                 List<KeyValuePair<string, string>> _actionList = new List<KeyValuePair<string, string>>();
 
                 //获取库中权限数据
-                List<PermissionInfo> _oldPermissionInfoList = _permissionInfoBLL.GetAll(false);
+                List<PermissionInfo> _oldPermissionInfoList = _IPermissionInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, false, false, false, "").ToList();
+                //List<PermissionInfo> _oldPermissionInfoList = _permissionInfoBLL.GetAll(false);
 
                 //获取新的权限数据
                 List<PermissionInfo> _newPermissionInfoList = new List<PermissionInfo>();
@@ -63,7 +68,8 @@ namespace WebMVC.Controllers
                     //直接创建映射关系
                     _newPermissionInfoList.ForEach(x =>
                     {
-                        _permissionInfoBLL.Add(x);
+                        _IPermissionInfoBLL.Add(x);
+                        //_permissionInfoBLL.Add(x);
                     });
                 }
                 //已存在映射关系
@@ -76,13 +82,15 @@ namespace WebMVC.Controllers
 
                     _createList.ForEach(x =>
                     {
-                        _permissionInfoBLL.Add(x);
+                        _IPermissionInfoBLL.Add(x);
+                        //_permissionInfoBLL.Add(x);
                     });
 
                     _deleteList.ForEach(x =>
                     {
                         x.Delflag = EnumType.DelflagType.已删除;
-                        _permissionInfoBLL.Delete(x);
+                        _IPermissionInfoBLL.Delete(x);
+                        //_permissionInfoBLL.Delete(x);
                     });
                 }
 
@@ -107,12 +115,9 @@ namespace WebMVC.Controllers
                 RolePermissionBLL _rolePermissionBll = new RolePermissionBLL();
                 List<RolePermission> _oldRolePermissionList = _rolePermissionBll.GetAll(false);
 
-                RoleInfoBLL _roleInfoBll = new RoleInfoBLL();
-                List<RoleInfo> _roleInfoList = _roleInfoBll.GetAll(false);
+                List<RoleInfo> _roleInfoList = _IRoleInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, false, false, false, "").ToList();
 
-
-                PermissionInfoBLL _permissionInfoBll = new PermissionInfoBLL();
-                List<PermissionInfo> _PermissionInfoList = _permissionInfoBll.GetAll(false);
+                List<PermissionInfo> _PermissionInfoList = _IPermissionInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, false, false, false, "").ToList();
 
                 //获取新的映射数据
                 List<RolePermission> _newRolePermissionList = new List<RolePermission>();
@@ -131,7 +136,7 @@ namespace WebMVC.Controllers
                             ControllerDescription = y.ControllerDescription,
                             Action = y.Action,
                             ActionDescription = y.ActionDescription,
-                            UsedType = EnumType.UsedType.启用,
+                            UsedType = EnumType.UsedType.未启用,
                             Delflag = EnumType.DelflagType.正常
                         };
                         _newRolePermissionList.Add(_rolePermission);

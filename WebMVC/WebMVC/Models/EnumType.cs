@@ -13,8 +13,8 @@ namespace WebMVC.Models
         }
 
         public enum UsedType {
-            启用 = 0,
-            未启用 = 1
+            启用 = 1,
+            未启用 = 0
         }
     }
 }

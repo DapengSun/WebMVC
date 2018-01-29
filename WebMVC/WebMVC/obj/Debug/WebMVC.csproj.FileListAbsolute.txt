@@ -148,3 +148,7 @@ D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180112_sdp02.re
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180117_sdp01.resources
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180117_sdp02.resources
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180117_sdp03.resources
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\Autofac.dll
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\Autofac.Integration.Mvc.dll
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\Autofac.xml
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\Autofac.Integration.Mvc.xml

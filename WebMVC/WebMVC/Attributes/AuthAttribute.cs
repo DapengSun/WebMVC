@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using WebMVC.BLL;
 using WebMVC.Common;
+using WebMVC.IBLL;
 using WebMVC.Models;
 
 namespace WebMVC.Attributes
@@ -17,6 +18,12 @@ namespace WebMVC.Attributes
     public class AuthAttribute : AuthorizeAttribute
     {
         public UserProfile _UserProfile { get; set; }
+
+        #region IOC控制反转 / 依赖注入
+        //实例化 权限IBLL
+        private IPermissionInfoBLL _IPermissionInfoBLL = BLLContainer.PermissionInfoBLLContainer.Resolve<IPermissionInfoBLL>();
+        #endregion
+
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             //获取当前的Controller & Action信息
@@ -35,8 +42,8 @@ namespace WebMVC.Attributes
                     string RoleId = _UserProfile.RoleId;
 
                     //获取当前Controller & Action的权限ID
-                    PermissionInfoBLL _permissionInfoBLL = new PermissionInfoBLL();
-                    PermissionInfo _permissionInfo = _permissionInfoBLL.Get(ControllerName + "Controller", ActionName);
+                    //PermissionInfoBLL_old _permissionInfoBLL = new PermissionInfoBLL_old();
+                    PermissionInfo _permissionInfo = _IPermissionInfoBLL.Get(ControllerName + "Controller", ActionName);
 
                     if (_permissionInfo != null)
                     {
@@ -51,6 +58,9 @@ namespace WebMVC.Attributes
                             return;
                         }
                     }
+                }
+                else{
+                    filterContext.HttpContext.Response.Redirect("/Account/Login?session=false");
                 }
             }else{
                 filterContext.HttpContext.Response.Redirect("/Account/Login?session=false");

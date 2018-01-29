@@ -3,8 +3,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using WebMVC.Models
 
+@using WebMVC.Models;
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -187,7 +187,7 @@
                                 <label class="checkbox checked">
                             {$/if}
                                 <span class="icons"><span class="first-icon fa fa-square-o"></span><span class="second-icon fa fa-check-square-o"></span></span>
-                                <input type="checkbox" value="checked" data-toggle="checkbox">
+                                <input type="checkbox" value="checked" data-toggle="checkbox" data-id="${ActionArrayItem.Id}"onchange="ChooseRolePerssion(this)">
                             </label>
                         </td>
                         <td class="col-md-2">${ControllerArrayItem.ControllerDescription}</td>
@@ -352,5 +352,24 @@
         var SelectedVal = $(this).children('option:selected').val();
         GetRolePermissions(SelectedVal);
     });
+
+    /*
+     * 选中角色权限
+     */
+    function ChooseRolePerssion(obj) {
+        var RolePermissionId = $(obj).attr("data-id");
+
+        var data = {
+            RolePermissionId: RolePermissionId
+        };
+
+        $.post("/Managerment/ChooseRolePermission", data, function (data) {
+            if (data.Success) {
+                toastr.success(data.SuccessModel);
+            } else {
+                toastr.error(data.ErrorModel);
+            }
+        });
+    }
 </script>
 

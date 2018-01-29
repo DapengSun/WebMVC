@@ -44,6 +44,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.0.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.0.1\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\log4net.dll</HintPath>
@@ -120,6 +128,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -239,23 +249,28 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Attributes\AuthAttribute.cs" />
     <Compile Include="Attributes\DescriptionAttribute.cs" />
+    <Compile Include="Attributes\BaseExceptionAttribute.cs" />
+    <Compile Include="BLLContainer\PermissionInfoBLLContainer.cs" />
+    <Compile Include="BLLContainer\RoleInfoBLLContainer.cs" />
     <Compile Include="BLL\AutoGeneraterBLL.cs" />
+    <Compile Include="BLL\BaseBLL.cs" />
     <Compile Include="BLL\HouseInfoBLL.cs" />
     <Compile Include="BLL\MainBLL.cs" />
     <Compile Include="BLL\PermissionInfoBLL.cs" />
+    <Compile Include="BLL\PermissionInfoBLL_old.cs" />
     <Compile Include="BLL\RoleInfoBLL.cs" />
+    <Compile Include="BLL\RoleInfoBLL_old.cs" />
     <Compile Include="BLL\RolePermissionBLL.cs" />
     <Compile Include="BLL\TestRedis.cs" />
     <Compile Include="BLL\UserProfileBLL.cs" />
-    <Compile Include="Attributes\BaseExceptionAttribute.cs" />
     <Compile Include="Common\DbHelperMySQL.cs" />
-    <Compile Include="Custom\Compare\PermissionInfo_EqualityCompare.cs" />
-    <Compile Include="Custom\Compare\RolePermission_EqualityCompare.cs" />
     <Compile Include="Common\JsonHelper.cs" />
     <Compile Include="Common\LogHelper.cs" />
     <Compile Include="Common\RedisHelper.cs" />
     <Compile Include="Common\TestFilter.cs" />
     <Compile Include="Common\ToolMethod.cs" />
+    <Compile Include="Custom\Compare\PermissionInfo_EqualityCompare.cs" />
+    <Compile Include="Custom\Compare\RolePermission_EqualityCompare.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AutoGeneraterController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -268,10 +283,15 @@
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\TypographyController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="DALContainer\PermissionInfoDALContainer.cs" />
+    <Compile Include="DALContainer\RoleInfoDALContainer.cs" />
+    <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\HouseInfoDAL.cs" />
     <Compile Include="DAL\MainDAL.cs" />
     <Compile Include="DAL\PermissionInfoDAL.cs" />
+    <Compile Include="DAL\PermissionInfoDAL_old.cs" />
     <Compile Include="DAL\RoleInfoDAL.cs" />
+    <Compile Include="DAL\RoleInfoDAL_old.cs" />
     <Compile Include="DAL\RolePermissionDAL.cs" />
     <Compile Include="DAL\UserProfileDAL.cs" />
     <Compile Include="DBContext\LocalDBContext.cs" />
@@ -281,6 +301,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="IBLL\IBaseBLL.cs" />
+    <Compile Include="IBLL\IPermissionInfoBLL.cs" />
+    <Compile Include="IBLL\IRoleInfoBLL.cs" />
+    <Compile Include="IDAL\IBaseDAL.cs" />
+    <Compile Include="IDAL\IPermissionInfoDAL.cs" />
+    <Compile Include="IDAL\IRoleInfoDAL.cs" />
     <Compile Include="Migrations\201708110615526_InitialCreate.cs" />
     <Compile Include="Migrations\201708110615526_InitialCreate.Designer.cs">
       <DependentUpon>201708110615526_InitialCreate.cs</DependentUpon>
@@ -411,16 +437,16 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\BTC_Price_Statistics.cs" />
     <Compile Include="Models\BTC_Price.cs" />
+    <Compile Include="Models\BTC_Price_Statistics.cs" />
     <Compile Include="Models\CodeFirstTestModel.cs" />
     <Compile Include="Models\EnumType.cs" />
     <Compile Include="Models\FilmInfo.cs" />
     <Compile Include="Models\HouseInfo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\RoleInfo.cs" />
     <Compile Include="Models\PermissionInfo.cs" />
+    <Compile Include="Models\RoleInfo.cs" />
     <Compile Include="Models\RolePermission.cs" />
     <Compile Include="Models\Statistics.cs" />
     <Compile Include="Models\UserProfile.cs" />
@@ -481,7 +507,10 @@
     <Content Include="DLL\log4net.dll" />
     <Content Include="DLL\MySql.Data.dll" />
     <Content Include="DLL\MySql.Data.Entity.dll" />
+    <Content Include="DLL\MySql.Data.Entity.EF5.dll" />
     <Content Include="DLL\mysql.data.entity.EF6.dll" />
+    <Content Include="DLL\MySql.Fabric.Plugin.dll" />
+    <Content Include="DLL\MySql.Web.dll" />
     <Content Include="DLL\ServiceStack.Common.dll" />
     <Content Include="DLL\ServiceStack.Interfaces.dll" />
     <Content Include="DLL\ServiceStack.Redis.dll" />
@@ -566,7 +595,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
