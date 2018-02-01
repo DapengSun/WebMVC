@@ -152,3 +152,4 @@ D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\Autofac.dll
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\Autofac.Integration.Mvc.dll
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\Autofac.xml
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\bin\Autofac.Integration.Mvc.xml
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.csprojResolveAssemblyReference.cache

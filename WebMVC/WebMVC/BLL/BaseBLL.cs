@@ -40,7 +40,7 @@ namespace WebMVC.BLL
 
         public bool Update(T t)
         {
-            return Update(t);
+            return _Dal.Update(t);
         }
     }
 }

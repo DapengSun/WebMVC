@@ -14,10 +14,9 @@ namespace WebMVC.Controllers
     public class ManagermentController : Controller
     {
         #region IOC控制反转 / 依赖注入
-        //实例化 角色IBLL
         private IRoleInfoBLL _IRoleInfoBLL = BLLContainer.RoleInfoBLLContainer.Resolve<IRoleInfoBLL>();
-        //实例化 权限IBLL
         private IPermissionInfoBLL _IPermissionInfoBLL = BLLContainer.PermissionInfoBLLContainer.Resolve<IPermissionInfoBLL>();
+        private IRolePermissionBLL _IRolePermissionBLL = BLLContainer.RolePermissionBLLContainer.Resolve<IRolePermissionBLL>();
         #endregion
 
         // GET: Managerment
@@ -79,11 +78,10 @@ namespace WebMVC.Controllers
                     return Json(new { Success = false, ErrorMessage = "角色ID不能为空" });
                 }
 
-                RolePermissionBLL _rolepermissionBLL = new RolePermissionBLL();
-                List<RolePermission> _rolePermissionList = _rolepermissionBLL.GetAll(true);
+                List<RolePermission> _rolePermissionList = _IRolePermissionBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, true, false, true, "RolePermission").ToList();
 
                 //返回指定角色的权限映射关系
-                List<RolePermission> _result = _rolePermissionList.Where(x => x.RoleId == RoleId).ToList();
+                List<RolePermission> _result = _rolePermissionList.Where(x => x.Delflag == EnumType.DelflagType.正常 && x.RoleId == RoleId).ToList();
 
                 return Json(new { Success = true, SuccessModel = _result });
             }
@@ -107,8 +105,8 @@ namespace WebMVC.Controllers
                     return Json(new { Success = false, ErrorMessage = "角色权限关系ID不能为空" });
                 }
 
-                RolePermissionBLL _rolePermissionBll = new RolePermissionBLL();
-                RolePermission _rolePermission = _rolePermissionBll.Get(RolePermissionId);
+                RolePermission _rolePermission = _IRolePermissionBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常 && x.Id == RolePermissionId, true, true, true, "RolePermission").FirstOrDefault();
+
                 if (_rolePermission.UsedType == EnumType.UsedType.启用)
                 {
                     _rolePermission.UsedType = EnumType.UsedType.未启用;
@@ -116,7 +114,7 @@ namespace WebMVC.Controllers
                 else {
                     _rolePermission.UsedType = EnumType.UsedType.启用;
                 }
-                _rolePermissionBll.Update(_rolePermission);
+                _IRolePermissionBLL.Update(_rolePermission);
 
                 return Json(new { Success = true, SuccessModel = "选中关系生效！" });
             }

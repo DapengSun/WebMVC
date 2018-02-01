@@ -357,6 +357,9 @@
      * 选中角色权限
      */
     function ChooseRolePerssion(obj) {
+        var checked = $(obj).attr("value");
+        if (checked == "checked") { $(obj).prop("checked", false) } else { $(obj).prop("checked", true) }
+
         var RolePermissionId = $(obj).attr("data-id");
 
         var data = {

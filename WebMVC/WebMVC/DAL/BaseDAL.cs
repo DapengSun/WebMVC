@@ -13,7 +13,8 @@ namespace WebMVC.DAL
 {
     public class BaseDAL<T> : IBaseDAL<T> where T : class,new()
     {
-        private DbContext _dbContext = new LocalDBContext();
+        //private DbContext _dbContext = new LocalDBContext();
+        private DbContext _dbContext = DbContextFactory.Create();
 
         public bool Add(T t) {
             _dbContext.Set<T>().Add(t);
@@ -45,19 +46,25 @@ namespace WebMVC.DAL
                 string CacheValue = RedisHelper.ItemGet<string>(CacheKey);
                 if (CacheValue != null)
                 {
-                    return JsonHelper.DeserializeJsonToList<T>(CacheValue).AsQueryable();
+                    return JsonHelper.DeserializeJsonToList<T>(CacheValue).AsQueryable().Where(whereLambda);
                 }
                 else
                 {
+                    //缓存数据
                     IQueryable<T> _TList = null;
+                    //返回数据
+                    IQueryable<T> _ReturnTList = null;
+
                     //isCacheAllModel 缓存所有数据 true-缓存所有数据 false-按照条件缓存
                     if (isCacheAllModel)
                     {
                         _TList = _dbContext.Set<T>().Where(x => true);
+                        _ReturnTList = _TList.Where(whereLambda);
                     }
                     else
                     {
                         _TList = _dbContext.Set<T>().Where(whereLambda);
+                        _ReturnTList = _TList;
                     }
                     if (_TList.Count() > 0)
                     {
@@ -65,7 +72,8 @@ namespace WebMVC.DAL
                         RedisHelper.ItemSet<string>(CacheKey, CacheValue);
                         RedisHelper.CommonSetExpire(CacheKey, ToolMethod.GetNow().AddDays(1));
                     }
-                    return _TList;
+
+                    return _ReturnTList;
                 }
             }else { 
                 return _dbContext.Set<T>().Where(whereLambda);

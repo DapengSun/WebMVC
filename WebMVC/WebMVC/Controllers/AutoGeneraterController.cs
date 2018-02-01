@@ -15,6 +15,7 @@ namespace WebMVC.Controllers
     {
         private IRoleInfoBLL _IRoleInfoBLL = BLLContainer.RoleInfoBLLContainer.Resolve<IRoleInfoBLL>();
         private IPermissionInfoBLL _IPermissionInfoBLL = BLLContainer.PermissionInfoBLLContainer.Resolve<IPermissionInfoBLL>();
+        private IRolePermissionBLL _IRolePermissionBLL = BLLContainer.PermissionInfoBLLContainer.Resolve<IRolePermissionBLL>();
 
         // GET: AutoGenerater
         public ActionResult Index()
@@ -112,8 +113,7 @@ namespace WebMVC.Controllers
             try
             {
                 //获取库中映射数据
-                RolePermissionBLL _rolePermissionBll = new RolePermissionBLL();
-                List<RolePermission> _oldRolePermissionList = _rolePermissionBll.GetAll(false);
+                List<RolePermission> _oldRolePermissionList = _IRolePermissionBLL.GetModels(x => true, false, false, false, "").ToList();
 
                 List<RoleInfo> _roleInfoList = _IRoleInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, false, false, false, "").ToList();
 
@@ -149,7 +149,7 @@ namespace WebMVC.Controllers
                     //直接创建映射关系
                     _newRolePermissionList.ForEach(x =>
                     {
-                        _rolePermissionBll.Add(x);
+                        _IRolePermissionBLL.Add(x);
                     });
                 }
                 //已存在映射关系
@@ -161,13 +161,13 @@ namespace WebMVC.Controllers
 
                     _createList.ForEach(x =>
                     {
-                        _rolePermissionBll.Add(x);
+                        _IRolePermissionBLL.Add(x);
                     });
 
                     _deleteList.ForEach(x =>
                     {
                         x.Delflag = EnumType.DelflagType.已删除;
-                        _rolePermissionBll.Delete(x);
+                        _IRolePermissionBLL.Delete(x);
                     });
                 }
 

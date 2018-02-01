@@ -20,8 +20,8 @@ namespace WebMVC.Attributes
         public UserProfile _UserProfile { get; set; }
 
         #region IOC控制反转 / 依赖注入
-        //实例化 权限IBLL
         private IPermissionInfoBLL _IPermissionInfoBLL = BLLContainer.PermissionInfoBLLContainer.Resolve<IPermissionInfoBLL>();
+        private IRolePermissionBLL _IRolePermissionBLL = BLLContainer.RolePermissionBLLContainer.Resolve<IRolePermissionBLL>();
         #endregion
 
         public override void OnAuthorization(AuthorizationContext filterContext)
@@ -42,7 +42,6 @@ namespace WebMVC.Attributes
                     string RoleId = _UserProfile.RoleId;
 
                     //获取当前Controller & Action的权限ID
-                    //PermissionInfoBLL_old _permissionInfoBLL = new PermissionInfoBLL_old();
                     PermissionInfo _permissionInfo = _IPermissionInfoBLL.Get(ControllerName + "Controller", ActionName);
 
                     if (_permissionInfo != null)
@@ -50,8 +49,10 @@ namespace WebMVC.Attributes
                         //权限ID
                         string permissionInfoId = _permissionInfo.Id;
 
-                        RolePermissionBLL _rolePermissionBLL = new RolePermissionBLL();
-                        if (!_rolePermissionBLL.Exist(RoleId, permissionInfoId))
+                        //是否包含权限
+                        bool isAuthorize = _IRolePermissionBLL.GetModels(x => x.RoleId == RoleId && x.PermissionId == permissionInfoId && x.Delflag == EnumType.DelflagType.正常,true,false, false, "RolePermission").Count() > 0;
+
+                        if (isAuthorize)
                         {
                             //未授权则跳转到未授权403页面
                             filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Template", action = "Template_403", returnUrl = filterContext.HttpContext.Request.Url, returnMessage = "您无权查看." }));

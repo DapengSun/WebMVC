@@ -250,6 +250,7 @@
     <Compile Include="Attributes\AuthAttribute.cs" />
     <Compile Include="Attributes\DescriptionAttribute.cs" />
     <Compile Include="Attributes\BaseExceptionAttribute.cs" />
+    <Compile Include="BLLContainer\RolePermissionBLLContainer.cs" />
     <Compile Include="BLLContainer\PermissionInfoBLLContainer.cs" />
     <Compile Include="BLLContainer\RoleInfoBLLContainer.cs" />
     <Compile Include="BLL\AutoGeneraterBLL.cs" />
@@ -261,6 +262,7 @@
     <Compile Include="BLL\RoleInfoBLL.cs" />
     <Compile Include="BLL\RoleInfoBLL_old.cs" />
     <Compile Include="BLL\RolePermissionBLL.cs" />
+    <Compile Include="BLL\RolePermissionBLL_old.cs" />
     <Compile Include="BLL\TestRedis.cs" />
     <Compile Include="BLL\UserProfileBLL.cs" />
     <Compile Include="Common\DbHelperMySQL.cs" />
@@ -285,6 +287,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DALContainer\PermissionInfoDALContainer.cs" />
     <Compile Include="DALContainer\RoleInfoDALContainer.cs" />
+    <Compile Include="DALContainer\RolePermissionDALContainer.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\HouseInfoDAL.cs" />
     <Compile Include="DAL\MainDAL.cs" />
@@ -293,7 +296,9 @@
     <Compile Include="DAL\RoleInfoDAL.cs" />
     <Compile Include="DAL\RoleInfoDAL_old.cs" />
     <Compile Include="DAL\RolePermissionDAL.cs" />
+    <Compile Include="DAL\RolePermissionDAL_old.cs" />
     <Compile Include="DAL\UserProfileDAL.cs" />
+    <Compile Include="DBContext\DbContextFactory.cs" />
     <Compile Include="DBContext\LocalDBContext.cs" />
     <Compile Include="DBUtility\BLLBase.cs" />
     <Compile Include="DBUtility\DALBase.cs" />
@@ -304,9 +309,11 @@
     <Compile Include="IBLL\IBaseBLL.cs" />
     <Compile Include="IBLL\IPermissionInfoBLL.cs" />
     <Compile Include="IBLL\IRoleInfoBLL.cs" />
+    <Compile Include="IBLL\IRolePermissionBLL.cs" />
     <Compile Include="IDAL\IBaseDAL.cs" />
     <Compile Include="IDAL\IPermissionInfoDAL.cs" />
     <Compile Include="IDAL\IRoleInfoDAL.cs" />
+    <Compile Include="IDAL\IRolePermissionDAL.cs" />
     <Compile Include="Migrations\201708110615526_InitialCreate.cs" />
     <Compile Include="Migrations\201708110615526_InitialCreate.Designer.cs">
       <DependentUpon>201708110615526_InitialCreate.cs</DependentUpon>
