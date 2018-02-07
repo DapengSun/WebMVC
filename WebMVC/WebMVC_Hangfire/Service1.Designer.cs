@@ -1,4 +1,4 @@
-﻿namespace WebMVC_Hangfire
+﻿namespace WebMVC_HangfireServer
 {
     partial class Service1
     {

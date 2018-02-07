@@ -11,8 +11,8 @@ namespace WebMVC.Models
     [Table("CodeFirstTestModel")]
     public class CodeFirstTestModel
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int _id { get; set; }
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //public int _id { get; set; }
         [Key]
         public string Id { get; set; }
         [MaxLength(200, ErrorMessage = "")]

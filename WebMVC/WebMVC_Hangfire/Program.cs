@@ -5,7 +5,7 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebMVC_Hangfire
+namespace WebMVC_HangfireServer
 {
     static class Program
     {

@@ -14,8 +14,8 @@ namespace WebMVC.Models
     /// </summary>
     public class PermissionInfo
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int _Id { get; set; }
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //public int _Id { get; set; }
 
         [Key]
         public string Id { get; set; }

@@ -10,5 +10,10 @@ namespace WebMVC.IBLL
 {
     public interface IRolePermissionBLL : IBaseBLL<RolePermission>
     {
+        /// <summary>
+        /// 更新缓存内容
+        /// </summary>
+        /// <returns></returns>
+        bool UpdateCache(string CacheKey, string ItemCacheKey, RolePermission RolePermission);
     }
 }

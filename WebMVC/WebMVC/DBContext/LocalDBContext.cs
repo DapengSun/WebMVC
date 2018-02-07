@@ -8,7 +8,7 @@ using WebMVC.Models;
 
 namespace WebMVC.DBContext
 {
-    [DbConfigurationType(typeof(MySqlConfiguration))]
+    [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
     public class LocalDBContext: DbContext
     {
         public LocalDBContext() : base("name=MysqlConnection") { }
@@ -32,5 +32,7 @@ namespace WebMVC.DBContext
         public DbSet<RolePermission> RolePermission { get; set; }
 
         public DbSet<PermissionInfo> PermissionInfo { get; set; }
+
+        //public DbSet<TestClass> TestClass { get; set; }
     }
 }

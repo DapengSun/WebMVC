@@ -9,8 +9,8 @@ namespace WebMVC.Models
 {
     public class Statistics
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int _Id { get; set; }
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //public int _Id { get; set; }
         [Key]
         public string Id { get; set; }
         

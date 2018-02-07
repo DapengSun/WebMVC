@@ -14,8 +14,11 @@ namespace WebMVC.Models
     /// </summary>
     public class RolePermission
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int _Id { get; set; }
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //public int _Id { get; set; }
+
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //public int NumId { get; set; }
 
         [Key]
         public string Id { get; set; }
@@ -52,6 +55,5 @@ namespace WebMVC.Models
         public DateTime CDate {
             get; set;
         }
-
     }
 }

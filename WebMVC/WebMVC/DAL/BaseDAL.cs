@@ -43,10 +43,13 @@ namespace WebMVC.DAL
                     RedisHelper.CommonRemove(CacheKey);
                 }
 
-                string CacheValue = RedisHelper.ItemGet<string>(CacheKey);
-                if (CacheValue != null)
+                List<T> CacheValue = RedisHelper.HashGetAll<T>(CacheKey);
+                //List<T> CacheValue = RedisHelper.ListGetList<T>(CacheKey);
+                //string CacheValue = RedisHelper.ItemGet<string>(CacheKey);
+                if (CacheValue != null && CacheValue.Count > 0)
                 {
-                    return JsonHelper.DeserializeJsonToList<T>(CacheValue).AsQueryable().Where(whereLambda);
+                    return CacheValue.AsQueryable().Where(whereLambda);
+                    //return JsonHelper.DeserializeJsonToList<T>(CacheValue).AsQueryable().Where(whereLambda);
                 }
                 else
                 {
@@ -68,9 +71,16 @@ namespace WebMVC.DAL
                     }
                     if (_TList.Count() > 0)
                     {
-                        CacheValue = JsonHelper.SerializeObject(_TList);
-                        RedisHelper.ItemSet<string>(CacheKey, CacheValue);
-                        RedisHelper.CommonSetExpire(CacheKey, ToolMethod.GetNow().AddDays(1));
+                        //CacheValue = JsonHelper.SerializeObject(_TList);
+                        //RedisHelper.ItemSet<string>(CacheKey, CacheValue);
+                        //RedisHelper.CommonSetExpire(CacheKey, ToolMethod.GetNow().AddDays(1));
+
+                        foreach (T item in _TList)
+                        {
+                            var c = item.GetType();
+                            //通过反射获取Item Id 作为单项的Key 便于修改内容
+                            RedisHelper.HashSet<T>(CacheKey, item.GetType().GetProperty("Id").GetValue(item).ToString(),item);
+                        }
                     }
 
                     return _ReturnTList;

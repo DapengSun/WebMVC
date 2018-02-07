@@ -52,6 +52,14 @@
       <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Hangfire.Core, Version=1.6.17.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.Core.1.6.17\lib\net45\Hangfire.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Hangfire.SqlServer, Version=1.6.17.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.SqlServer.1.6.17\lib\net45\Hangfire.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\log4net.dll</HintPath>
@@ -89,29 +97,13 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DLL\MySql.Data.dll</HintPath>
+    <Reference Include="MySql.Data, Version=6.9.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.11\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="MySql.Data.Entity, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DLL\MySql.Data.Entity.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data.Entity.EF5, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DLL\MySql.Data.Entity.EF5.dll</HintPath>
-    </Reference>
-    <Reference Include="mysql.data.entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DLL\mysql.data.entity.EF6.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Fabric.Plugin, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DLL\MySql.Fabric.Plugin.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Web, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DLL\MySql.Web.dll</HintPath>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.11\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ServiceStack.Common">
       <HintPath>DLL\ServiceStack.Common.dll</HintPath>
@@ -442,6 +434,50 @@
     <Compile Include="Migrations\201801170714268_20180117_sdp03.Designer.cs">
       <DependentUpon>201801170714268_20180117_sdp03.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802050745309_20180205_sdp01.cs" />
+    <Compile Include="Migrations\201802050745309_20180205_sdp01.Designer.cs">
+      <DependentUpon>201802050745309_20180205_sdp01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802050746452_20180205_sdp02.cs" />
+    <Compile Include="Migrations\201802050746452_20180205_sdp02.Designer.cs">
+      <DependentUpon>201802050746452_20180205_sdp02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802050747274_20180205_sdp03.cs" />
+    <Compile Include="Migrations\201802050747274_20180205_sdp03.Designer.cs">
+      <DependentUpon>201802050747274_20180205_sdp03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802060226181_20180206_sdp01.cs" />
+    <Compile Include="Migrations\201802060226181_20180206_sdp01.Designer.cs">
+      <DependentUpon>201802060226181_20180206_sdp01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802060500537_20180206_sdp02.cs" />
+    <Compile Include="Migrations\201802060500537_20180206_sdp02.Designer.cs">
+      <DependentUpon>201802060500537_20180206_sdp02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802060505045_20180206_sdp03.cs" />
+    <Compile Include="Migrations\201802060505045_20180206_sdp03.Designer.cs">
+      <DependentUpon>201802060505045_20180206_sdp03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802060536482_20180206_sdp05.cs" />
+    <Compile Include="Migrations\201802060536482_20180206_sdp05.Designer.cs">
+      <DependentUpon>201802060536482_20180206_sdp05.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802060541358_20180206_sdp06.cs" />
+    <Compile Include="Migrations\201802060541358_20180206_sdp06.Designer.cs">
+      <DependentUpon>201802060541358_20180206_sdp06.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802060549035_20180206_sdp08.cs" />
+    <Compile Include="Migrations\201802060549035_20180206_sdp08.Designer.cs">
+      <DependentUpon>201802060549035_20180206_sdp08.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802070303146_20180207_sdp01.cs" />
+    <Compile Include="Migrations\201802070303146_20180207_sdp01.Designer.cs">
+      <DependentUpon>201802070303146_20180207_sdp01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802070312245_20180207_sdp02.cs" />
+    <Compile Include="Migrations\201802070312245_20180207_sdp02.Designer.cs">
+      <DependentUpon>201802070312245_20180207_sdp02.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BTC_Price.cs" />
@@ -456,6 +492,7 @@
     <Compile Include="Models\RoleInfo.cs" />
     <Compile Include="Models\RolePermission.cs" />
     <Compile Include="Models\Statistics.cs" />
+    <Compile Include="Models\TestClass.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -740,6 +777,42 @@
     <EmbeddedResource Include="Migrations\201801170714268_20180117_sdp03.resx">
       <DependentUpon>201801170714268_20180117_sdp03.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802050745309_20180205_sdp01.resx">
+      <DependentUpon>201802050745309_20180205_sdp01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802050746452_20180205_sdp02.resx">
+      <DependentUpon>201802050746452_20180205_sdp02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802050747274_20180205_sdp03.resx">
+      <DependentUpon>201802050747274_20180205_sdp03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802060226181_20180206_sdp01.resx">
+      <DependentUpon>201802060226181_20180206_sdp01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802060500537_20180206_sdp02.resx">
+      <DependentUpon>201802060500537_20180206_sdp02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802060505045_20180206_sdp03.resx">
+      <DependentUpon>201802060505045_20180206_sdp03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802060536482_20180206_sdp05.resx">
+      <DependentUpon>201802060536482_20180206_sdp05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802060541358_20180206_sdp06.resx">
+      <DependentUpon>201802060541358_20180206_sdp06.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802060549035_20180206_sdp08.resx">
+      <DependentUpon>201802060549035_20180206_sdp08.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802070303146_20180207_sdp01.resx">
+      <DependentUpon>201802070303146_20180207_sdp01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802070312245_20180207_sdp02.resx">
+      <DependentUpon>201802070312245_20180207_sdp02.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

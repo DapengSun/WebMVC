@@ -18,5 +18,10 @@ namespace WebMVC.BLL
         {
             _Dal = _IRolePermissionDAL;
         }
+
+        public bool UpdateCache(string CacheKey, string ItemCacheKey, RolePermission RolePermission)
+        {
+            return _IRolePermissionDAL.UpdateCache(CacheKey, ItemCacheKey, RolePermission);
+        }
     }
 }

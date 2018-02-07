@@ -8,5 +8,10 @@ namespace WebMVC.IDAL
 {
     public interface IRolePermissionDAL : IBaseDAL<RolePermission>
     {
+        /// <summary>
+        /// 更新缓存内容
+        /// </summary>
+        /// <returns></returns>
+        bool UpdateCache(string CacheKey, string ItemCacheKey, RolePermission RolePermission);
     }
 }

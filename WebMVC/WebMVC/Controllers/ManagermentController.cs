@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Hangfire;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebMVC.Attributes;
 using WebMVC.BLL;
+using WebMVC.Common;
 using WebMVC.IBLL;
 using WebMVC.Models;
 
@@ -105,7 +107,7 @@ namespace WebMVC.Controllers
                     return Json(new { Success = false, ErrorMessage = "角色权限关系ID不能为空" });
                 }
 
-                RolePermission _rolePermission = _IRolePermissionBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常 && x.Id == RolePermissionId, true, true, true, "RolePermission").FirstOrDefault();
+                RolePermission _rolePermission = _IRolePermissionBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常 && x.Id == RolePermissionId, true, false, false, "RolePermission").FirstOrDefault();
 
                 if (_rolePermission.UsedType == EnumType.UsedType.启用)
                 {
@@ -114,7 +116,17 @@ namespace WebMVC.Controllers
                 else {
                     _rolePermission.UsedType = EnumType.UsedType.启用;
                 }
-                _IRolePermissionBLL.Update(_rolePermission);
+                
+                //更新缓存
+                _IRolePermissionBLL.UpdateCache("RolePermission", _rolePermission.Id, _rolePermission);
+
+                //异步更新数据库内容
+                //_IRolePermissionBLL.Update(_rolePermission);
+
+                BackgroundJobClient _jobs = new BackgroundJobClient();
+                _jobs.Enqueue(() => _IRolePermissionBLL.Update(_rolePermission));
+                //_IRolePermissionBLL.Update(_rolePermission);
+                //BackgroundJob.Enqueue(() => _IRolePermissionBLL.Update(_rolePermission));
 
                 return Json(new { Success = true, SuccessModel = "选中关系生效！" });
             }
