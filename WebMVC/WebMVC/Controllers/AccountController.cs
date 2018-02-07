@@ -50,8 +50,12 @@ namespace WebMVC.Controllers
         /// <returns></returns>
         public ActionResult UserRegister()
         {
-
             return View();
+        }
+
+        public ActionResult LogOut() {
+            return Redirect("/Account/Login");
+            //return View();
         }
     }
 }

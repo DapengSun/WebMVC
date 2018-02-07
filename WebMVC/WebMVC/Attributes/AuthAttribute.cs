@@ -50,9 +50,12 @@ namespace WebMVC.Attributes
                         string permissionInfoId = _permissionInfo.Id;
 
                         //是否包含权限
-                        bool isAuthorize = _IRolePermissionBLL.GetModels(x => x.RoleId == RoleId && x.PermissionId == permissionInfoId && x.Delflag == EnumType.DelflagType.正常,true,false, false, "RolePermission").Count() > 0;
+                        bool isAuthorize = _IRolePermissionBLL.GetModels(
+                            x => x.RoleId == RoleId && x.PermissionId == permissionInfoId 
+                            &&   x.Delflag == EnumType.DelflagType.正常 
+                            &&   x.UsedType == EnumType.UsedType.启用,true,false, false, "RolePermission").Count() > 0;
 
-                        if (isAuthorize)
+                        if (!isAuthorize)
                         {
                             //未授权则跳转到未授权403页面
                             filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Template", action = "Template_403", returnUrl = filterContext.HttpContext.Request.Url, returnMessage = "您无权查看." }));

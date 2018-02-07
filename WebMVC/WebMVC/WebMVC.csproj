@@ -627,6 +627,7 @@
     <Content Include="Content\sass\lbd\_typography.scss" />
     <Content Include="Content\sass\lbd\_variables.scss" />
     <Content Include="Content\sass\light-bootstrap-dashboard.scss" />
+    <Content Include="Packages\mysql-connector-net-6.9.11.msi" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

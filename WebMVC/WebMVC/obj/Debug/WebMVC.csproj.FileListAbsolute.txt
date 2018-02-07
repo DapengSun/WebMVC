@@ -159,3 +159,4 @@ D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180206_sdp06.re
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180206_sdp08.resources
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180207_sdp01.resources
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180207_sdp02.resources
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.csprojResolveAssemblyReference.cache
