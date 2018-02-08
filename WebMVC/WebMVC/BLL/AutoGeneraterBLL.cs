@@ -48,7 +48,7 @@ namespace WebMVC.BLL
             //加载程序集 
             var assembly = Assembly.Load(AssemblyName);
             //获取对应controller类型
-            var controller = assembly.GetTypes().Where(type => type.Name == ControllerName && type.Name != "AccountController").FirstOrDefault();
+            var controller = assembly.GetTypes().Where(type => type.Name == ControllerName && type.Name != "AccountController" && type.Name != "AutoGeneraterController").FirstOrDefault();
            
             if(controller != null) {
                 List<KeyValuePair<string, string>> actionItems = new List<KeyValuePair<string,string>>();

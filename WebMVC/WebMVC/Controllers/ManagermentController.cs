@@ -119,14 +119,10 @@ namespace WebMVC.Controllers
                 
                 //更新缓存
                 _IRolePermissionBLL.UpdateCache("RolePermission", _rolePermission.Id, _rolePermission);
-
-                //异步更新数据库内容
-                //_IRolePermissionBLL.Update(_rolePermission);
-
+                
+                //异步更新数据库
                 BackgroundJobClient _jobs = new BackgroundJobClient();
                 _jobs.Enqueue(() => _IRolePermissionBLL.Update(_rolePermission));
-                //_IRolePermissionBLL.Update(_rolePermission);
-                //BackgroundJob.Enqueue(() => _IRolePermissionBLL.Update(_rolePermission));
 
                 return Json(new { Success = true, SuccessModel = "选中关系生效！" });
             }

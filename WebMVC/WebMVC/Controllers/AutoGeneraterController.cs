@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hangfire;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,7 +16,7 @@ namespace WebMVC.Controllers
     {
         private IRoleInfoBLL _IRoleInfoBLL = BLLContainer.RoleInfoBLLContainer.Resolve<IRoleInfoBLL>();
         private IPermissionInfoBLL _IPermissionInfoBLL = BLLContainer.PermissionInfoBLLContainer.Resolve<IPermissionInfoBLL>();
-        private IRolePermissionBLL _IRolePermissionBLL = BLLContainer.PermissionInfoBLLContainer.Resolve<IRolePermissionBLL>();
+        private IRolePermissionBLL _IRolePermissionBLL = BLLContainer.RolePermissionBLLContainer.Resolve<IRolePermissionBLL>();
 
         // GET: AutoGenerater
         public ActionResult Index()
@@ -31,14 +32,12 @@ namespace WebMVC.Controllers
 
             try
             {
-                //PermissionInfoBLL_old _permissionInfoBLL = new PermissionInfoBLL_old();
                 AutoGeneraterBLL _autoGeneraterBll = new AutoGeneraterBLL();
                 List<KeyValuePair<string,string>> _controllerList = _autoGeneraterBll.ControllerList();
                 List<KeyValuePair<string, string>> _actionList = new List<KeyValuePair<string, string>>();
 
                 //获取库中权限数据
                 List<PermissionInfo> _oldPermissionInfoList = _IPermissionInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, false, false, false, "").ToList();
-                //List<PermissionInfo> _oldPermissionInfoList = _permissionInfoBLL.GetAll(false);
 
                 //获取新的权限数据
                 List<PermissionInfo> _newPermissionInfoList = new List<PermissionInfo>();
@@ -63,14 +62,19 @@ namespace WebMVC.Controllers
                     }
                 });
 
+                BackgroundJobClient _jobs = new BackgroundJobClient();
+
                 //不存在权限列表
                 if (_oldPermissionInfoList.Count == 0)
                 {
                     //直接创建映射关系
                     _newPermissionInfoList.ForEach(x =>
                     {
-                        _IPermissionInfoBLL.Add(x);
-                        //_permissionInfoBLL.Add(x);
+                        //更新缓存
+                        _IPermissionInfoBLL.UpdateCache("PermissionList", x.Id, x);
+
+                        //异步更新数据库
+                        _jobs.Enqueue(() => _IPermissionInfoBLL.Add(x));
                     });
                 }
                 //已存在映射关系
@@ -83,15 +87,22 @@ namespace WebMVC.Controllers
 
                     _createList.ForEach(x =>
                     {
-                        _IPermissionInfoBLL.Add(x);
-                        //_permissionInfoBLL.Add(x);
+                        //更新缓存
+                        _IPermissionInfoBLL.UpdateCache("PermissionList", x.Id, x);
+
+                        //异步更新数据库
+                        _jobs.Enqueue(() => _IPermissionInfoBLL.Add(x));
                     });
 
                     _deleteList.ForEach(x =>
                     {
                         x.Delflag = EnumType.DelflagType.已删除;
-                        _IPermissionInfoBLL.Delete(x);
-                        //_permissionInfoBLL.Delete(x);
+
+                        //更新缓存
+                        _IPermissionInfoBLL.UpdateCache("PermissionList", x.Id, x);
+
+                        //异步更新数据库
+                        _jobs.Enqueue(() => _IPermissionInfoBLL.Update(x));
                     });
                 }
 
@@ -113,11 +124,11 @@ namespace WebMVC.Controllers
             try
             {
                 //获取库中映射数据
-                List<RolePermission> _oldRolePermissionList = _IRolePermissionBLL.GetModels(x => true, false, false, false, "").ToList();
+                List<RolePermission> _oldRolePermissionList = _IRolePermissionBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, false, false, false, "").ToList();
 
-                List<RoleInfo> _roleInfoList = _IRoleInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, false, false, false, "").ToList();
+                List<RoleInfo> _roleInfoList = _IRoleInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, true, false, false, "RoleList").ToList();
 
-                List<PermissionInfo> _PermissionInfoList = _IPermissionInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, false, false, false, "").ToList();
+                List<PermissionInfo> _PermissionInfoList = _IPermissionInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, true, false, false, "PermissionList").ToList();
 
                 //获取新的映射数据
                 List<RolePermission> _newRolePermissionList = new List<RolePermission>();
@@ -143,13 +154,19 @@ namespace WebMVC.Controllers
                     });
                 });
 
+                BackgroundJobClient _jobs = new BackgroundJobClient();
+
                 //不存在映射关系
                 if (_oldRolePermissionList.Count == 0)
                 {
                     //直接创建映射关系
                     _newRolePermissionList.ForEach(x =>
                     {
-                        _IRolePermissionBLL.Add(x);
+                        //更新缓存
+                        _IRolePermissionBLL.UpdateCache("RolePermission", x.Id, x);
+
+                        //异步更新数据库
+                        _jobs.Enqueue(() => _IRolePermissionBLL.Add(x));
                     });
                 }
                 //已存在映射关系
@@ -161,13 +178,22 @@ namespace WebMVC.Controllers
 
                     _createList.ForEach(x =>
                     {
-                        _IRolePermissionBLL.Add(x);
+                        //更新缓存
+                        _IRolePermissionBLL.UpdateCache("RolePermission", x.Id, x);
+
+                        //异步更新数据库
+                        _jobs.Enqueue(() => _IRolePermissionBLL.Add(x));
                     });
 
                     _deleteList.ForEach(x =>
                     {
                         x.Delflag = EnumType.DelflagType.已删除;
-                        _IRolePermissionBLL.Delete(x);
+
+                        //更新缓存
+                        _IRolePermissionBLL.UpdateCache("RolePermission", x.Id, x);
+
+                        //异步更新数据库
+                        _jobs.Enqueue(() => _IRolePermissionBLL.Update(x));
                     });
                 }
 

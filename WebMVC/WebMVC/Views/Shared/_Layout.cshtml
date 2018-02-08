@@ -50,9 +50,9 @@
                         </a>
                     </li>
                     <li id="leftbtn-TableList">
-                        <a href="@Url.Action("Index","TableList")">
+                        <a href="@Url.Action("Index","Blogs")">
                             <i class="pe-7s-note2"></i>
-                            <p> 图表 </p>
+                            <p> 博客 </p>
                         </a>
                     </li>
                     <li id="leftbtn-Typography">
@@ -173,7 +173,7 @@
             @RenderBody()
 
             <!-- 尾模板 -->
-            <footer class="footer">
+            @*<footer class="footer">
                 <div class="container-fluid">
                     <nav class="pull-left">
                         <ul>
@@ -203,7 +203,7 @@
                         &copy; 2016 <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
                     </p>
                 </div>
-            </footer>
+            </footer>*@
         </div>
     </div>
     
@@ -228,9 +228,9 @@
         	    $('li[id*="leftbtn-"]').eq(1).addClass('active');
         	    $("#navbar-brand").html("个人BIO");
         	}
-    	    else if (pathname.indexOf("/TableList") >= 0) {
+        	else if (pathname.indexOf("/Blogs") >= 0) {
     	        $('li[id*="leftbtn-"]').eq(2).addClass('active');
-    	        $("#navbar-brand").html("图表");
+    	        $("#navbar-brand").html("博客");
         	}
     	    else if (pathname.indexOf("/Typography") >= 0) {
     	        $('li[id*="leftbtn-"]').eq(3).addClass('active');

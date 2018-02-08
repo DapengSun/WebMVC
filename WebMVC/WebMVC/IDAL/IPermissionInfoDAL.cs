@@ -9,5 +9,10 @@ namespace WebMVC.IDAL
 {
     public interface IPermissionInfoDAL : IBaseDAL<PermissionInfo>
     {
+        /// <summary>
+        /// 更新缓存内容
+        /// </summary>
+        /// <returns></returns>
+        bool UpdateCache(string CacheKey, string ItemCacheKey, PermissionInfo PermissionInfo);
     }
 }

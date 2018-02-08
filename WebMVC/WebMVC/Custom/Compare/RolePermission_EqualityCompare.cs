@@ -10,7 +10,7 @@ namespace WebMVC.Custom.Compare
     {
         public bool Equals(RolePermission x, RolePermission y)
         {
-            if (x.RoleId == y.RoleId && x.PermissionId == y.PermissionId)
+            if (x.RoleId == y.RoleId && x.PermissionId == y.PermissionId && x.ControllerDescription == y.ControllerDescription && x.ActionDescription == y.ActionDescription)
             {
                 return true;
             }
