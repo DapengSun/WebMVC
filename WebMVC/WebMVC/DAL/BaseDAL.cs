@@ -34,22 +34,15 @@ namespace WebMVC.DAL
             return true;
         }
 
-        public IQueryable<T> GetModels(Expression<Func<T, bool>> whereLambda,bool isCache,bool isFresh, bool isCacheAllModel, string CacheKey) {
-            //isCache 读取缓存内容 true-读取 false-不读取
-            if (isCache) { 
-                //isFresh 刷新缓存内容 true-刷新 false-不刷新
-                if (isFresh)
-                {
-                    RedisHelper.CommonRemove(CacheKey);
-                }
+        public IQueryable<T> GetModels(Expression<Func<T, bool>> whereLambda, bool isReadCache = true, Expression<Func<T, bool>> cacheLambda = null, string cacheKey = "") {
+            //isReadCache 读取缓存内容 true-读取 false-不读取
+            if (isReadCache) { 
 
-                List<T> CacheValue = RedisHelper.HashGetAll<T>(CacheKey);
-                //List<T> CacheValue = RedisHelper.ListGetList<T>(CacheKey);
-                //string CacheValue = RedisHelper.ItemGet<string>(CacheKey);
+                List<T> CacheValue = RedisHelper.HashGetAll<T>(cacheKey);
+
                 if (CacheValue != null && CacheValue.Count > 0)
                 {
                     return CacheValue.AsQueryable().Where(whereLambda);
-                    //return JsonHelper.DeserializeJsonToList<T>(CacheValue).AsQueryable().Where(whereLambda);
                 }
                 else
                 {
@@ -58,28 +51,24 @@ namespace WebMVC.DAL
                     //返回数据
                     IQueryable<T> _ReturnTList = null;
 
-                    //isCacheAllModel 缓存所有数据 true-缓存所有数据 false-按照条件缓存
-                    if (isCacheAllModel)
+                    //缓存cacheLambda条件为空 则按照原条件缓存
+                    if (cacheLambda != null)
                     {
-                        _TList = _dbContext.Set<T>().Where(x => true);
-                        _ReturnTList = _TList.Where(whereLambda);
+                        _TList = _dbContext.Set<T>().Where(cacheLambda);
+                        _ReturnTList = _dbContext.Set<T>().Where(whereLambda);
                     }
                     else
                     {
-                        _TList = _dbContext.Set<T>().Where(whereLambda);
-                        _ReturnTList = _TList;
+                        _ReturnTList = _dbContext.Set<T>().Where(whereLambda);
                     }
-                    if (_TList.Count() > 0)
-                    {
-                        //CacheValue = JsonHelper.SerializeObject(_TList);
-                        //RedisHelper.ItemSet<string>(CacheKey, CacheValue);
-                        //RedisHelper.CommonSetExpire(CacheKey, ToolMethod.GetNow().AddDays(1));
 
+                    if (_TList != null && _TList.Count() > 0)
+                    {
                         foreach (T item in _TList)
                         {
                             var c = item.GetType();
                             //通过反射获取Item Id 作为单项的Key 便于修改内容
-                            RedisHelper.HashSet<T>(CacheKey, item.GetType().GetProperty("Id").GetValue(item).ToString(),item);
+                            RedisHelper.HashSet<T>(cacheKey, item.GetType().GetProperty("Id").GetValue(item).ToString(), item);
                         }
                     }
 

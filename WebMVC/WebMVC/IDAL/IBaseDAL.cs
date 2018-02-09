@@ -18,13 +18,12 @@ namespace WebMVC.IDAL
         /// <summary>
         /// 根据条件 获取T类泛型数据
         /// </summary>
-        /// <param name="whereLambda">Lambda表达式</param>
-        /// <param name="isCache">是否读取缓存             默认：false</param>
-        /// <param name="isFresh">是否刷新缓存内容         默认：false</param>
-        /// <param name="isCacheAllModel">是否缓存所有数据 默认：false</param>
-        /// <param name="CacheKey">缓存Key值               默认：空</param>
+        /// <param name="whereLambda">查询Lambda表达式</param>
+        /// <param name="isReadCache">是否读取缓存     默认：false</param>
+        /// <param name="cacheLambda">缓存Lambda表达式 默认：空</param>
+        /// <param name="cacheKey">缓存Key值           默认：空</param>
         /// <returns></returns>
-        IQueryable<T> GetModels(Expression<Func<T, bool>> whereLambda,bool isCache=false,bool isFresh=false, bool isCacheAllModel = false,string CacheKey="");
+        IQueryable<T> GetModels(Expression<Func<T, bool>> whereLambda,bool isReadCache = false, Expression<Func<T, bool>> cacheLambda = null,string cacheKey = "");
 
         IQueryable<T> GetModelsByPage<type>(int pageSize, int pageIndex, bool isAsc, Expression<Func<T, type>> OrderByLambda, Expression<Func<T, bool>> WhereLambda);
     }

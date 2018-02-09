@@ -28,9 +28,9 @@ namespace WebMVC.BLL
             return _Dal.Delete(t);
         }
 
-        public IQueryable<T> GetModels(Expression<Func<T, bool>> whereLambda,bool isCache,bool isFresh,bool isCacheAllModel, string CacheKey)
+        public IQueryable<T> GetModels(Expression<Func<T, bool>> whereLambda, bool isReadCache = false, Expression<Func<T, bool>> cacheLambda = null, string cacheKey = "")
         {
-            return _Dal.GetModels(whereLambda, isCache,isFresh,isCacheAllModel, CacheKey);
+            return _Dal.GetModels(whereLambda, isReadCache,cacheLambda,cacheKey);
         }
 
         public IQueryable<T> GetModelsByPage<type>(int pageSize, int pageIndex, bool isAsc, Expression<Func<T, type>> OrderByLambda, Expression<Func<T, bool>> WhereLambda)

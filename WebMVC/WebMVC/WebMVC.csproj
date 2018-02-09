@@ -264,7 +264,9 @@
     <Compile Include="Common\TestFilter.cs" />
     <Compile Include="Common\ToolMethod.cs" />
     <Compile Include="Controllers\BlogsController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\WordCloudController.cs" />
     <Compile Include="Custom\Compare\PermissionInfo_EqualityCompare.cs" />
     <Compile Include="Custom\Compare\RolePermission_EqualityCompare.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -745,11 +747,17 @@
     <Content Include="Views\Template\Template_403.cshtml" />
     <Content Include="Views\Template\Template_404.cshtml" />
     <Content Include="Views\Blogs\Index.cshtml" />
+    <Content Include="Views\Gallery\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\css\Gallery\" />
+    <Folder Include="Content\fonts\Gallery\" />
+    <Folder Include="Content\img\Gallery\" />
+    <Folder Include="Content\js\Gallery\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\News\" />
+    <Folder Include="Views\WordCloud\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

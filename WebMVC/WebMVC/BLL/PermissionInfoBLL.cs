@@ -21,7 +21,7 @@ namespace WebMVC.BLL
         /// <returns></returns>
         public PermissionInfo Get(string Controller, string Action)
         {
-            return _IPermissionInfoDAL.GetModels(x=> x.Controller == Controller && x.Action == Action && x.Delflag == EnumType.DelflagType.正常,true,false,true, "PermissionList").FirstOrDefault();
+            return _IPermissionInfoDAL.GetModels(x=> x.Controller == Controller && x.Action == Action && x.Delflag == EnumType.DelflagType.正常,true, x => x.Delflag == EnumType.DelflagType.正常, "PermissionList").FirstOrDefault();
         }
 
         public override void SetDAL()

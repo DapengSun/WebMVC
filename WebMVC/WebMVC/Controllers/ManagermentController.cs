@@ -25,7 +25,7 @@ namespace WebMVC.Controllers
         [DescriptionAttribute(DescptionName = "后台管理首页")]
         public ActionResult Index()
         {
-            List<RoleInfo> _roleInfoList = _IRoleInfoBLL.GetModels(x=> x.Delflag == EnumType.DelflagType.正常,true, false, true,"RoleList").ToList();
+            List<RoleInfo> _roleInfoList = _IRoleInfoBLL.GetModels(x=> x.Delflag == EnumType.DelflagType.正常,true, x => x.Delflag == EnumType.DelflagType.正常, "RoleList").ToList();
             ViewBag.RoleInfoList = _roleInfoList;
             return View();
         }
@@ -39,7 +39,7 @@ namespace WebMVC.Controllers
         {
             try
             {
-                List<RoleInfo> _roleInfoList = _IRoleInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, true, false,true, "RoleList").ToList();
+                List<RoleInfo> _roleInfoList = _IRoleInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, true, x => x.Delflag == EnumType.DelflagType.正常, "RoleList").ToList();
                 return Json(new { Success = true, SuccessModel = _roleInfoList },JsonRequestBehavior.AllowGet);
             }
             catch (Exception ee)
@@ -57,7 +57,7 @@ namespace WebMVC.Controllers
         {
             try
             {
-                List<PermissionInfo> _permissionInfoList = _IPermissionInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, true, false, true, "PermissionList").ToList();
+                List<PermissionInfo> _permissionInfoList = _IPermissionInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, true, x => x.Delflag == EnumType.DelflagType.正常, "PermissionList").ToList();
                 return Json(new { Success = true, SuccessModel = _permissionInfoList }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ee)
@@ -80,7 +80,7 @@ namespace WebMVC.Controllers
                     return Json(new { Success = false, ErrorMessage = "角色ID不能为空" });
                 }
 
-                List<RolePermission> _rolePermissionList = _IRolePermissionBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, true, false, true, "RolePermission").ToList();
+                List<RolePermission> _rolePermissionList = _IRolePermissionBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, true, x => x.Delflag == EnumType.DelflagType.正常, "RolePermission").ToList();
 
                 //返回指定角色的权限映射关系
                 List<RolePermission> _result = _rolePermissionList.Where(x => x.Delflag == EnumType.DelflagType.正常 && x.RoleId == RoleId).ToList();
@@ -107,7 +107,7 @@ namespace WebMVC.Controllers
                     return Json(new { Success = false, ErrorMessage = "角色权限关系ID不能为空" });
                 }
 
-                RolePermission _rolePermission = _IRolePermissionBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常 && x.Id == RolePermissionId, true, false, false, "RolePermission").FirstOrDefault();
+                RolePermission _rolePermission = _IRolePermissionBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常 && x.Id == RolePermissionId, true, x => x.Delflag == EnumType.DelflagType.正常, "RolePermission").FirstOrDefault();
 
                 if (_rolePermission.UsedType == EnumType.UsedType.启用)
                 {

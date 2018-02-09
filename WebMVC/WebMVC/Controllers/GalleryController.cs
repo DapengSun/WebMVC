@@ -7,12 +7,12 @@ using WebMVC.Attributes;
 
 namespace WebMVC.Controllers
 {
-    [DescriptionAttribute(DescptionName = "个人博客")]
-    public class BlogsController : Controller
+    [DescriptionAttribute(DescptionName = "个人影集")]
+    public class GalleryController : Controller
     {
         [AuthAttribute]
-        [DescriptionAttribute(DescptionName = "个人博客主页")]
-        // GET: Blogs
+        [DescriptionAttribute(DescptionName = "个人影集")]
+        // GET: Gallery
         public ActionResult Index()
         {
             return View();

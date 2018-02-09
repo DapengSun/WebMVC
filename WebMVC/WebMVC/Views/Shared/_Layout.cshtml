@@ -56,9 +56,9 @@
                         </a>
                     </li>
                     <li id="leftbtn-Typography">
-                        <a href="@Url.Action("Index","Typography")">
+                        <a href="@Url.Action("Index","Gallery")">
                             <i class="pe-7s-news-paper"></i>
-                            <p> 样式 </p>
+                            <p> 影集 </p>
                         </a>
                     </li>
                     <li id="leftbtn-Icons">
@@ -232,9 +232,9 @@
     	        $('li[id*="leftbtn-"]').eq(2).addClass('active');
     	        $("#navbar-brand").html("博客");
         	}
-    	    else if (pathname.indexOf("/Typography") >= 0) {
+        	else if (pathname.indexOf("/Gallery") >= 0) {
     	        $('li[id*="leftbtn-"]').eq(3).addClass('active');
-    	        $("#navbar-brand").html("样式");
+    	        $("#navbar-brand").html("影集");
         	}
     	    else if (pathname.indexOf("/Icons") >= 0) {
     	        $('li[id*="leftbtn-"]').eq(4).addClass('active');

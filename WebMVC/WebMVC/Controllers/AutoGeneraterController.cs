@@ -37,7 +37,7 @@ namespace WebMVC.Controllers
                 List<KeyValuePair<string, string>> _actionList = new List<KeyValuePair<string, string>>();
 
                 //获取库中权限数据
-                List<PermissionInfo> _oldPermissionInfoList = _IPermissionInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, false, false, false, "").ToList();
+                List<PermissionInfo> _oldPermissionInfoList = _IPermissionInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, false, null, "").ToList();
 
                 //获取新的权限数据
                 List<PermissionInfo> _newPermissionInfoList = new List<PermissionInfo>();
@@ -124,11 +124,11 @@ namespace WebMVC.Controllers
             try
             {
                 //获取库中映射数据
-                List<RolePermission> _oldRolePermissionList = _IRolePermissionBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, false, false, false, "").ToList();
+                List<RolePermission> _oldRolePermissionList = _IRolePermissionBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, false, null, "").ToList();
 
-                List<RoleInfo> _roleInfoList = _IRoleInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, true, false, false, "RoleList").ToList();
+                List<RoleInfo> _roleInfoList = _IRoleInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, true, null, "RoleList").ToList();
 
-                List<PermissionInfo> _PermissionInfoList = _IPermissionInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, true, false, false, "PermissionList").ToList();
+                List<PermissionInfo> _PermissionInfoList = _IPermissionInfoBLL.GetModels(x => x.Delflag == EnumType.DelflagType.正常, true, null, "PermissionList").ToList();
 
                 //获取新的映射数据
                 List<RolePermission> _newRolePermissionList = new List<RolePermission>();

@@ -53,7 +53,7 @@ namespace WebMVC.Attributes
                         bool isAuthorize = _IRolePermissionBLL.GetModels(
                             x => x.RoleId == RoleId && x.PermissionId == permissionInfoId 
                             &&   x.Delflag == EnumType.DelflagType.正常 
-                            &&   x.UsedType == EnumType.UsedType.启用,true,false, false, "RolePermission").Count() > 0;
+                            &&   x.UsedType == EnumType.UsedType.启用,true, x => x.Delflag == EnumType.DelflagType.正常, "RolePermission").Count() > 0;
 
                         if (!isAuthorize)
                         {
