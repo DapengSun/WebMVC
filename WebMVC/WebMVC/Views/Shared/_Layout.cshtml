@@ -61,24 +61,24 @@
                             <p> 影集 </p>
                         </a>
                     </li>
-                    <li id="leftbtn-Icons">
+                    @*<li id="leftbtn-Icons">
                         <a href="@Url.Action("Index", "Icons")">
                             <i class="pe-7s-science"></i>
                             <p> 图标 </p>
                         </a>
-                    </li>
+                    </li>*@
                     <li id="leftbtn-Maps">
                         <a href="@Url.Action("Index","Maps")">
                             <i class="pe-7s-map-marker"></i>
                             <p> 地图 </p>
                         </a>
                     </li>
-                    <li id="leftbtn-Notifications">
+                    @*<li id="leftbtn-Notifications">
                         <a href="@Url.Action("Index","Notifications")">
                             <i class="pe-7s-bell"></i>
                             <p>通告</p>
                         </a>
-                    </li>
+                    </li>*@
                     <li id="leftbtn-BackgroundManagers">
                         <a href="@Url.Action("Index","Managerment")">
                             <i class="pe-7s-cloud"></i>
@@ -88,7 +88,7 @@
                     <li id="leftbtn-Upgrade" class="active-pro">
                         <a href="upgrade.html">
                             <i class="pe-7s-rocket"></i>
-                            <p>Upgrade to PRO</p>
+                            <p>升级账户</p>
                         </a>
                     </li>
                 </ul>
@@ -236,26 +236,26 @@
     	        $('li[id*="leftbtn-"]').eq(3).addClass('active');
     	        $("#navbar-brand").html("影集");
         	}
-    	    else if (pathname.indexOf("/Icons") >= 0) {
-    	        $('li[id*="leftbtn-"]').eq(4).addClass('active');
-    	        $("#navbar-brand").html("图标");
-        	}
+    	    //else if (pathname.indexOf("/Icons") >= 0) {
+    	    //    $('li[id*="leftbtn-"]').eq(4).addClass('active');
+    	    //    $("#navbar-brand").html("图标");
+        	//}
     	    else if (pathname.indexOf("/Maps") >= 0) {
-    	        $('li[id*="leftbtn-"]').eq(5).addClass('active');
+    	        $('li[id*="leftbtn-"]').eq(4).addClass('active');
     	        $("#navbar-brand").html("地图");
     	    }
-    	    else if (pathname.indexOf("/Notifications") >= 0) {
-    	        $('li[id*="leftbtn-"]').eq(6).addClass('active');
-    	        $("#navbar-brand").html("通告");
-    	    }
+    	    //else if (pathname.indexOf("/Notifications") >= 0) {
+    	    //    $('li[id*="leftbtn-"]').eq(6).addClass('active');
+    	    //    $("#navbar-brand").html("通告");
+    	    //}
     	    else if (pathname.indexOf("/Mangerment") >= 0) {
-    	        $('li[id*="leftbtn-"]').eq(7).addClass('active');
+    	        $('li[id*="leftbtn-"]').eq(5).addClass('active');
     	        $("#navbar-brand").html("设置");
     	    }
-    	    else {
-    	        $('li[id*="leftbtn-"]').eq(8).addClass('active');
-    	        $("#navbar-brand").html("通告");
-        	}
+    	    //else {
+    	    //    $('li[id*="leftbtn-"]').eq(8).addClass('active');
+    	    //    $("#navbar-brand").html("通告");
+        	//}
     	});
     </script>
 </body>

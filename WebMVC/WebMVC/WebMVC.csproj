@@ -572,6 +572,25 @@
     <Content Include="Content\img\sidebar-4.jpg" />
     <Content Include="Content\img\sidebar-5.jpg" />
     <Content Include="Content\img\tim_80x80.png" />
+    <Content Include="Content\img\Gallery\0dab58047ed211e39686129d69e7bd65_6.jpg" />
+    <Content Include="Content\img\Gallery\621b77142f7411e39a8f22000a9f195b_6.jpg" />
+    <Content Include="Content\img\Gallery\621b77142f7411e39a8f22000a9f195b_8.jpg" />
+    <Content Include="Content\img\Gallery\666afbec30d111e396cd22000a1fd1c2_6.jpg" />
+    <Content Include="Content\img\Gallery\666afbec30d111e396cd22000a1fd1c2_8.jpg" />
+    <Content Include="Content\img\Gallery\961ff1b04a0a11e3b98b126fa4e6a4fb_6.jpg" />
+    <Content Include="Content\img\Gallery\961ff1b04a0a11e3b98b126fa4e6a4fb_8.jpg" />
+    <Content Include="Content\img\Gallery\9bc489481ace11e3aca322000a1fa76a_6.jpg" />
+    <Content Include="Content\img\Gallery\9bc489481ace11e3aca322000a1fa76a_7.jpg" />
+    <Content Include="Content\img\Gallery\a85cca1c2a7d11e39bf922000ab5b971_6.jpg" />
+    <Content Include="Content\img\Gallery\a85cca1c2a7d11e39bf922000ab5b971_8.jpg" />
+    <Content Include="Content\css\Gallery\reset.css" />
+    <Content Include="Content\css\Gallery\style.css" />
+    <Content Include="Content\img\Gallery\d720325c2f3311e3b41222000a1f8cb0_6.jpg" />
+    <Content Include="Content\img\Gallery\d720325c2f3311e3b41222000a1f8cb0_8.jpg" />
+    <Content Include="Content\img\Gallery\f3f72dc42f3111e3ba2c1231391eb9f5_6.jpg" />
+    <Content Include="Content\img\Gallery\f3f72dc42f3111e3ba2c1231391eb9f5_8.jpg" />
+    <Content Include="Content\js\Gallery\index.js" />
+    <Content Include="Content\js\Gallery\jquery.js" />
     <Content Include="Content\js\Blogs\ie\html5shiv.js" />
     <Content Include="Content\js\Blogs\ie\respond.min.js" />
     <Content Include="Content\js\Blogs\jquery.min.js" />
@@ -591,6 +610,9 @@
     <Content Include="Content\js\light-bootstrap-dashboard.js" />
     <Content Include="Content\js\Login\jquery-2.1.1.min.js" />
     <Content Include="Content\js\Login\login.js" />
+    <Content Include="Content\js\Maps\distpicker.data.js" />
+    <Content Include="Content\js\Maps\distpicker.js" />
+    <Content Include="Content\js\Maps\main.js" />
     <Content Include="Content\js\modules\exporting.js" />
     <Content Include="Content\js\toastr.min.js" />
     <Content Include="DLL\log4net.dll" />
@@ -706,6 +728,7 @@
     <Content Include="Content\sass\Blogs\libs\_skel.scss" />
     <Content Include="Content\sass\Blogs\libs\_vars.scss" />
     <Content Include="Content\sass\Blogs\main.scss" />
+    <Content Include="Content\css\Gallery\scss\style.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -751,10 +774,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\css\Gallery\" />
     <Folder Include="Content\fonts\Gallery\" />
-    <Folder Include="Content\img\Gallery\" />
-    <Folder Include="Content\js\Gallery\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\News\" />
     <Folder Include="Views\WordCloud\" />
