@@ -242,11 +242,13 @@
     <Compile Include="Attributes\AuthAttribute.cs" />
     <Compile Include="Attributes\DescriptionAttribute.cs" />
     <Compile Include="Attributes\BaseExceptionAttribute.cs" />
+    <Compile Include="BLLContainer\BlogsInfoBLLContainer.cs" />
     <Compile Include="BLLContainer\RolePermissionBLLContainer.cs" />
     <Compile Include="BLLContainer\PermissionInfoBLLContainer.cs" />
     <Compile Include="BLLContainer\RoleInfoBLLContainer.cs" />
     <Compile Include="BLL\AutoGeneraterBLL.cs" />
     <Compile Include="BLL\BaseBLL.cs" />
+    <Compile Include="BLL\BlogsInfoBLL.cs" />
     <Compile Include="BLL\HouseInfoBLL.cs" />
     <Compile Include="BLL\MainBLL.cs" />
     <Compile Include="BLL\PermissionInfoBLL.cs" />
@@ -283,8 +285,10 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DALContainer\PermissionInfoDALContainer.cs" />
     <Compile Include="DALContainer\RoleInfoDALContainer.cs" />
+    <Compile Include="DALContainer\BlogsInfoDALContainer.cs" />
     <Compile Include="DALContainer\RolePermissionDALContainer.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
+    <Compile Include="DAL\BlogsInfoDAL.cs" />
     <Compile Include="DAL\HouseInfoDAL.cs" />
     <Compile Include="DAL\MainDAL.cs" />
     <Compile Include="DAL\PermissionInfoDAL.cs" />
@@ -303,10 +307,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IBLL\IBaseBLL.cs" />
+    <Compile Include="IBLL\IBlogsInfoBLL.cs" />
     <Compile Include="IBLL\IPermissionInfoBLL.cs" />
     <Compile Include="IBLL\IRoleInfoBLL.cs" />
     <Compile Include="IBLL\IRolePermissionBLL.cs" />
     <Compile Include="IDAL\IBaseDAL.cs" />
+    <Compile Include="IDAL\IBlogsInfoDAL.cs" />
     <Compile Include="IDAL\IPermissionInfoDAL.cs" />
     <Compile Include="IDAL\IRoleInfoDAL.cs" />
     <Compile Include="IDAL\IRolePermissionDAL.cs" />
@@ -482,8 +488,17 @@
     <Compile Include="Migrations\201802070312245_20180207_sdp02.Designer.cs">
       <DependentUpon>201802070312245_20180207_sdp02.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802120322053_20180212_sdp01.cs" />
+    <Compile Include="Migrations\201802120322053_20180212_sdp01.Designer.cs">
+      <DependentUpon>201802120322053_20180212_sdp01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802120428573_20180212_sdp02.cs" />
+    <Compile Include="Migrations\201802120428573_20180212_sdp02.Designer.cs">
+      <DependentUpon>201802120428573_20180212_sdp02.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BlogsInfo.cs" />
     <Compile Include="Models\BTC_Price.cs" />
     <Compile Include="Models\BTC_Price_Statistics.cs" />
     <Compile Include="Models\CodeFirstTestModel.cs" />
@@ -771,6 +786,7 @@
     <Content Include="Views\Template\Template_404.cshtml" />
     <Content Include="Views\Blogs\Index.cshtml" />
     <Content Include="Views\Gallery\Index.cshtml" />
+    <Content Include="Views\Blogs\_PartialIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -916,6 +932,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802070312245_20180207_sdp02.resx">
       <DependentUpon>201802070312245_20180207_sdp02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802120322053_20180212_sdp01.resx">
+      <DependentUpon>201802120322053_20180212_sdp01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802120428573_20180212_sdp02.resx">
+      <DependentUpon>201802120428573_20180212_sdp02.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

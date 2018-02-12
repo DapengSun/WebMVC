@@ -79,15 +79,70 @@ namespace WebMVC.DAL
             }
         }
 
-        public IQueryable<T> GetModelsByPage<type>(int pageSize, int pageIndex, bool isAsc, Expression<Func<T, type>> OrderByLambda, Expression<Func<T, bool>> WhereLambda) {
-            //是否升序
-            if (isAsc)
+        public IQueryable<T> GetModelsByPage<type>(int pageSize, int pageIndex, bool isAsc, Expression<Func<T, type>> orderByLambda, Expression<Func<T, bool>> whereLambda , bool isReadCache = true, Expression<Func<T, bool>> cacheLambda = null, string cacheKey = "") {
+            //isReadCache 读取缓存内容 true-读取 false-不读取
+            if (isReadCache)
             {
-                return _dbContext.Set<T>().Where(WhereLambda).OrderBy(OrderByLambda).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                List<T> CacheValue = RedisHelper.HashGetAll<T>(cacheKey);
+
+                if (CacheValue != null && CacheValue.Count > 0)
+                {
+                    //是否升序
+                    if (isAsc)
+                    {
+                        return CacheValue.AsQueryable().Where(whereLambda).OrderBy(orderByLambda).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                    }
+                    else
+                    {
+                        return CacheValue.AsQueryable().Where(whereLambda).OrderByDescending(orderByLambda).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                    }
+                }
+                else
+                {
+                    //缓存数据
+                    IQueryable<T> _TList = null;
+                    //返回数据
+                    IQueryable<T> _ReturnTList = null;
+
+                    //缓存cacheLambda条件为空 则按照原条件缓存
+                    if (cacheLambda != null)
+                    {
+                        _TList = _dbContext.Set<T>().Where(cacheLambda);
+                    }
+
+                    //是否升序
+                    if (isAsc)
+                    {
+                        _ReturnTList = CacheValue.AsQueryable().Where(whereLambda).OrderBy(orderByLambda).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                    }
+                    else
+                    {
+                        _ReturnTList = CacheValue.AsQueryable().Where(whereLambda).OrderByDescending(orderByLambda).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                    }
+
+                    if (_TList != null && _TList.Count() > 0)
+                    {
+                        foreach (T item in _TList)
+                        {
+                            var c = item.GetType();
+                            //通过反射获取Item Id 作为单项的Key 便于修改内容
+                            RedisHelper.HashSet<T>(cacheKey, item.GetType().GetProperty("Id").GetValue(item).ToString(), item);
+                        }
+                    }
+
+                    return _ReturnTList;
+                }
             }
-            else
-            {
-                return _dbContext.Set<T>().Where(WhereLambda).OrderByDescending(OrderByLambda).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            else {
+                //是否升序
+                if (isAsc)
+                {
+                    return _dbContext.Set<T>().Where(whereLambda).OrderBy(orderByLambda).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                }
+                else
+                {
+                    return _dbContext.Set<T>().Where(whereLambda).OrderByDescending(orderByLambda).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                }
             }
         }
     }

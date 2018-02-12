@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
+using static WebMVC.Models.EnumType;
+
+namespace WebMVC.Models
+{
+    [Table("BlogsInfo")]
+    public class BlogsInfo
+    {
+        [Key]
+        public string Id { get; set; }
+
+        /// <summary>
+        /// 标题
+        /// </summary>
+        [MaxLength(200,ErrorMessage ="")]
+        public string BlogHeading { get; set; }
+
+        /// <summary>
+        /// 副标题
+        /// </summary>
+        [MaxLength(200, ErrorMessage = "")]
+        public string BlogSubHeading { get; set; }
+
+        /// <summary>
+        /// 作者
+        /// </summary>
+        [MaxLength(200, ErrorMessage = "")]
+        public string BlogAuthor { get; set; }
+
+        /// <summary>
+        /// 封面图
+        /// </summary>
+        [MaxLength(200, ErrorMessage = "")]
+        public string BlogsSurfacePlot { get; set; }
+
+        /// <summary>
+        /// 文章内容
+        /// </summary>
+        public string BlogContent { get; set; }
+
+        /// <summary>
+        /// 删除标记
+        /// </summary>
+        public DelflagType Delflag { get; set; }
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime CDate { get; set; }
+
+        /// <summary>
+        /// 修改时间
+        /// </summary>
+        public DateTime UDate { get; set; }
+    }
+}

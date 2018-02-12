@@ -33,9 +33,9 @@ namespace WebMVC.BLL
             return _Dal.GetModels(whereLambda, isReadCache,cacheLambda,cacheKey);
         }
 
-        public IQueryable<T> GetModelsByPage<type>(int pageSize, int pageIndex, bool isAsc, Expression<Func<T, type>> OrderByLambda, Expression<Func<T, bool>> WhereLambda)
+        public IQueryable<T> GetModelsByPage<type>(int pageSize, int pageIndex, bool isAsc, Expression<Func<T, type>> orderByLambda, Expression<Func<T, bool>> whereLambda , bool isReadCache = true, Expression<Func<T, bool>> cacheLambda = null, string cacheKey = "")
         {
-            return _Dal.GetModelsByPage<type>(pageSize, pageIndex, isAsc, OrderByLambda, WhereLambda);
+            return _Dal.GetModelsByPage<type>(pageSize, pageIndex, isAsc, orderByLambda, whereLambda , isReadCache , cacheLambda , cacheKey);
         }
 
         public bool Update(T t)
