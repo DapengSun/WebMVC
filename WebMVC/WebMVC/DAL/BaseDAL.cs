@@ -113,11 +113,11 @@ namespace WebMVC.DAL
                     //是否升序
                     if (isAsc)
                     {
-                        _ReturnTList = CacheValue.AsQueryable().Where(whereLambda).OrderBy(orderByLambda).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                        _ReturnTList = _dbContext.Set<T>().Where(whereLambda).OrderBy(orderByLambda).Skip((pageIndex - 1) * pageSize).Take(pageSize);
                     }
                     else
                     {
-                        _ReturnTList = CacheValue.AsQueryable().Where(whereLambda).OrderByDescending(orderByLambda).Skip((pageIndex - 1) * pageSize).Take(pageSize);
+                        _ReturnTList = _dbContext.Set<T>().Where(whereLambda).OrderByDescending(orderByLambda).Skip((pageIndex - 1) * pageSize).Take(pageSize);
                     }
 
                     if (_TList != null && _TList.Count() > 0)
