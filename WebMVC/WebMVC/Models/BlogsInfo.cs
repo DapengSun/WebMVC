@@ -44,6 +44,16 @@ namespace WebMVC.Models
         public string BlogContent { get; set; }
 
         /// <summary>
+        /// 文章点赞数
+        /// </summary>
+        public int LikeNum { get; set; }
+
+        /// <summary>
+        /// 文章评论数
+        /// </summary>
+        public int CommentNum { get; set; }
+
+        /// <summary>
         /// 删除标记
         /// </summary>
         public DelflagType Delflag { get; set; }

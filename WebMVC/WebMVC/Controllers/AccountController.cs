@@ -32,6 +32,7 @@ namespace WebMVC.Controllers
                     //SessionId保存到Cookies中 8小时超时
                     Response.Cookies["SessionId"].Value = _SessionId;
                     Response.Cookies["SessionId"].Expires = DateTime.Now.AddHours(8);
+
                     return Json(new { Success = true, SuccessModel = "登录成功！" });
                 }
                 else {

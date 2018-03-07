@@ -496,6 +496,26 @@
     <Compile Include="Migrations\201802120428573_20180212_sdp02.Designer.cs">
       <DependentUpon>201802120428573_20180212_sdp02.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802260231032_20180226_sdp01.cs" />
+    <Compile Include="Migrations\201802260231032_20180226_sdp01.Designer.cs">
+      <DependentUpon>201802260231032_20180226_sdp01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803070656518_20180307_sdp01.cs" />
+    <Compile Include="Migrations\201803070656518_20180307_sdp01.Designer.cs">
+      <DependentUpon>201803070656518_20180307_sdp01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803070700158_20180307_sdp02.cs" />
+    <Compile Include="Migrations\201803070700158_20180307_sdp02.Designer.cs">
+      <DependentUpon>201803070700158_20180307_sdp02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803070703127_20180307_sdp03.cs" />
+    <Compile Include="Migrations\201803070703127_20180307_sdp03.Designer.cs">
+      <DependentUpon>201803070703127_20180307_sdp03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803070709432_20180307_sdp04.cs" />
+    <Compile Include="Migrations\201803070709432_20180307_sdp04.Designer.cs">
+      <DependentUpon>201803070709432_20180307_sdp04.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogsInfo.cs" />
@@ -748,6 +768,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -938,6 +960,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802120428573_20180212_sdp02.resx">
       <DependentUpon>201802120428573_20180212_sdp02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802260231032_20180226_sdp01.resx">
+      <DependentUpon>201802260231032_20180226_sdp01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803070656518_20180307_sdp01.resx">
+      <DependentUpon>201803070656518_20180307_sdp01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803070700158_20180307_sdp02.resx">
+      <DependentUpon>201803070700158_20180307_sdp02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803070703127_20180307_sdp03.resx">
+      <DependentUpon>201803070703127_20180307_sdp03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803070709432_20180307_sdp04.resx">
+      <DependentUpon>201803070709432_20180307_sdp04.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

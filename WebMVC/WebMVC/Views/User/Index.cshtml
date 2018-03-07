@@ -4,6 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@using WebMVC.Models
+@model UserProfile
+
 <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -13,24 +16,29 @@
                             <h4 class="title">Public Profile</h4>
                         </div>
                         <div class="content">
-                            <form>
+                            @using (Ajax.BeginForm("Update", "User",new AjaxOptions {
+                                HttpMethod = "Post",
+                                OnSuccess = "Refreash",
+                                Confirm = "确认提交数据吗？"
+                            }))
+                            {
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group">
-                                            <label>Company (disabled)</label>
-                                            <input type="text" class="form-control" disabled placeholder="Company" value="CAXA Inc.">
+                                            <label>Company</label>
+                                            <input type="text" class="form-control" placeholder="Company" value="@Model.Company" name="Company">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Username</label>
-                                            <input type="text" class="form-control" placeholder="Username" value="Dipa666">
+                                            <input type="text" class="form-control" placeholder="Username" value="@Model.NickName" name="NickName">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Email address</label>
-                                            <input type="email" class="form-control" placeholder="Email">
+                                            <input type="email" class="form-control" placeholder="Email" value="@Model.Email" name="Email">
                                         </div>
                                     </div>
                                 </div>
@@ -38,13 +46,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>First Name</label>
-                                            <input type="text" class="form-control" placeholder="Company" value="Sun">
+                                            <input type="text" class="form-control" placeholder="Company" value="@Model.FirstName" name="FirstName">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Last Name</label>
-                                            <input type="text" class="form-control" placeholder="Last Name" value="Dapeng">
+                                            <input type="text" class="form-control" placeholder="Last Name" value="@Model.LastName" name="LastName">
                                         </div>
                                     </div>
                                 </div>
@@ -52,7 +60,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Address</label>
-                                            <input type="text" class="form-control" placeholder="Home Address" value="Mars, Xicheng District 666">
+                                            <input type="text" class="form-control" placeholder="Home Address" value="@Model.Address" name="Address">
                                         </div>
                                     </div>
                                 </div>
@@ -60,19 +68,19 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>City</label>
-                                            <input type="text" class="form-control" placeholder="City" value="China">
+                                            <input type="text" class="form-control" placeholder="City" value="@Model.City" name="City">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Country</label>
-                                            <input type="text" class="form-control" placeholder="Country" value="Beijing">
+                                            <input type="text" class="form-control" placeholder="Country" value="@Model.Country" name="Country">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Postal Code</label>
-                                            <input type="number" class="form-control" placeholder="X000X">
+                                            <input type="number" class="form-control" placeholder="X000X" value="@Model.PostalCode" name="PostalCode">
                                         </div>
                                     </div>
                                 </div>
@@ -80,13 +88,14 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>About Me</label>
-                                            <textarea rows="5" class="form-control" placeholder="Here can be your description" spellcheck="false">Hi, here is Dipa666. Welcome to my station ╮(╯▽╰)╭ ╮(╯▽╰)╭ ╮(╯▽╰)╭ </textarea>
+                                            <textarea rows="5" class="form-control" placeholder="Here can be your description" spellcheck="false" name="Describe">@Model.Describe</textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
                                 <div class="clearfix"></div>
-                            </form>
+                                <input type="hidden" class="form-control" name="Id" value="@Model.Id" hidden>
+                            }
                         </div>
                     </div>
                 </div>
@@ -107,7 +116,7 @@
                             </div>
                             <p class="description text-center">
                                 <br>
-                                这个人很聪明，什么都没留下。
+                                @Model.PersonalitySignature
                             </p>
                         </div>
                         <hr>
@@ -122,4 +131,10 @@
         </div>
     </div>
 
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 
+<script>
+    function Refreash() {
+        toastr.success("修改成功！");
+    }
+</script>

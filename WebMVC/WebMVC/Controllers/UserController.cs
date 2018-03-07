@@ -21,7 +21,13 @@ namespace WebMVC.Controllers
         [DescriptionAttribute(DescptionName = "账户管理首页")]
         public ActionResult Index()
         {
-            return View();
+            #region 获取账号信息
+            string _SessionId = Request.Cookies["sessionId"].Value;
+            string _UserProfileJson = RedisHelper.ItemGet<string>(_SessionId);
+            UserProfile _UserProfile = Common.ToolMethod.GetUerProfile(_UserProfileJson);
+            #endregion
+
+            return View(_UserProfile);
         }
 
         [AuthAttribute]
@@ -56,6 +62,48 @@ namespace WebMVC.Controllers
             catch (Exception ee)
             {
                 return Json(new { Success = false, Message = "添加异常！", SuccessModel = ee });
+            }
+        }
+
+        [HttpPost]
+        [AuthAttribute]
+        [DescriptionAttribute(DescptionName = "修改用户")]
+        public ActionResult Update(UserProfile _UserProfile)
+        {
+            try
+            {
+                UserProfile _OldUserProfile = _Bll.Get(_UserProfile.Id);
+
+                _OldUserProfile.Address = _UserProfile.Address;
+                _OldUserProfile.City = _UserProfile.City;
+                _OldUserProfile.Company = _UserProfile.Company;
+                _OldUserProfile.Country = _UserProfile.Country;
+                _OldUserProfile.Describe = _UserProfile.Describe;
+                _OldUserProfile.Email = _UserProfile.Email;
+                _OldUserProfile.FirstName = _UserProfile.FirstName;
+                _OldUserProfile.LastName = _UserProfile.LastName;
+                _OldUserProfile.NickName = _UserProfile.NickName;
+                _OldUserProfile.PostalCode = _UserProfile.PostalCode;
+                _OldUserProfile.LastDate = ToolMethod.GetNow();
+
+                if (_Bll.Update(_OldUserProfile))
+                {
+                    string _SessionId = Request.Cookies["sessionId"].Value;
+                    string _UserProfileString = ToolMethod.GetUerProfileString(_OldUserProfile);
+                    if (RedisHelper.ItemSet<string>(_SessionId, _UserProfileString)) {
+                        return Json(new { Success = true, Message = "修改信息成功！", SuccessModel = _UserProfile });
+                    } else {
+                        return Json(new { Success = true, Message = "修改信息失败！", ErrorMessage = "" });
+                    }
+                }
+                else
+                {
+                    return Json(new { Success = true, Message = "添加失败！", ErrorMessage = "" });
+                }
+            }
+            catch (Exception ee)
+            {
+                return Json(new { Success = false, Message = "添加异常！", ErrorMessage = ee });
             }
         }
     }

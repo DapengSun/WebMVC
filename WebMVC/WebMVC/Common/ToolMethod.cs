@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebMVC.Models;
 
 namespace WebMVC.Common
 {
@@ -13,6 +15,15 @@ namespace WebMVC.Common
 
         public static DateTime GetNow() {
             return DateTime.Now;
+        }
+
+        public static UserProfile GetUerProfile(string _UserProfileJson) {
+            return JsonConvert.DeserializeObject<UserProfile>(_UserProfileJson);
+        }
+
+        public static string GetUerProfileString(UserProfile _UserProfile)
+        {
+            return JsonConvert.SerializeObject(_UserProfile);
         }
     }
 }

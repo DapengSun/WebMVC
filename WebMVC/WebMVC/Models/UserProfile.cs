@@ -39,19 +39,76 @@ namespace WebMVC.Models
         [MaxLength(50, ErrorMessage = "")]
         public string NickName { get; set; }
 
+        /// <summary>
+        /// 手机号码
+        /// </summary>
         [MaxLength(15,ErrorMessage ="")]
         public string Phone { get; set; }
-
+        
+        /// <summary>
+        /// 账号密码
+        /// </summary>
         [MaxLength(50, ErrorMessage = "")]
         public string Password { get; set; }
 
+
+        /// <summary>
+        /// 姓名 - 姓
+        /// </summary>
         [MaxLength(30, ErrorMessage = "")]
         public string FirstName { get; set; }
 
+        /// <summary>
+        /// 姓名 - 名
+        /// </summary>
         [MaxLength(30, ErrorMessage = "")]
         public string LastName { get; set; }
 
+        /// <summary>
+        /// 企业名称
+        /// </summary>
+        [MaxLength(100,ErrorMessage ="")]
+        public string Company { get; set; }
 
+        /// <summary>
+        /// 城市
+        /// </summary>
+        [MaxLength(100, ErrorMessage = "")]
+        public string City { get; set; }
+
+        /// <summary>
+        /// 国家
+        /// </summary>
+        [MaxLength(100, ErrorMessage = "")]
+        public string Country { get; set; }
+
+        /// <summary>
+        /// 邮编号码
+        /// </summary>
+        [MaxLength(50,ErrorMessage ="")]
+        public string PostalCode{get;set;}
+
+        /// <summary>
+        /// 个性签名
+        /// </summary>
+        [MaxLength(500, ErrorMessage = "")]
+        public string PersonalitySignature{get;set;}
+
+        /// <summary>
+        /// Email
+        /// </summary>
+        [MaxLength(100,ErrorMessage ="")]
+        public string Email { get; set; }
+
+        /// <summary>
+        /// 地址
+        /// </summary>
+        [MaxLength(200,ErrorMessage ="")]
+        public string Address { get; set; }
+
+        /// <summary>
+        /// 个人描述
+        /// </summary>
         [MaxLength(500,ErrorMessage ="")]
         public string Describe { get; set; }
 
