@@ -34,5 +34,7 @@ namespace WebMVC.DBContext
         public DbSet<PermissionInfo> PermissionInfo { get; set; }
 
         public DbSet<BlogsInfo> BlogsInfo { get; set; }
+
+        public DbSet<LogInfo> LogInfo { get; set; }
     }
 }

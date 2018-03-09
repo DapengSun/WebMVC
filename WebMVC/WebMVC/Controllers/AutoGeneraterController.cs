@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebMVC.Attributes;
 using WebMVC.BLL;
 using WebMVC.Common;
 using WebMVC.Custom.Compare;
@@ -19,6 +20,7 @@ namespace WebMVC.Controllers
         private IRolePermissionBLL _IRolePermissionBLL = BLLContainer.RolePermissionBLLContainer.Resolve<IRolePermissionBLL>();
 
         // GET: AutoGenerater
+        [LogFilterAttribute]
         public ActionResult Index()
         {
             return View();

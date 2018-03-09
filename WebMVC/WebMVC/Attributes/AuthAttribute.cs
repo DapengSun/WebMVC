@@ -70,6 +70,5 @@ namespace WebMVC.Attributes
                 filterContext.HttpContext.Response.Redirect("/Account/Login?session=false");
             }
         }
-
     }
 }

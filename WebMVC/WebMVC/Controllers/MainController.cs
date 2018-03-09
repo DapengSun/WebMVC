@@ -55,7 +55,7 @@ namespace WebMVC.Controllers
                 return Json(new { Success = false });
             }
         }
-        
+
         /// <summary>
         /// 获取比特币走势数据
         /// </summary>

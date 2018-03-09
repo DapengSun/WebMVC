@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Web;
 using System.Web.Mvc;
+using WebMVC.Attributes;
 using WebMVC.Common;
 
 namespace WebMVC
@@ -17,6 +18,7 @@ namespace WebMVC
             else {
                 filters.Add(new HandleErrorAttribute());
             }
+            filters.Add(new LogFilterAttribute());
         }
     }
 }

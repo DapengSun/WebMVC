@@ -242,6 +242,7 @@
     <Compile Include="Attributes\AuthAttribute.cs" />
     <Compile Include="Attributes\DescriptionAttribute.cs" />
     <Compile Include="Attributes\BaseExceptionAttribute.cs" />
+    <Compile Include="Attributes\LogFilterAttribute.cs" />
     <Compile Include="BLLContainer\BlogsInfoBLLContainer.cs" />
     <Compile Include="BLLContainer\RolePermissionBLLContainer.cs" />
     <Compile Include="BLLContainer\PermissionInfoBLLContainer.cs" />
@@ -250,6 +251,8 @@
     <Compile Include="BLL\BaseBLL.cs" />
     <Compile Include="BLL\BlogsInfoBLL.cs" />
     <Compile Include="BLL\HouseInfoBLL.cs" />
+    <Compile Include="BLL\LogInfoBLL.cs" />
+    <Compile Include="BLLContainer\LogInfoBLLContainer.cs" />
     <Compile Include="BLL\MainBLL.cs" />
     <Compile Include="BLL\PermissionInfoBLL.cs" />
     <Compile Include="BLL\PermissionInfoBLL_old.cs" />
@@ -283,6 +286,7 @@
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\TypographyController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="DALContainer\LogInfoDALContainer.cs" />
     <Compile Include="DALContainer\PermissionInfoDALContainer.cs" />
     <Compile Include="DALContainer\RoleInfoDALContainer.cs" />
     <Compile Include="DALContainer\BlogsInfoDALContainer.cs" />
@@ -290,6 +294,7 @@
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\BlogsInfoDAL.cs" />
     <Compile Include="DAL\HouseInfoDAL.cs" />
+    <Compile Include="DAL\LogInfoDAL.cs" />
     <Compile Include="DAL\MainDAL.cs" />
     <Compile Include="DAL\PermissionInfoDAL.cs" />
     <Compile Include="DAL\PermissionInfoDAL_old.cs" />
@@ -308,11 +313,13 @@
     </Compile>
     <Compile Include="IBLL\IBaseBLL.cs" />
     <Compile Include="IBLL\IBlogsInfoBLL.cs" />
+    <Compile Include="IBLL\ILogInfoBLL.cs" />
     <Compile Include="IBLL\IPermissionInfoBLL.cs" />
     <Compile Include="IBLL\IRoleInfoBLL.cs" />
     <Compile Include="IBLL\IRolePermissionBLL.cs" />
     <Compile Include="IDAL\IBaseDAL.cs" />
     <Compile Include="IDAL\IBlogsInfoDAL.cs" />
+    <Compile Include="IDAL\ILogInfoDAL.cs" />
     <Compile Include="IDAL\IPermissionInfoDAL.cs" />
     <Compile Include="IDAL\IRoleInfoDAL.cs" />
     <Compile Include="IDAL\IRolePermissionDAL.cs" />
@@ -516,6 +523,26 @@
     <Compile Include="Migrations\201803070709432_20180307_sdp04.Designer.cs">
       <DependentUpon>201803070709432_20180307_sdp04.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803090814246_20180309_sdp01.cs" />
+    <Compile Include="Migrations\201803090814246_20180309_sdp01.Designer.cs">
+      <DependentUpon>201803090814246_20180309_sdp01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803090816358_20180309_sdp02.cs" />
+    <Compile Include="Migrations\201803090816358_20180309_sdp02.Designer.cs">
+      <DependentUpon>201803090816358_20180309_sdp02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803090853070_20180309_sdp03.cs" />
+    <Compile Include="Migrations\201803090853070_20180309_sdp03.Designer.cs">
+      <DependentUpon>201803090853070_20180309_sdp03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803090854160_20180309_sdp04.cs" />
+    <Compile Include="Migrations\201803090854160_20180309_sdp04.Designer.cs">
+      <DependentUpon>201803090854160_20180309_sdp04.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803090931269_20180309_sdp05.cs" />
+    <Compile Include="Migrations\201803090931269_20180309_sdp05.Designer.cs">
+      <DependentUpon>201803090931269_20180309_sdp05.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogsInfo.cs" />
@@ -526,6 +553,7 @@
     <Compile Include="Models\FilmInfo.cs" />
     <Compile Include="Models\HouseInfo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LogInfo.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PermissionInfo.cs" />
     <Compile Include="Models\RoleInfo.cs" />
@@ -975,6 +1003,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803070709432_20180307_sdp04.resx">
       <DependentUpon>201803070709432_20180307_sdp04.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803090814246_20180309_sdp01.resx">
+      <DependentUpon>201803090814246_20180309_sdp01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803090816358_20180309_sdp02.resx">
+      <DependentUpon>201803090816358_20180309_sdp02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803090853070_20180309_sdp03.resx">
+      <DependentUpon>201803090853070_20180309_sdp03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803090854160_20180309_sdp04.resx">
+      <DependentUpon>201803090854160_20180309_sdp04.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803090931269_20180309_sdp05.resx">
+      <DependentUpon>201803090931269_20180309_sdp05.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

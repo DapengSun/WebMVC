@@ -16,5 +16,13 @@ namespace WebMVC.Models
             启用 = 1,
             未启用 = 0
         }
+
+        public enum LogLevel {
+            DEBUG = 0,
+            INFO = 1,
+            WARN = 2,
+            ERROR = 3,
+            FATAL = 4
+        }
     }
 }
