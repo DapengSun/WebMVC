@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "ViewBlogs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using WebMVC.Models
+@model BlogsInfo
+
+@Html.Raw(@Model.BlogContent);
+

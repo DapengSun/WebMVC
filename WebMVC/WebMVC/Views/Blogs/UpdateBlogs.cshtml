@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "UpdateBlogs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using WebMVC.Models
+@model BlogsInfo
+
+<script src="~/Content/ueditor/ueditor.config.js"></script>
+
+<script src="~/Content/ueditor/ueditor.all.js"></script>
+
+<link href="~/Content/ueditor/themes/iframe.css" rel="stylesheet" />
+
+<script src="~/Content/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+<script type="text/javascript">
+
+        var editor = new baidu.editor.ui.Editor({
+
+            UEDITOR_HOME_URL: '/Content/ueditor/',//配置编辑器路径
+
+            iframeCssUrl: '/Content/ueditor/themes/iframe.css',//样式路径
+
+            initialContent: '欢迎使用ueditor',//初始化编辑器内容
+
+            autoHeightEnabled: true,//高度自动增长
+
+            minFrameHeight: 100//最小高度
+
+        });
+
+        editor.render('editor');
+
+</script>
+
+@using (Ajax.BeginForm("UpdateBlogs", "Blogs", new AjaxOptions
+{
+    HttpMethod = "Post",
+    OnSuccess = "UpdateSuccess",
+    Confirm = "确认提交数据吗？",
+
+}))
+{
+    <textarea id="editor" name="editor" ></textarea>
+        <input type="submit" value="提交" />
+}
+
+<input type="hidden" id="hfText" value="@Model.BlogContent"/>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        var ue = UE.getEditor('editor');
+        var content = $("#hfText").val();;
+
+        ue.ready(function () {//编辑器初始化完成再赋值
+            ue.setContent(content,false);  //赋值给UEditor
+        });
+
+        //判断ueditor 编辑器是否创建成功
+        //ue.addListener("ready", function () {
+        //    // editor准备好之后才可以使用
+        //    ue.setContent(content);
+        //});
+    });
+
+    function UpdateSuccess(data) {
+        if (data.Success)
+            toastr.success(data.SuccessModel);
+        else
+            toastr.success("博客创建失败！");
+    }
+</script>

@@ -39,6 +39,12 @@ namespace WebMVC.Models
         public string BlogsSurfacePlot { get; set; }
 
         /// <summary>
+        /// 文章简介
+        /// </summary>
+        [MaxLength(1000,ErrorMessage = "")]
+        public string BlogAbstarct { get; set; }
+
+        /// <summary>
         /// 文章内容
         /// </summary>
         public string BlogContent { get; set; }
