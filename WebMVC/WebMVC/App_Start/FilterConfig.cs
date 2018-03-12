@@ -10,16 +10,21 @@ namespace WebMVC
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            //var OpenCache = ConfigurationManager.AppSettings["OpenCache"];
-            //if (bool.Parse(OpenCache))
-            //{
-            //    filters.Add(new BaseExceptionAttribute());
-            //}
-            //else {
-            //    filters.Add(new HandleErrorAttribute());
-            //}
-            filters.Add(new LogFilterAttribute());
-            filters.Add(new ExceptionFilterAttribute());
+            var LogFilter = ConfigurationManager.AppSettings["LogFilter"];
+            var ExceptionFilter = ConfigurationManager.AppSettings["ExceptionFilter"];
+
+            bool LogFilterBool = false;
+            bool ExceptionFilterBool = false;
+
+            bool.TryParse(LogFilter, out LogFilterBool);
+            bool.TryParse(ExceptionFilter, out ExceptionFilterBool);
+
+            if (LogFilterBool) { 
+                filters.Add(new LogFilterAttribute());
+            }
+            if (ExceptionFilterBool) { 
+                filters.Add(new ExceptionFilterAttribute());
+            }
         }
     }
 }

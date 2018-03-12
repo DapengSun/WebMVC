@@ -17,33 +17,6 @@ namespace WebMVC
     {
         protected void Application_Start()
         {
-            //var OpenCache = ConfigurationManager.AppSettings["OpenCache"];
-            //if (bool.Parse(OpenCache)) { 
-            //    log4net.Config.XmlConfigurator.Configure(); //获取Log4Net配置信息  
-            //    ThreadPool.QueueUserWorkItem(o =>
-            //    {
-            //        while (true)
-            //        {
-            //            if (BaseExceptionAttribute.redisClient.GetListCount("ErrorMsg") > 0)
-            //            {
-            //                string msg = BaseExceptionAttribute.redisClient.DequeueItemFromList("ErrorMsg");
-            //                if (!string.IsNullOrEmpty(msg))
-            //                {
-            //                    ILog logger = LogManager.GetLogger("SystemLog");
-            //                    logger.Error(msg); //将异常信息写入Log4Net中  
-            //                }
-            //                else
-            //                {
-            //                    Thread.Sleep(5000);
-            //                }
-            //            }
-            //            else
-            //            {
-            //                Thread.Sleep(5000);
-            //            }
-            //        }
-            //    });
-            //}
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
