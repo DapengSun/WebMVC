@@ -242,6 +242,7 @@
     <Compile Include="Attributes\AuthAttribute.cs" />
     <Compile Include="Attributes\DescriptionAttribute.cs" />
     <Compile Include="Attributes\BaseExceptionAttribute.cs" />
+    <Compile Include="Attributes\ExceptionFilterAttribute.cs" />
     <Compile Include="Attributes\LogFilterAttribute.cs" />
     <Compile Include="BLLContainer\BlogsInfoBLLContainer.cs" />
     <Compile Include="BLLContainer\RolePermissionBLLContainer.cs" />
@@ -542,6 +543,10 @@
     <Compile Include="Migrations\201803090931269_20180309_sdp05.cs" />
     <Compile Include="Migrations\201803090931269_20180309_sdp05.Designer.cs">
       <DependentUpon>201803090931269_20180309_sdp05.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803120224148_20180312_sdp01.cs" />
+    <Compile Include="Migrations\201803120224148_20180312_sdp01.Designer.cs">
+      <DependentUpon>201803120224148_20180312_sdp01.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1018,6 +1023,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803090931269_20180309_sdp05.resx">
       <DependentUpon>201803090931269_20180309_sdp05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803120224148_20180312_sdp01.resx">
+      <DependentUpon>201803120224148_20180312_sdp01.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

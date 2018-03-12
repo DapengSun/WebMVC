@@ -13,21 +13,19 @@ using WebMVC.Models;
 
 namespace WebMVC.Attributes
 {
-    public class LogFilterAttribute : ActionFilterAttribute
+    public class ExceptionFilterAttribute : HandleErrorAttribute
     {
         public UserProfile _UserProfile { get; set; }
 
         public ILogInfoBLL _ILogInfoBLL = LogInfoBLLContainer.Resolv<ILogInfoBLL>();
 
-        public override void OnActionExecuted(ActionExecutedContext filterContext) {
-            #region 获取Action & Controller信息
-            string _ActionName = filterContext.ActionDescriptor.ActionName;
-            string _ControllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
-            #endregion
+        public override void OnException(ExceptionContext filterContext)
+        {
+            string _ControllerName = filterContext.Controller.ToString();
 
-            #region 记录操作日志
+            #region 记录异常日志
             if (_ControllerName != "Account")
-            { 
+            {
                 if (filterContext.HttpContext.Request.Cookies["SessionId"] != null)
                 {
                     string _SessionId = filterContext.HttpContext.Request.Cookies["SessionId"].Value;
@@ -40,10 +38,13 @@ namespace WebMVC.Attributes
                         LogInfo _logInfo = new LogInfo()
                         {
                             Id = ToolMethod.GetGuid(),
-                            Content = _UserProfile.NickName + "调用了 " + _ControllerName + "Controller下的" + _ActionName + "操作",
+                            Content = "【请求异常】：" 
+                                    + "【请求路径：" + filterContext.HttpContext.Request.Path  + "】"
+                                    + "【请求方式：" + filterContext.HttpContext.Request.HttpMethod + "】"
+                                    + "【异常内容：" + filterContext.Exception.Message.ToString() + "】",
                             AccountId = _UserProfile.Id,
                             AccountName = _UserProfile.NickName,
-                            Level = EnumType.LogLevel.INFO,
+                            Level = EnumType.LogLevel.ERROR,
                             CDate = ToolMethod.GetNow()
                         };
 
@@ -52,7 +53,8 @@ namespace WebMVC.Attributes
                         _jobs.Enqueue(_actionExpression);
                     }
                 }
-                else {
+                else
+                {
                     filterContext.HttpContext.Response.Redirect("/Account/Login?session=false");
                 }
             }

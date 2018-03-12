@@ -16,6 +16,7 @@ namespace WebMVC.Models
         /// <summary>
         /// 日志内容
         /// </summary>
+        [MaxLength(500,ErrorMessage ="")]
         public string Content { get; set; }
 
         /// <summary>
