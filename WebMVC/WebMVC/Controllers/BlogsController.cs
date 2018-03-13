@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -126,17 +127,81 @@ namespace WebMVC.Controllers
         }
 
         /// <summary>
-        /// 修改博客
+        /// 修改博客界面
         /// </summary>
         /// <param name="fc"></param>
         /// <returns></returns>
         [AuthAttribute]
         [HttpGet]
-        [DescriptionAttribute(DescptionName = "修改博客")]
+        [DescriptionAttribute(DescptionName = "修改博客界面")]
         public ActionResult UpdateBlogs(string Id)
         {
             BlogsInfo _BlogsInfo = _IBlogsInfoBLL.GetModels(x => x.Id == Id && x.Delflag == EnumType.DelflagType.正常, true, null, "BlogsInfo").FirstOrDefault();
+            ViewBag.BlogsId = Id;
             return View(_BlogsInfo);
+        }
+
+        /// <summary>
+        /// 修改博客
+        /// </summary>
+        /// <param name="fc"></param>
+        /// <returns></returns>
+        [AuthAttribute]
+        [HttpPost]
+        [ValidateInput(false)]
+        [DescriptionAttribute(DescptionName = "修改博客界面")]
+        public ActionResult UpdateBlogs(FormCollection fc)
+        {
+            #region 验证用户信息
+            string _SessionId = HttpContext.Request.Cookies["SessionId"].Value;
+            string _UserProfileJson = RedisHelper.ItemGet<string>(_SessionId);
+            #endregion
+
+            var _Content = fc["editor"];
+            var _BlogsId = fc["BlogsId"];
+
+            if (!string.IsNullOrEmpty(_UserProfileJson))
+            {
+                UserProfile _UserProfile = ToolMethod.GetUerProfile(_UserProfileJson);
+                BlogsInfo _BlogsInfo = _IBlogsInfoBLL.GetModels(x => x.Id == _BlogsId && x.Delflag == EnumType.DelflagType.正常, true, null, "BlogsInfo").FirstOrDefault();
+                _BlogsInfo.BlogContent = _Content;
+                _BlogsInfo.UDate = ToolMethod.GetNow();
+
+                RedisHelper.HashSet<BlogsInfo>("BlogsInfo", _BlogsId, _BlogsInfo);
+
+                BackgroundJobClient _Job = new BackgroundJobClient();
+                _Job.Enqueue(() => _IBlogsInfoBLL.Update(_BlogsInfo));
+                
+                return Json(new { Success = true, SuccessModel = "修改博客成功！" });
+            }
+            else {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        /// <summary>
+        /// 上传博客图片
+        /// </summary>
+        /// <param name="fc"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [DescriptionAttribute(DescptionName = "上传博客图片")]
+        public ActionResult AjaxFileUpload()
+        {
+            HttpFileCollection _Files = System.Web.HttpContext.Current.Request.Files;
+
+            string _PhysicalPath = ToolMethod.GetBlogsSurfacePlot_PhysicalPath();
+
+            if (!Directory.Exists(_PhysicalPath)) {
+                Directory.CreateDirectory(_PhysicalPath);
+            }
+
+            string _StrFile = System.DateTime.Now.ToString("yyyyMMddHHmmssms");
+            string _FilePath = _PhysicalPath + _StrFile + "_" + _Files[0].FileName;
+
+            _Files[0].SaveAs(_FilePath);
+
+            return Content(_FilePath);
         }
     }
 }

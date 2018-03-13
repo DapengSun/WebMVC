@@ -4,6 +4,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .label_input {
+        padding-left:30px;
+        padding-top:30px;
+        padding-bottom:20px;
+    }
+
+    .font_size {
+        font-size:20px;
+    }
+</style>
+
+
 <script src="~/Content/ueditor/ueditor.config.js"></script>
 
 <script src="~/Content/ueditor/ueditor.all.js"></script>
@@ -32,18 +45,43 @@
 
 </script>
 
-@using (Ajax.BeginForm("AddBlogs", "Blogs", new AjaxOptions {
-            HttpMethod = "Post",
-            OnSuccess = "AddSuccess",
-            Confirm = "确认提交数据吗？",
-            
-        }))
-    {
-        <textarea id="editor" name="editor"></textarea>
-        <input type="submit" value="提交" />
-    }
+@using (Ajax.BeginForm("AddBlogs", "Blogs", new AjaxOptions
+{
+    HttpMethod = "Post",
+    OnSuccess = "AddSuccess",
+    Confirm = "确认提交数据吗？",
+}))
+{
+        <div class="label_input form-label">
+            <label class="font_size">博客标题：</label>
+            <input type="text" class="form-control" placeholder="博客标题" value="" name="BlogsHeading">
+        </div>
+
+        <div class="label_input form-label">
+            <label class="font_size">博客副标题：</label>
+            <input type="text" class="form-control" placeholder="博客副标题" value="" name="BlogsSubHeading">
+        </div>
+
+        <div class="label_input form-label">
+            <label class="font_size">博客封面图：</label>
+            @*<input type="text" class="form-control" placeholder="博客封面图" value="" name="BlogsSurfacePlot">*@
+            <input type="file" id="AjaxFileUpload" name="file" style="display:inline" /><input type="button" name="AjaxFileUploadButton" value="图片上传" />
+        </div>
+
+        <div class="label_input form-label">
+            <label class="font_size">博客简介：</label>
+            <input type="text" class="form-control" placeholder="博客简介" value="" name="BlogsAbstract">
+        </div>
+
+        <div class="label_input form-label">
+            <label class="font_size">博客内容：</label>
+            <textarea id="editor" name="editor" style="margin:0 auto;width:99%"></textarea>
+        </div>
+        <input class="btn btn-success btn-block" style="background-color:dodgerblue;color:white" type="submit" value="提交" />
+}
 
 <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Content/js/Blogs/ajaxfileupload.js"></script>
 
 <script type="text/javascript">
     function AddSuccess(data) {
@@ -51,5 +89,64 @@
             toastr.success(data.SuccessModel);
         else
             toastr.success("博客创建失败！");
+    }
+
+    /*
+     * 注册上传事件
+     */
+    $("input[name='AjaxFileUploadButton']").click(function () {
+        if ($("#AjaxFileUpload").val().length > 0) {
+            AjaxFileUpload();
+        } else {
+            alert("请选择需要上传的图片！");
+        }
+    });
+
+    /*
+     * 图片上传
+     */
+    var Count = 0;
+    function AjaxFileUpload() {
+        $.ajaxFileUpload
+        (
+            {
+                url: "/Blogs/AjaxFileUpload",
+                type: "Post",
+                secureuri: false,
+                fileElementId: 'AjaxFileUpload',
+                dataType: "json",
+                success: function (data) {
+                    alert(data);
+                    //$("#shangchuanwjImg").append(" <input id=\"filepathImg" + Count + "\" value=\"" + data.AbsoluteUrl + "\" type=\"hidden\"/>"
+                    //                       + "      <input id=\"filenameImg" + Count + "\" value=\"" + data.Name + "\" type=\"hidden\"/>"
+                    //                       + " <input id=\"filesizeImg" + Count + "\" value=\"" + data.Name + "\" type=\"hidden\"/>");
+
+                    //var divimg = document.createElement("div");
+                    //divimg.style = "margin-right: 10px;width: 146px;height: 130px;margin-bottom: 10px;";
+                    //divimg.classList.add("divimg");
+                    //var imgelement = document.createElement("img");
+                    //imgelement.src = data.RelativeUrl;
+                    //imgelement.style = "width: 146px;height: 130px;";
+                    //divimg.appendChild(imgelement);
+                    //var divdel = document.createElement("div");
+                    //divdel.innerText = "×";
+                    //divdel.id = "delimg_add_" + Count;
+                    //divdel.classList.add("divdel");
+                    //divdel.title = "删除";
+                    //divimg.appendChild(divdel);
+                    //document.getElementById("divuploadimg").appendChild(divimg);
+
+                    //Count++;
+                }
+            }
+        )
+    }
+
+    /*
+     * 删除上传图片
+     */
+    function DelUploadFile() {
+
+
     }
 </script>

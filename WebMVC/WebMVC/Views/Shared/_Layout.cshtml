@@ -57,7 +57,7 @@
                     </li>
                     <li id="leftbtn-Typography">
                         <a href="@Url.Action("Index","Gallery")">
-                            <i class="pe-7s-news-paper"></i>
+                            <i class="pe-7s-photo"></i>
                             <p> 影集 </p>
                         </a>
                     </li>
@@ -73,12 +73,12 @@
                             <p> 地图 </p>
                         </a>
                     </li>
-                    @*<li id="leftbtn-Notifications">
-                        <a href="@Url.Action("Index","Notifications")">
-                            <i class="pe-7s-bell"></i>
-                            <p>通告</p>
+                    <li id="leftbtn-News">
+                        <a href="@Url.Action("Index","News")">
+                            <i class="pe-7s-news-paper"></i>
+                            <p>新闻</p>
                         </a>
-                    </li>*@
+                    </li>
                     <li id="leftbtn-BackgroundManagers">
                         <a href="@Url.Action("Index","Managerment")">
                             <i class="pe-7s-cloud"></i>
@@ -244,12 +244,12 @@
     	        $('li[id*="leftbtn-"]').eq(4).addClass('active');
     	        $("#navbar-brand").html("地图");
     	    }
-    	    //else if (pathname.indexOf("/Notifications") >= 0) {
-    	    //    $('li[id*="leftbtn-"]').eq(6).addClass('active');
-    	    //    $("#navbar-brand").html("通告");
-    	    //}
-    	    else if (pathname.indexOf("/Mangerment") >= 0) {
+    	    else if (pathname.indexOf("/News") >= 0) {
     	        $('li[id*="leftbtn-"]').eq(5).addClass('active');
+    	        $("#navbar-brand").html("新闻");
+    	    }
+    	    else if (pathname.indexOf("/Mangerment") >= 0) {
+    	        $('li[id*="leftbtn-"]').eq(6).addClass('active');
     	        $("#navbar-brand").html("设置");
     	    }
     	    //else {

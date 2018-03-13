@@ -1,7 +1,11 @@
 ﻿@using WebMVC.Models
 @model List<BlogsInfo>
 
-    @foreach(BlogsInfo item in Model) { 
+    <div style="display:block">
+        <a href="/Blogs/AddBlogsIndex"><img src="~/Content/img/Blogs/ico_mng-add.png"></a>
+    </div>
+    @foreach (BlogsInfo item in Model)
+    {
         <!-- Post -->
         <article class="post">
             <header>
@@ -21,7 +25,7 @@
                     <li><a href="/Blogs/ViewBlogs/@item.Id" class="button big">Continue Reading</a></li>
                 </ul>
                 <ul class="stats">
-                    <li><a href="#">General</a></li>
+                    <li><a href="/Blogs/UpdateBlogs/@item.Id">Edit</a></li>
                     <li><a href="#" class="icon fa-heart">28</a></li>
                     <li><a href="#" class="icon fa-comment">128</a></li>
                 </ul>

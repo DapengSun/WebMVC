@@ -595,6 +595,9 @@
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\light-bootstrap-dashboard.css" />
     <Content Include="Content\css\Login\styles.css" />
+    <Content Include="Content\css\News\bootstrap.min.css" />
+    <Content Include="Content\css\News\font-icons.css" />
+    <Content Include="Content\css\News\style.css" />
     <Content Include="Content\css\pe-icon-7-stroke.css" />
     <Content Include="Content\css\style-metro.css" />
     <Content Include="Content\css\style.css" />
@@ -605,6 +608,7 @@
     <Content Include="Content\img\arrow-left.png" />
     <Content Include="Content\img\arrow-right.png" />
     <Content Include="Content\img\Blogs\avatar.jpg" />
+    <Content Include="Content\img\Blogs\ico_mng-add.png" />
     <Content Include="Content\img\Blogs\logo.jpg" />
     <Content Include="Content\img\Blogs\pic01.jpg" />
     <Content Include="Content\img\Blogs\pic02.jpg" />
@@ -643,6 +647,47 @@
     <Content Include="Content\img\mejs\speaker-mute.png" />
     <Content Include="Content\img\mejs\speaker-on.png" />
     <Content Include="Content\img\mejs\speaker.png" />
+    <Content Include="Content\img\News\blog\author_large.jpg" />
+    <Content Include="Content\img\News\blog\carousel_img_1.jpg" />
+    <Content Include="Content\img\News\blog\carousel_img_2.jpg" />
+    <Content Include="Content\img\News\blog\carousel_img_3.jpg" />
+    <Content Include="Content\img\News\blog\comment_1.jpg" />
+    <Content Include="Content\img\News\blog\comment_2.jpg" />
+    <Content Include="Content\img\News\blog\comment_3.jpg" />
+    <Content Include="Content\img\News\blog\editors_post_img.jpg" />
+    <Content Include="Content\img\News\blog\featured_grid_2.jpg" />
+    <Content Include="Content\img\News\blog\featured_grid_3.jpg" />
+    <Content Include="Content\img\News\blog\featured_grid_slide_1.jpg" />
+    <Content Include="Content\img\News\blog\featured_grid_slide_2.jpg" />
+    <Content Include="Content\img\News\blog\featured_grid_slide_3.jpg" />
+    <Content Include="Content\img\News\blog\featured_post_img_1.jpg" />
+    <Content Include="Content\img\News\blog\featured_post_img_2.jpg" />
+    <Content Include="Content\img\News\blog\grid_post_img_1.jpg" />
+    <Content Include="Content\img\News\blog\grid_post_img_2.jpg" />
+    <Content Include="Content\img\News\blog\grid_post_img_3.jpg" />
+    <Content Include="Content\img\News\blog\grid_post_img_4.jpg" />
+    <Content Include="Content\img\News\blog\grid_post_img_5.jpg" />
+    <Content Include="Content\img\News\blog\grid_post_img_6.jpg" />
+    <Content Include="Content\img\News\blog\list_post_img_1.jpg" />
+    <Content Include="Content\img\News\blog\list_post_img_2.jpg" />
+    <Content Include="Content\img\News\blog\list_post_img_3.jpg" />
+    <Content Include="Content\img\News\blog\placeholder_125.jpg" />
+    <Content Include="Content\img\News\blog\placeholder_300.jpg" />
+    <Content Include="Content\img\News\blog\placeholder_leaderboard.jpg" />
+    <Content Include="Content\img\News\blog\popular_post_1.jpg" />
+    <Content Include="Content\img\News\blog\popular_post_2.jpg" />
+    <Content Include="Content\img\News\blog\popular_post_3.jpg" />
+    <Content Include="Content\img\News\blog\popular_post_4.jpg" />
+    <Content Include="Content\img\News\blog\review_post_1.jpg" />
+    <Content Include="Content\img\News\blog\review_post_2.jpg" />
+    <Content Include="Content\img\News\blog\review_post_3.jpg" />
+    <Content Include="Content\img\News\blog\review_post_4.jpg" />
+    <Content Include="Content\img\News\blog\single_post_featured_img.jpg" />
+    <Content Include="Content\img\News\blog\single_post_img.jpg" />
+    <Content Include="Content\img\News\dropdown.png" />
+    <Content Include="Content\img\News\empty.png" />
+    <Content Include="Content\img\News\logo.png" />
+    <Content Include="Content\img\News\logo_mobile.png" />
     <Content Include="Content\img\new_logo.png" />
     <Content Include="Content\img\sample-image.jpg" />
     <Content Include="Content\img\shutterbug.jpg" />
@@ -669,6 +714,7 @@
     <Content Include="Content\img\Gallery\d720325c2f3311e3b41222000a1f8cb0_8.jpg" />
     <Content Include="Content\img\Gallery\f3f72dc42f3111e3ba2c1231391eb9f5_6.jpg" />
     <Content Include="Content\img\Gallery\f3f72dc42f3111e3ba2c1231391eb9f5_8.jpg" />
+    <Content Include="Content\js\Blogs\ajaxfileupload.js" />
     <Content Include="Content\js\Gallery\index.js" />
     <Content Include="Content\js\Gallery\jquery.js" />
     <Content Include="Content\js\Blogs\ie\html5shiv.js" />
@@ -694,6 +740,16 @@
     <Content Include="Content\js\Maps\distpicker.js" />
     <Content Include="Content\js\Maps\main.js" />
     <Content Include="Content\js\modules\exporting.js" />
+    <Content Include="Content\js\News\bootstrap.min.js" />
+    <Content Include="Content\js\News\easing.min.js" />
+    <Content Include="Content\js\News\jquery.appear.min.js" />
+    <Content Include="Content\js\News\jquery.min.js" />
+    <Content Include="Content\js\News\jquery.newsTicker.min.js" />
+    <Content Include="Content\js\News\lazysizes.min.js" />
+    <Content Include="Content\js\News\modernizr.min.js" />
+    <Content Include="Content\js\News\owl-carousel.min.js" />
+    <Content Include="Content\js\News\scripts.js" />
+    <Content Include="Content\js\News\twitterFetcher_min.js" />
     <Content Include="Content\js\toastr.min.js" />
     <Content Include="Content\ueditor\dialogs\anchor\anchor.html" />
     <Content Include="Content\ueditor\dialogs\attachment\attachment.css" />
@@ -1088,6 +1144,10 @@
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.eot" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="Content\ueditor\third-party\video-js\font\vjs.woff" />
+    <Content Include="Content\fonts\News\ui-icons.eot" />
+    <Content Include="Content\fonts\News\ui-icons.ttf" />
+    <Content Include="Content\fonts\News\ui-icons.woff" />
+    <Content Include="Content\fonts\News\ui-icons.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1136,13 +1196,13 @@
     <Content Include="Views\Blogs\AddBlogsIndex.cshtml" />
     <Content Include="Views\Blogs\ViewBlogs.cshtml" />
     <Content Include="Views\Blogs\UpdateBlogs.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\fonts\Gallery\" />
     <Folder Include="Content\img\ueditor\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\News\" />
     <Folder Include="Views\WordCloud\" />
   </ItemGroup>
   <ItemGroup>
