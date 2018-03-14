@@ -17,6 +17,8 @@ namespace WebMVC.Controllers
     public class BlogsController : Controller
     {
         public IBlogsInfoBLL _IBlogsInfoBLL = BLLContainer.BlogsInfoBLLContainer.Resolve<IBlogsInfoBLL>();
+        public IImageInfoBLL _IImageInfoBLL = BLLContainer.ImageInfoBLLContainer.Resolve<IImageInfoBLL>();
+
 
         [AuthAttribute]
         [DescriptionAttribute(DescptionName = "个人博客主页")]
@@ -188,20 +190,57 @@ namespace WebMVC.Controllers
         [DescriptionAttribute(DescptionName = "上传博客图片")]
         public ActionResult AjaxFileUpload()
         {
-            HttpFileCollection _Files = System.Web.HttpContext.Current.Request.Files;
+            #region 验证用户信息
+            string _SessionId = HttpContext.Request.Cookies["SessionId"].Value;
+            string _UserProfileJson = RedisHelper.ItemGet<string>(_SessionId);
+            #endregion
 
-            string _PhysicalPath = ToolMethod.GetBlogsSurfacePlot_PhysicalPath();
+            if (!string.IsNullOrEmpty(_UserProfileJson))
+            {
+                UserProfile _UserProfile = ToolMethod.GetUerProfile(_UserProfileJson);
 
-            if (!Directory.Exists(_PhysicalPath)) {
-                Directory.CreateDirectory(_PhysicalPath);
+                HttpFileCollection _Files = System.Web.HttpContext.Current.Request.Files;
+
+                string _PhysicalPath = ToolMethod.GetBlogsSurfacePlot_PhysicalPath();
+                string _VirualPath = ToolMethod.GetBlogsSurfacePlot_VirualPath();
+
+                if (!Directory.Exists(_PhysicalPath)) {
+                    Directory.CreateDirectory(_PhysicalPath);
+                }
+
+                string _FileName = _Files[0].FileName;
+                string _StrFile = System.DateTime.Now.ToString("yyyyMMddHHmmssms");
+                string _FilePhysicalPath = _PhysicalPath + _StrFile + "_" + _FileName;
+                string _FileVirualPath = _VirualPath + _StrFile + "_" + _FileName;
+                long _FileSize = _Files[0].ContentLength;
+                //获取文件后缀
+                string _FileType = _FileName.Substring(_FileName.LastIndexOf(@"."), _FileName.Length - _FileName.LastIndexOf(@"."));
+                //保存文件
+                _Files[0].SaveAs(_FilePhysicalPath);
+
+                string _FileId = ToolMethod.GetGuid();
+                ImageInfo _ImageInfo = new ImageInfo
+                {
+                    Id = _FileId,
+                    CDate = ToolMethod.GetNow(),
+                    Delflag = EnumType.DelflagType.正常,
+                    AccountId = _UserProfile.Id,
+                    AccountName = _UserProfile.LoginName,
+                    FileName = _FileName,
+                    FileSize = _FileSize,
+                    RelativePath = _StrFile + "_" + _FileName,
+                    FileType = _FileType
+                };
+
+                //保存文件集合
+                _IImageInfoBLL.Add(_ImageInfo);
+
+                return Json(new { FileId = _FileId, FileName = _FileName, PhysicalPathm = _FilePhysicalPath , VirualPath = _FileVirualPath});
             }
-
-            string _StrFile = System.DateTime.Now.ToString("yyyyMMddHHmmssms");
-            string _FilePath = _PhysicalPath + _StrFile + "_" + _Files[0].FileName;
-
-            _Files[0].SaveAs(_FilePath);
-
-            return Content(_FilePath);
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
     }
 }

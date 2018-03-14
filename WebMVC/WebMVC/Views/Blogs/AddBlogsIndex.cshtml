@@ -68,6 +68,10 @@
             <input type="file" id="AjaxFileUpload" name="file" style="display:inline" /><input type="button" name="AjaxFileUploadButton" value="图片上传" />
         </div>
 
+        <div id="SurfacePlot" class="preview" style="display: block;">
+            @*<img src="http://ww4.sinaimg.cn/large/87c01ec7gy1fpceti1hxtj20bf0ab75e.jpg" style="padding-left:35%">*@
+        </div>
+
         <div class="label_input form-label">
             <label class="font_size">博客简介：</label>
             <input type="text" class="form-control" placeholder="博客简介" value="" name="BlogsAbstract">
@@ -82,6 +86,12 @@
 
 <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 <script src="~/Content/js/Blogs/ajaxfileupload.js"></script>
+<script src="~/Content/js/juicer.js"></script>
+
+<script id="SurfacePlot_Temp" type="text/template">
+    <img src="${SurfacePlot.Url}" style="padding-left:35%" data-id="${SurfacePlot.Id}" data-name="${SurfacePlot.Name}">
+</script>
+
 
 <script type="text/javascript">
     function AddSuccess(data) {
@@ -105,7 +115,6 @@
     /*
      * 图片上传
      */
-    var Count = 0;
     function AjaxFileUpload() {
         $.ajaxFileUpload
         (
@@ -116,27 +125,9 @@
                 fileElementId: 'AjaxFileUpload',
                 dataType: "json",
                 success: function (data) {
-                    alert(data);
-                    //$("#shangchuanwjImg").append(" <input id=\"filepathImg" + Count + "\" value=\"" + data.AbsoluteUrl + "\" type=\"hidden\"/>"
-                    //                       + "      <input id=\"filenameImg" + Count + "\" value=\"" + data.Name + "\" type=\"hidden\"/>"
-                    //                       + " <input id=\"filesizeImg" + Count + "\" value=\"" + data.Name + "\" type=\"hidden\"/>");
+                    var SurfacePlotItem = { FileId: data.FileId, FileName: data.FileName, PhysicalPathm: data.FilePhysicalPath, VirualPath: data.FileVirualPath };
 
-                    //var divimg = document.createElement("div");
-                    //divimg.style = "margin-right: 10px;width: 146px;height: 130px;margin-bottom: 10px;";
-                    //divimg.classList.add("divimg");
-                    //var imgelement = document.createElement("img");
-                    //imgelement.src = data.RelativeUrl;
-                    //imgelement.style = "width: 146px;height: 130px;";
-                    //divimg.appendChild(imgelement);
-                    //var divdel = document.createElement("div");
-                    //divdel.innerText = "×";
-                    //divdel.id = "delimg_add_" + Count;
-                    //divdel.classList.add("divdel");
-                    //divdel.title = "删除";
-                    //divimg.appendChild(divdel);
-                    //document.getElementById("divuploadimg").appendChild(divimg);
-
-                    //Count++;
+                    $("#SurfacePlot").html(juicer($("#SurfacePlot_Temp").html(), { SurfacePlot: SurfacePlotItem }))
                 }
             }
         )
