@@ -65,7 +65,7 @@
         <div class="label_input form-label">
             <label class="font_size">博客封面图：</label>
             @*<input type="text" class="form-control" placeholder="博客封面图" value="" name="BlogsSurfacePlot">*@
-            <input type="file" id="AjaxFileUpload" name="file" style="display:inline" /><input type="button" name="AjaxFileUploadButton" value="图片上传" />
+            <input type="file" id="AjaxFileUpload" name="file" style="display:inline" /><input type="button" id="AjaxFileUploadButton" value="图片上传" />
         </div>
 
         <div id="SurfacePlot" class="preview" style="display: block;">
@@ -89,7 +89,10 @@
 <script src="~/Content/js/juicer.js"></script>
 
 <script id="SurfacePlot_Temp" type="text/template">
-    <img src="${SurfacePlot.Url}" style="padding-left:35%" data-id="${SurfacePlot.Id}" data-name="${SurfacePlot.Name}">
+    {$each SurfacePlotArray as SurfacePlotItem,index}
+        <img src="${SurfacePlotItem.VirualPath}" style="padding-left:30px">
+        <input value="${SurfacePlotItem.VirualPath}" name="SurfacePlot" hidden/>
+    {$/each}
 </script>
 
 
@@ -104,7 +107,7 @@
     /*
      * 注册上传事件
      */
-    $("input[name='AjaxFileUploadButton']").click(function () {
+    $("input[id='AjaxFileUploadButton']").click(function () {
         if ($("#AjaxFileUpload").val().length > 0) {
             AjaxFileUpload();
         } else {
@@ -115,7 +118,9 @@
     /*
      * 图片上传
      */
+    var SurfacePlotArray = [];
     function AjaxFileUpload() {
+        SurfacePlotArray = [];
         $.ajaxFileUpload
         (
             {
@@ -124,10 +129,14 @@
                 secureuri: false,
                 fileElementId: 'AjaxFileUpload',
                 dataType: "json",
+                async:false,
                 success: function (data) {
-                    var SurfacePlotItem = { FileId: data.FileId, FileName: data.FileName, PhysicalPathm: data.FilePhysicalPath, VirualPath: data.FileVirualPath };
+                    SurfacePlotArray.push({ FileId: data.FileId, FileName: data.FileName, PhysicalPath: data.PhysicalPath, VirualPath: data.VirualPath });
 
-                    $("#SurfacePlot").html(juicer($("#SurfacePlot_Temp").html(), { SurfacePlot: SurfacePlotItem }))
+                    $("#SurfacePlot").html(juicer($("#SurfacePlot_Temp").html(), { SurfacePlotArray: SurfacePlotArray }))
+                },
+                error: function (data) {
+                    alert(data)
                 }
             }
         )
@@ -137,7 +146,6 @@
      * 删除上传图片
      */
     function DelUploadFile() {
-
-
+        
     }
 </script>

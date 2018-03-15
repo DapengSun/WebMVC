@@ -571,6 +571,22 @@
     <Compile Include="Migrations\201803140843396_20180314_sdp01.Designer.cs">
       <DependentUpon>201803140843396_20180314_sdp01.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803150550140_20180315_sdp01.cs" />
+    <Compile Include="Migrations\201803150550140_20180315_sdp01.Designer.cs">
+      <DependentUpon>201803150550140_20180315_sdp01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803150551128_20180315_sdp02.cs" />
+    <Compile Include="Migrations\201803150551128_20180315_sdp02.Designer.cs">
+      <DependentUpon>201803150551128_20180315_sdp02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803150602053_20180315_sdp03.cs" />
+    <Compile Include="Migrations\201803150602053_20180315_sdp03.Designer.cs">
+      <DependentUpon>201803150602053_20180315_sdp03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803150613481_20180315_sdp04.cs" />
+    <Compile Include="Migrations\201803150613481_20180315_sdp04.Designer.cs">
+      <DependentUpon>201803150613481_20180315_sdp04.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogsInfo.cs" />
@@ -1399,6 +1415,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803140843396_20180314_sdp01.resx">
       <DependentUpon>201803140843396_20180314_sdp01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803150550140_20180315_sdp01.resx">
+      <DependentUpon>201803150550140_20180315_sdp01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803150551128_20180315_sdp02.resx">
+      <DependentUpon>201803150551128_20180315_sdp02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803150602053_20180315_sdp03.resx">
+      <DependentUpon>201803150602053_20180315_sdp03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803150613481_20180315_sdp04.resx">
+      <DependentUpon>201803150613481_20180315_sdp04.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

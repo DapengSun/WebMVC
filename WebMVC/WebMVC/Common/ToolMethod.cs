@@ -50,25 +50,27 @@ namespace WebMVC.Common
         /// 获取博客封面图—虚拟路径
         /// </summary>
         /// <returns></returns>
-        public static string GetBlogsSurfacePlot_VirualPath()
+        public static string GetBlogsSurfacePlot_VirualPath(string DateTimePath)
         {
-            return System.Configuration.ConfigurationManager.AppSettings["BlogsSurfacePlot_VirualPath"].ToString();
+            return System.Configuration.ConfigurationManager.AppSettings["BlogsSurfacePlot_VirualPath"].ToString() + DateTimePath;
         }
 
         /// <summary>
         /// 获取博客封面图—物理路径
         /// </summary>
         /// <returns></returns>
-        public static string GetBlogsSurfacePlot_PhysicalPath()
+        public static string GetBlogsSurfacePlot_PhysicalPath(string DateTimePath)
         {
+            return System.Configuration.ConfigurationManager.AppSettings["BlogsSurfacePlot_PhysicalPath"].ToString() + DateTimePath;
+        }
+
+        public static string GetDateTimePath() {
             DateTime Dt = ToolMethod.GetNow();
             string Year = Dt.Year.ToString();
             string Month = Dt.Month.ToString();
             string Day = Dt.Day.ToString();
             string Hour = Dt.Hour.ToString();
-
-            string BlogsSurfacePlot_PhysicalPath = System.Configuration.ConfigurationManager.AppSettings["BlogsSurfacePlot_PhysicalPath"].ToString();
-            return BlogsSurfacePlot_PhysicalPath + Year + @"\" + Month + @"\" + Day + @"\" + Hour + @"\";
+            return Year + @"\" + Month + @"\" + Day + @"\" + Hour + @"\";
         }
     }
 }

@@ -15,10 +15,10 @@
                 </div>
                 <div class="meta">
                     <time class="published" datetime="2015-11-01">@item.CDate</time>
-                    <a href="#" class="author"><span class="name">@item.BlogAuthor</span><img src="~/Content/img/Blogs/avatar.jpg" alt="" /></a>
+                    <a href="#" class="author"><span class="name">@item.BlogAuthorName</span><img src="~/Content/img/Blogs/avatar.jpg" alt="" /></a>
                 </div>
             </header>
-            <a href="#" class="image featured"><img src="@item.BlogsSurfacePlot" alt="" /></a>
+            <a href="#" class="image featured"><img src="@item.BlogsSurfacePlot" alt="" style="width:990px;height:404px" /></a>
             <p>@item.BlogAbstarct</p>
             <footer>
                 <ul class="actions">
@@ -26,6 +26,7 @@
                 </ul>
                 <ul class="stats">
                     <li><a href="/Blogs/UpdateBlogs/@item.Id">Edit</a></li>
+                    <li><a data-id ="@item.Id" href="javascript:void(0)" onclick="Deleteblogs(this)">Delete</a></li>
                     <li><a href="#" class="icon fa-heart">28</a></li>
                     <li><a href="#" class="icon fa-comment">128</a></li>
                 </ul>
@@ -40,5 +41,20 @@
     </ul>
 
 
+    <script>
+        function Deleteblogs(obj){
+            var id = $(obj).attr("data-id");
+
+            $.post("/Blogs/DeleteBlogs", { "Id": id }, function (data) {
+                if (data.Success) {
+                    toastr.success(data.SuccessModel);
+
+                    $.post("/Blogs/_PartialIndex", { "Page": @ViewBag.PageIndex,"PageSize": @ViewBag.PageSize}, function (data) {
+                        $("#main").html(data);
+                    }, "text");
+                }
+            },"Json");
+        }
+    </script>
 
 

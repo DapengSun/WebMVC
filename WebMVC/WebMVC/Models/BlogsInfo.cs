@@ -27,10 +27,16 @@ namespace WebMVC.Models
         public string BlogSubHeading { get; set; }
 
         /// <summary>
-        /// 作者
+        /// 作者ID
         /// </summary>
         [MaxLength(200, ErrorMessage = "")]
-        public string BlogAuthor { get; set; }
+        public string BlogAuthorId { get; set; }
+
+        /// <summary>
+        /// 作者ID
+        /// </summary>
+        [MaxLength(200, ErrorMessage = "")]
+        public string BlogAuthorName { get; set; }
 
         /// <summary>
         /// 封面图
