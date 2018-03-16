@@ -20,7 +20,6 @@ namespace WebMVC.Controllers
         private IRolePermissionBLL _IRolePermissionBLL = BLLContainer.RolePermissionBLLContainer.Resolve<IRolePermissionBLL>();
 
         // GET: AutoGenerater
-        [LogFilterAttribute]
         public ActionResult Index()
         {
             return View();

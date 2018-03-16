@@ -38,5 +38,7 @@ namespace WebMVC.DBContext
         public DbSet<LogInfo> LogInfo { get; set; }
 
         public DbSet<ImageInfo> ImageInfo { get; set; }
+
+        public DbSet<ProductInfo> ProductInfo { get; set; }
     }
 }

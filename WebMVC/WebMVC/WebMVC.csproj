@@ -247,9 +247,12 @@
     <Compile Include="BLLContainer\BlogsInfoBLLContainer.cs" />
     <Compile Include="BLLContainer\IContain.cs" />
     <Compile Include="BLLContainer\ImageInfoBLLContainer.cs" />
+    <Compile Include="BLLContainer\ProductInfoBLLContainer.cs" />
     <Compile Include="BLLContainer\RolePermissionBLLContainer.cs" />
     <Compile Include="BLLContainer\PermissionInfoBLLContainer.cs" />
     <Compile Include="BLLContainer\RoleInfoBLLContainer.cs" />
+    <Compile Include="BLL\ProductInfoBLL.cs" />
+    <Compile Include="Controllers\ActivitieController.cs" />
     <Compile Include="BLL\AutoGeneraterBLL.cs" />
     <Compile Include="BLL\BaseBLL.cs" />
     <Compile Include="BLL\BlogsInfoBLL.cs" />
@@ -301,6 +304,7 @@
     <Compile Include="DALContainer\ImageInfoDALContainer.cs" />
     <Compile Include="DALContainer\LogInfoDALContainer.cs" />
     <Compile Include="DALContainer\PermissionInfoDALContainer.cs" />
+    <Compile Include="DALContainer\ProductInfoDALContainer.cs" />
     <Compile Include="DALContainer\RoleInfoDALContainer.cs" />
     <Compile Include="DALContainer\BlogsInfoDALContainer.cs" />
     <Compile Include="DALContainer\RolePermissionDALContainer.cs" />
@@ -312,6 +316,7 @@
     <Compile Include="DAL\MainDAL.cs" />
     <Compile Include="DAL\PermissionInfoDAL.cs" />
     <Compile Include="DAL\PermissionInfoDAL_old.cs" />
+    <Compile Include="DAL\ProductInfoDAL.cs" />
     <Compile Include="DAL\RoleInfoDAL.cs" />
     <Compile Include="DAL\RoleInfoDAL_old.cs" />
     <Compile Include="DAL\RolePermissionDAL.cs" />
@@ -330,6 +335,7 @@
     <Compile Include="IBLL\IImageInfoBLL.cs" />
     <Compile Include="IBLL\ILogInfoBLL.cs" />
     <Compile Include="IBLL\IPermissionInfoBLL.cs" />
+    <Compile Include="IBLL\IProductInfoBLL.cs" />
     <Compile Include="IBLL\IRoleInfoBLL.cs" />
     <Compile Include="IBLL\IRolePermissionBLL.cs" />
     <Compile Include="IDAL\IBaseDAL.cs" />
@@ -337,6 +343,7 @@
     <Compile Include="IDAL\IImageInfoDAL.cs" />
     <Compile Include="IDAL\ILogInfoDAL.cs" />
     <Compile Include="IDAL\IPermissionInfoDAL.cs" />
+    <Compile Include="IDAL\IProductInfoDAL.cs" />
     <Compile Include="IDAL\IRoleInfoDAL.cs" />
     <Compile Include="IDAL\IRolePermissionDAL.cs" />
     <Compile Include="Migrations\201708110615526_InitialCreate.cs" />
@@ -587,6 +594,38 @@
     <Compile Include="Migrations\201803150613481_20180315_sdp04.Designer.cs">
       <DependentUpon>201803150613481_20180315_sdp04.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803160642562_20180316_sdp01.cs" />
+    <Compile Include="Migrations\201803160642562_20180316_sdp01.Designer.cs">
+      <DependentUpon>201803160642562_20180316_sdp01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803160652353_20180316_sdp02.cs" />
+    <Compile Include="Migrations\201803160652353_20180316_sdp02.Designer.cs">
+      <DependentUpon>201803160652353_20180316_sdp02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803160710260_20180316_sdp04.cs" />
+    <Compile Include="Migrations\201803160710260_20180316_sdp04.Designer.cs">
+      <DependentUpon>201803160710260_20180316_sdp04.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803160726439_20180316_sdp05.cs" />
+    <Compile Include="Migrations\201803160726439_20180316_sdp05.Designer.cs">
+      <DependentUpon>201803160726439_20180316_sdp05.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803160759362_20180316_sdp06.cs" />
+    <Compile Include="Migrations\201803160759362_20180316_sdp06.Designer.cs">
+      <DependentUpon>201803160759362_20180316_sdp06.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803160800163_20180316_sdp07.cs" />
+    <Compile Include="Migrations\201803160800163_20180316_sdp07.Designer.cs">
+      <DependentUpon>201803160800163_20180316_sdp07.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803160801593_20180316_sdp08.cs" />
+    <Compile Include="Migrations\201803160801593_20180316_sdp08.Designer.cs">
+      <DependentUpon>201803160801593_20180316_sdp08.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803160802384_20180316_sdp09.cs" />
+    <Compile Include="Migrations\201803160802384_20180316_sdp09.Designer.cs">
+      <DependentUpon>201803160802384_20180316_sdp09.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogsInfo.cs" />
@@ -601,6 +640,7 @@
     <Compile Include="Models\LogInfo.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PermissionInfo.cs" />
+    <Compile Include="Models\ProductInfo.cs" />
     <Compile Include="Models\RoleInfo.cs" />
     <Compile Include="Models\RolePermission.cs" />
     <Compile Include="Models\Statistics.cs" />
@@ -1225,6 +1265,7 @@
     <Content Include="Views\Blogs\ViewBlogs.cshtml" />
     <Content Include="Views\Blogs\UpdateBlogs.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Activitie\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1427,6 +1468,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803150613481_20180315_sdp04.resx">
       <DependentUpon>201803150613481_20180315_sdp04.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803160642562_20180316_sdp01.resx">
+      <DependentUpon>201803160642562_20180316_sdp01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803160652353_20180316_sdp02.resx">
+      <DependentUpon>201803160652353_20180316_sdp02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803160710260_20180316_sdp04.resx">
+      <DependentUpon>201803160710260_20180316_sdp04.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803160726439_20180316_sdp05.resx">
+      <DependentUpon>201803160726439_20180316_sdp05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803160759362_20180316_sdp06.resx">
+      <DependentUpon>201803160759362_20180316_sdp06.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803160800163_20180316_sdp07.resx">
+      <DependentUpon>201803160800163_20180316_sdp07.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803160801593_20180316_sdp08.resx">
+      <DependentUpon>201803160801593_20180316_sdp08.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803160802384_20180316_sdp09.resx">
+      <DependentUpon>201803160802384_20180316_sdp09.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -179,3 +179,11 @@ D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180315_sdp01.re
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180315_sdp02.resources
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180315_sdp03.resources
 D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180315_sdp04.resources
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180316_sdp01.resources
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180316_sdp02.resources
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180316_sdp04.resources
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180316_sdp05.resources
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180316_sdp06.resources
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180316_sdp07.resources
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180316_sdp08.resources
+D:\WorkSpace\WebMVC\WebMVC\WebMVC\obj\Debug\WebMVC.Migrations._20180316_sdp09.resources

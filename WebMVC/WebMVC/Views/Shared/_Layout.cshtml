@@ -80,6 +80,12 @@
                         </a>
                     </li>
                     <li id="leftbtn-BackgroundManagers">
+                        <a href="@Url.Action("Index","Activitie")">
+                            <i class="pe-7s-attention"></i>
+                            <p>活动</p>
+                        </a>
+                    </li>
+                    <li id="leftbtn-BackgroundManagers">
                         <a href="@Url.Action("Index","Managerment")">
                             <i class="pe-7s-cloud"></i>
                             <p>设置</p>
@@ -248,8 +254,12 @@
     	        $('li[id*="leftbtn-"]').eq(5).addClass('active');
     	        $("#navbar-brand").html("新闻");
     	    }
-    	    else if (pathname.indexOf("/Mangerment") >= 0) {
+    	    else if (pathname.indexOf("/Activitie") >= 0) {
     	        $('li[id*="leftbtn-"]').eq(6).addClass('active');
+    	        $("#navbar-brand").html("活动");
+    	    }
+    	    else if (pathname.indexOf("/Mangerment") >= 0) {
+    	        $('li[id*="leftbtn-"]').eq(7).addClass('active');
     	        $("#navbar-brand").html("设置");
     	    }
     	    //else {
