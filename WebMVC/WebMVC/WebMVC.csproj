@@ -322,6 +322,7 @@
     <Compile Include="DAL\RolePermissionDAL.cs" />
     <Compile Include="DAL\RolePermissionDAL_old.cs" />
     <Compile Include="DAL\UserProfileDAL.cs" />
+    <Compile Include="DBContext\DbContextInterceptor.cs" />
     <Compile Include="DBContext\DbContextFactory.cs" />
     <Compile Include="DBContext\LocalDBContext.cs" />
     <Compile Include="DBUtility\BLLBase.cs" />
